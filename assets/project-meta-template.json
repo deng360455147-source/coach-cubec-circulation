@@ -1,0 +1,12 @@
+{
+  "rules_year": 2026,
+  "report_file": "[待填写]",
+  "report_version": "[待填写]",
+  "school_name": "[仅用于匿名检查和文件名，不得写入作品内部]",
+  "participant_names": [],
+  "province": "[目标省份]",
+  "ppt_pages": 20,
+  "duplicate_enterprise_status": "PROVISIONAL",
+  "enterprise_present_in_province": false,
+  "team_human_verification_complete": false
+}

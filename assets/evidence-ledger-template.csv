@@ -1,0 +1,2 @@
+evidence_id,claim_or_question,evidence_type,source_title,source_url_or_file,published_date,data_period,accessed_date,region,business_scope,method_or_sample,raw_excerpt_or_value,unit,report_use,confidence,counterevidence,limitations,verification_status,owner,version
+E001,,,,,,,,,,,,,,,,,待核实,,v0.1

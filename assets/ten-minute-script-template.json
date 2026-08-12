@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "status": "DRAFT",
+  "mode": "CREATE_FROM_APPROVED_DECK",
+  "script_version": "[待填写]",
+  "source_report_id": "[待填写]",
+  "source_report_version": "[待填写]",
+  "source_ppt_outline_version": "[待填写]",
+  "source_deck_id": "[待填写]",
+  "source_deck_hash": "",
+  "language": "zh-CN",
+  "anonymous_check": false,
+  "live_ai_use": false,
+  "hard_limit_seconds": 600,
+  "unsupported_claims": [],
+  "speakers": [
+    {"name": "[待填写]", "rate_units_per_minute": 230, "rate_status": "UNCALIBRATED"}
+  ],
+  "slides": [
+    {"slide": 1, "role": "匿名封面", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 8, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【停顿】【切页】", "transition": "[待填写]", "source_locators": [], "evidence_ids": [], "support_status": "SUPPORTED", "emergency_cut": "[待填写]"},
+    {"slide": 2, "role": "核心判断", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 24, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向核心判断】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 3, "role": "背景与区域价值", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 24, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向区域图】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 4, "role": "研究问题、方法与边界", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 32, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向方法图】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 5, "role": "企业与地区经营画像", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 24, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向企业画像】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 6, "role": "地区市场与顾客", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 26, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向顾客数据】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 7, "role": "外部环境与竞争", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 26, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向竞争对标】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 8, "role": "战略与商业模式", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 28, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向模式图】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 9, "role": "运营与供应链", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 28, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向运营链路】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 10, "role": "财务与经营效率", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 28, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向核心指标】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 11, "role": "成功机制一", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 28, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向机制链】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 12, "role": "成功机制二与综合诊断", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 28, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向诊断矩阵】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 13, "role": "瓶颈一与根因", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 36, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向问题证据与因果链】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 14, "role": "瓶颈二、根因与取舍", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 36, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向问题证据与取舍】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 15, "role": "方案总架构", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 28, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向方案架构】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 16, "role": "行动包一", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 34, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向行动链】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 17, "role": "行动包二与地区适配", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 34, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向地区落地】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 18, "role": "实施、投入产出与KPI", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 36, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向路线图与指标】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 19, "role": "风险、回滚与研究局限", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 28, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【指向风险矩阵】【切页】", "transition": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"},
+    {"slide": 20, "role": "结论与行业价值", "slide_title": "[待填写]", "speaker": "[待填写]", "seconds": 18, "must_say": "[待填写]", "spoken_text": "[待填写]", "stage_cue": "【停顿】【致谢】", "transition": "", "source_locators": ["[待填写]"], "evidence_ids": [], "support_status": "NEEDS_SOURCE", "emergency_cut": "[待填写]"}
+  ],
+  "rehearsals": [],
+  "team_approval": {
+    "confirmed": false,
+    "confirmed_version": "",
+    "confirmed_at": ""
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "report": {
+    "id": "作品名称",
+    "version": "v1.0",
+    "input_type": "PDF",
+    "review_status": "SCORABLE",
+    "source_verification": "REPORT_ONLY",
+    "rubric_version": "2026-v1",
+    "calibration_status": "RULE_BASED_ONLY"
+  },
+  "dimensions": [
+    {
+      "id": "framework",
+      "name": "分析框架",
+      "max_score": 20,
+      "pass_a": 0,
+      "pass_b": 0,
+      "working_score": 0,
+      "score_range": [0, 0],
+      "confidence": "LOW",
+      "supporting_evidence": [],
+      "contrary_or_missing": [
+        {"locator": "全文检索范围", "summary": "待填写", "claim_status": "M"}
+      ],
+      "ceiling_applied": null
+    },
+    {
+      "id": "object",
+      "name": "分析对象",
+      "max_score": 10,
+      "pass_a": 0,
+      "pass_b": 0,
+      "working_score": 0,
+      "score_range": [0, 0],
+      "confidence": "LOW",
+      "supporting_evidence": [],
+      "contrary_or_missing": [
+        {"locator": "全文检索范围", "summary": "待填写", "claim_status": "M"}
+      ],
+      "ceiling_applied": null
+    },
+    {
+      "id": "perspective",
+      "name": "分析视角",
+      "max_score": 10,
+      "pass_a": 0,
+      "pass_b": 0,
+      "working_score": 0,
+      "score_range": [0, 0],
+      "confidence": "LOW",
+      "supporting_evidence": [],
+      "contrary_or_missing": [
+        {"locator": "全文检索范围", "summary": "待填写", "claim_status": "M"}
+      ],
+      "ceiling_applied": null
+    },
+    {
+      "id": "method",
+      "name": "分析方法",
+      "max_score": 10,
+      "pass_a": 0,
+      "pass_b": 0,
+      "working_score": 0,
+      "score_range": [0, 0],
+      "confidence": "LOW",
+      "supporting_evidence": [],
+      "contrary_or_missing": [
+        {"locator": "全文检索范围", "summary": "待填写", "claim_status": "M"}
+      ],
+      "ceiling_applied": null
+    },
+    {
+      "id": "conclusion",
+      "name": "分析结论",
+      "max_score": 10,
+      "pass_a": 0,
+      "pass_b": 0,
+      "working_score": 0,
+      "score_range": [0, 0],
+      "confidence": "LOW",
+      "supporting_evidence": [],
+      "contrary_or_missing": [
+        {"locator": "全文检索范围", "summary": "待填写", "claim_status": "M"}
+      ],
+      "ceiling_applied": null
+    }
+  ],
+  "total": {
+    "max_score": 60,
+    "working_score": 0,
+    "score_range": [0, 0],
+    "confidence": "LOW"
+  },
+  "national_first_diagnostics": [
+    {"id": "regional_causality", "status": "UNABLE_TO_JUDGE", "locator": "待填写", "impacts": ["object", "perspective"]},
+    {"id": "central_contradiction", "status": "UNABLE_TO_JUDGE", "locator": "待填写", "impacts": ["framework"]},
+    {"id": "success_bottleneck_dual_line", "status": "UNABLE_TO_JUDGE", "locator": "待填写", "impacts": ["framework", "perspective"]},
+    {"id": "method_serves_question", "status": "UNABLE_TO_JUDGE", "locator": "待填写", "impacts": ["method"]},
+    {"id": "bottleneck_solution_mirror", "status": "UNABLE_TO_JUDGE", "locator": "待填写", "impacts": ["conclusion"]},
+    {"id": "decision_charts", "status": "UNABLE_TO_JUDGE", "locator": "待填写", "impacts": ["framework", "method"]},
+    {"id": "reproducible_appendix", "status": "UNABLE_TO_JUDGE", "locator": "待填写", "impacts": ["method"]}
+  ],
+  "blocking_items": [],
+  "unverified_claims": []
+}

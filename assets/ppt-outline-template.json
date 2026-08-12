@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "status": "DRAFT",
+  "outline_version": "v0.1",
+  "input_mode": "CONVERSATION_REPORT",
+  "source_report_id": "[待填写]",
+  "source_report_version": "[待填写]",
+  "source_report_hash": "",
+  "anonymous_check": false,
+  "unsupported_claims": [],
+  "user_approval": {
+    "confirmed": false,
+    "confirmed_version": "",
+    "confirmed_at": ""
+  },
+  "slides": [
+    {"slide": 1, "role": "匿名封面", "title": "[待填写]", "claim": "[待填写]", "source_locators": [], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "建立题目与对象", "seconds": 8, "evidence_required": false, "support_status": "SUPPORTED"},
+    {"slide": 2, "role": "核心判断", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "先给答案", "seconds": 24, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 3, "role": "背景与区域价值", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "说明为何研究", "seconds": 24, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 4, "role": "研究问题、方法与边界", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "交代可信度与限制", "seconds": 32, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 5, "role": "企业与地区经营画像", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "锁定案例边界", "seconds": 24, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 6, "role": "地区市场与顾客", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "说明本地需求", "seconds": 26, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 7, "role": "外部环境与竞争", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "说明压力与机会", "seconds": 26, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 8, "role": "战略与商业模式", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "解释价值逻辑", "seconds": 28, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 9, "role": "运营与供应链", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "解释履约机制", "seconds": 28, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 10, "role": "财务与经营效率", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "说明结果和口径", "seconds": 28, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 11, "role": "成功机制一", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "解释优势如何生效", "seconds": 28, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 12, "role": "成功机制二与综合诊断", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "收束机制与优先级", "seconds": 28, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 13, "role": "瓶颈一与根因", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "证明第一矛盾", "seconds": 36, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 14, "role": "瓶颈二、根因与取舍", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "证明第二矛盾", "seconds": 36, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 15, "role": "方案总架构", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "连接诊断与方案", "seconds": 28, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 16, "role": "行动包一", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "讲清执行闭环", "seconds": 34, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 17, "role": "行动包二与地区适配", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "讲清本地化落地", "seconds": 34, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 18, "role": "实施、投入产出与KPI", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "说明节奏与验证", "seconds": 36, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 19, "role": "风险、回滚与研究局限", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "说明失败条件", "seconds": 28, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"},
+    {"slide": 20, "role": "结论与行业价值", "title": "[待填写]", "claim": "[待填写]", "source_locators": ["[待填写]"], "evidence_ids": [], "visual": "[待填写]", "speaker_job": "回答问题并收束", "seconds": 18, "evidence_required": true, "support_status": "NEEDS_REPORT_EVIDENCE"}
+  ]
+}

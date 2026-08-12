@@ -1,0 +1,41 @@
+# Private, read-only source archives. Keep locally; do not commit or publish.
+/source-materials/
+/source-skills/
+
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python caches and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Temporary, backup, and log files
+.~*
+~$*
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.log
+
+# macOS metadata
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+
+# Editor metadata
+.idea/
+.vscode/
