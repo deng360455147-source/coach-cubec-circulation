@@ -30,7 +30,7 @@ description: 辅导全国高校商业精英挑战赛创新创业竞赛流通业�
 | 0 简报 | 竞赛/团队、选题、证据资产、交付目标和决策记录 | 年份、组别、地区、当前阶段、截止时间可识别 |
 | 1 选题 | 规则解释、企业池、查重结论、地区适配、中心命题 | 企业属于流通业；本省布局可核验；同校企业查重达 `CONFIRMED_CLEAR`；可取证 |
 | 2 调研 | 研究计划、证据台账、访谈/问卷/观察/竞品材料和清洗记录 | 核心命题有交叉证据；样本、口径、反证和局限透明 |
-| 3 报告 | 用户确认框架、分章节稿、合并稿 | 先确认框架；再形成“症状—差距—根因—方案—KPI”闭环 |
+| 3 报告 | 用户确认框架、分章节稿、合并稿 | 确认单严格保留官方 8 个一级模块和五个核心经营维度，结构与证据校验通过；再形成“症状—差距—根因—方案—KPI”闭环 |
 | 4 评分 | 唯一版本、资格风险、60分工作分与区间、置信度、证据缺口 | 每项得分可定位；确定性校验通过；未知项未被脑补 |
 | 5 PPT | 恰好20页初版大纲、来源映射、用户确认记录和可选成稿 | 报告已锁定；每页一个结论；大纲确认后才制作 |
 | 6 讲稿 | 20页逐页稿、连续逐字稿、来源、舞台提示、删减句、彩排记录 | 报告/PPT锁定；最后三轮均≤600秒且中位数525–570秒 |
@@ -43,7 +43,7 @@ description: 辅导全国高校商业精英挑战赛创新创业竞赛流通业�
 - **任何阶段**：读 [official-rules-2026.md](references/official-rules-2026.md) 与 [end-to-end-workflow.md](references/end-to-end-workflow.md)。首次启动复制 [project-brief-template.md](assets/project-brief-template.md)。
 - **选题**：读 [topic-selection-playbook.md](references/topic-selection-playbook.md)，使用 [topic-selection-shortlist-template.md](assets/topic-selection-shortlist-template.md)，运行 `scripts/check_case_duplicate.py`。
 - **调研**：读 [research-stage-playbook.md](references/research-stage-playbook.md) 与 [research-and-methods.md](references/research-and-methods.md)，按需复制问卷、访谈、观察、竞品、清洗和证据台账模板。
-- **报告**：先读 [national-first-report-patterns.md](references/national-first-report-patterns.md)，再读 [report-framework-and-section-writing.md](references/report-framework-and-section-writing.md)、[analysis-report-writing-playbook.md](references/analysis-report-writing-playbook.md)、[report-section-method-router.md](references/report-section-method-router.md) 和 [report-blueprint.md](references/report-blueprint.md)。
+- **报告**：先读 [national-first-report-patterns.md](references/national-first-report-patterns.md)，再读 [report-framework-and-section-writing.md](references/report-framework-and-section-writing.md)、[analysis-report-writing-playbook.md](references/analysis-report-writing-playbook.md)、[report-section-method-router.md](references/report-section-method-router.md) 和 [report-blueprint.md](references/report-blueprint.md)。复制 [report-framework-approval-template.md](assets/report-framework-approval-template.md)，交付前运行 `scripts/validate_report_framework.py`。
 - **评分**：读 [scoring-review-protocol.md](references/scoring-review-protocol.md)、[scoring-rubric-60.md](references/scoring-rubric-60.md) 和 [judging-checklist.md](references/judging-checklist.md)，运行 `scripts/validate_scorecard.py`。
 - **PPT**：读 [national-first-ppt-patterns.md](references/national-first-ppt-patterns.md) 与 [presentation-and-defense.md](references/presentation-and-defense.md)，复制 [20-page-ppt-outline-template.md](assets/20-page-ppt-outline-template.md) 和 [ppt-outline-template.json](assets/ppt-outline-template.json)，运行 `scripts/validate_ppt_outline.py`。
 - **讲稿**：读 [national-first-script-patterns.md](references/national-first-script-patterns.md) 与 [ten-minute-script-playbook.md](references/ten-minute-script-playbook.md)，复制讲稿 Markdown/JSON 模板，运行 `scripts/validate_ten_minute_script.py`。
@@ -86,12 +86,20 @@ python3 scripts/check_case_duplicate.py \
 ## 阶段 3：分析报告
 
 1. 建立问题树：`现象 → 指标 → 直接原因 → 根因 → 经营影响 → 方案杠杆`。检验替代解释、地区机制和企业可控性。
-2. 进入 `FRAMEWORK_DRAFT`：用11份国一样本的功能共性搭建章节任务、主张、证据、方法、图表和缺口，不照搬固定目录。
-3. 使用 [report-framework-approval-template.md](assets/report-framework-approval-template.md) **只输出框架并等待用户确认**。未经 `FRAMEWORK_APPROVED` 不写长篇正文。
-4. 确认后按一章或2–4个强相关小节分批写作，采用“结论 → 证据 → 对标 → 机制 → 决策含义 → 边界”。覆盖战略、商业模式、运营、市场竞争、财务/代理指标和地区性。
-5. 只使用能回答明确问题的方法，不堆砌 PESTEL、SWOT、五力或画布。方法输出不是证据。
-6. 每项方案明确根因、目标对象、流程动作、责任主体、0–3个月试点、3–12个月推广、资源/预算、KPI、验证、风险、触发器和回滚。
-7. 所有批次确认后组装全文，完成证据、因果、地区性、跨章、匿名和原创复核，再进入评分。
+2. 进入 `FRAMEWORK_DRAFT`：确认单的一级目录必须且只能依次为“目录、概要、引言、案例简介、企业内部及外部分析、发展瓶颈、结论与启示、附录及参考资料”。不得删除、改名、合并或调序；国一共性、地区专题、方案、实施、KPI和风险只能蒸馏为相应一级目录下的二、三级结构。
+3. 第 5 项“企业内部及外部分析”必须显式、实质覆盖企业战略、商业模式、运营管理、市场竞争、财务状况五个核心经营维度；没有公开财务时使用可核验代理指标并披露局限，绝不虚构报表或数值。
+4. 使用 [report-framework-approval-template.md](assets/report-framework-approval-template.md) **只输出框架并等待用户确认**。框架中的企业事实、数字、因果、瓶颈和方案依据必须登记为 `[已核验:E###]` 并给出同一证据 ID 的精确定位；证据不足时只写 `[待核验]`、`[待调研]`、`[待验证假设]` 或 `[团队判断]`，不得补全成确定事实。
+5. 交付确认单前运行：
+
+```bash
+python3 scripts/validate_report_framework.py path/to/report-framework-approval.md
+```
+
+只有校验为 `PASS` 且用户明确确认版本后才能记录 `FRAMEWORK_APPROVED`；未经确认不写长篇正文。
+6. 确认后按一章或2–4个强相关小节分批写作，采用“结论 → 证据 → 对标 → 机制 → 决策含义 → 边界”。五个核心经营维度必须在正文形成实质判断，不得只在标题或清单中出现。
+7. 只使用能回答明确问题的方法，不堆砌 PESTEL、SWOT、五力或画布。方法输出不是证据。
+8. 每项方案明确根因、目标对象、流程动作、责任主体、0–3个月试点、3–12个月推广、资源/预算、KPI、验证、风险、触发器和回滚。
+9. 所有批次确认后组装全文，完成证据、因果、地区性、跨章、匿名和原创复核，再进入评分。
 
 ## 阶段 4：评分复核
 
