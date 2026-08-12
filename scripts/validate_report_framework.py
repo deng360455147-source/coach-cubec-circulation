@@ -25,32 +25,20 @@ EXPECTED_TOP_LEVEL = [
 
 REQUIRED_SECOND_LEVEL = {
     "1.1": "目录编排",
-    "2.1": "案例问题与研究设计",
-    "2.2": "核心发现与行动结论",
-    "3.1": "研究背景与选题价值",
-    "3.2": "研究问题与分析框架",
-    "3.3": "数据、方法与研究边界",
-    "4.1": "企业基本画像",
-    "4.2": "业务与地区布局",
-    "4.3": "成功机制与阶段特征",
+    "2.1": "核心问题与结论",
+    "3.1": "为什么研究这个案例",
+    "3.2": "怎么开展研究",
+    "4.1": "企业与业务概况",
+    "4.2": "目标地区与案例价值",
     "5.1": "企业战略",
-    "5.2": "资源与组织能力",
-    "5.3": "产品与客户运营",
-    "5.4": "运营管理",
-    "5.5": "财务状况",
+    "5.2": "运营管理",
+    "5.3": "财务状况",
     "6.1": "宏观与地区环境",
     "6.2": "行业与市场演进",
     "6.3": "市场竞争",
-    "6.4": "外部机会与约束",
     "7.1": "商业模式",
     "7.2": "流通价值链与经营机制",
     "7.3": "地区适配与扩张机制",
-    "7.4": "五维联动与阶段错配",
-    "8.1": "瓶颈识别与优先级",
-    "9.1": "方案设计原则与映射",
-    "9.2": "行动组合",
-    "9.3": "实施路径与组织保障",
-    "9.4": "效果测量、风险与回滚",
     "10.1": "研究结论",
     "10.2": "企业与行业启示",
     "10.3": "适用边界与研究局限",
@@ -62,51 +50,33 @@ REQUIRED_SECOND_LEVEL = {
 
 CORE_DIMENSIONS = {
     "5.1": "企业战略",
-    "5.4": "运营管理",
-    "5.5": "财务状况",
+    "5.2": "运营管理",
+    "5.3": "财务状况",
     "6.3": "市场竞争",
     "7.1": "商业模式",
 }
 
 REQUIRED_TERTIARY = {
     "1.1.1": "章节层级与页码索引",
-    "2.1.1": "研究对象、地区与核心问题",
-    "2.1.2": "数据、方法与研究边界",
-    "2.2.1": "核心机制与发展瓶颈",
-    "2.2.2": "经营方案、验证与适用边界",
-    "3.1.1": "行业与地区背景",
-    "3.1.2": "选题缘由与案例典型性",
-    "3.1.3": "研究价值与决策对象",
-    "3.2.1": "研究问题与目标",
-    "3.2.2": "研究内容与范围",
-    "3.2.3": "技术路线与核心因果链",
-    "3.3.1": "数据来源与样本设计",
-    "3.3.2": "分析方法与工具适配",
-    "3.3.3": "研究创新、伦理与局限",
-    "4.1.1": "企业主体与业态定位",
-    "4.1.2": "发展历程与关键节点",
-    "4.1.3": "业务结构与组织范围",
-    "4.2.1": "核心业务、产品与服务",
-    "4.2.2": "渠道、门店/网点与仓配布局",
-    "4.2.3": "目标地区经营基础与阶段",
-    "4.3.1": "既有优势与成功基础",
-    "4.3.2": "关键事件与阶段变化",
-    "4.3.3": "案例典型性与研究接口",
-    "5.1.1": "战略定位与经营目标",
-    "5.1.2": "增长路径与地区战略",
-    "5.1.3": "资源配置与战略执行一致性",
-    "5.2.1": "关键资源与核心能力",
-    "5.2.2": "组织结构、协同与激励",
-    "5.2.3": "数字化、系统与数据能力",
-    "5.3.1": "产品/品类与服务组合",
-    "5.3.2": "渠道、营销与用户运营",
-    "5.3.3": "顾客体验与服务闭环",
-    "5.4.1": "采购、供应链与伙伴协同",
-    "5.4.2": "仓配、门店/网点与履约流程",
-    "5.4.3": "库存、效率、质量与风险控制",
-    "5.5.1": "收入、利润与成本结构",
-    "5.5.2": "现金、周转与资本效率",
-    "5.5.3": "单位经济、代理指标与局限",
+    "2.1.1": "研究对象与核心问题",
+    "2.1.2": "主要发现与方案方向",
+    "3.1.1": "背景与选题价值",
+    "3.1.2": "研究问题与目标",
+    "3.2.1": "数据来源与分析方法",
+    "3.2.2": "研究范围、创新与局限",
+    "4.1.1": "企业定位与关键发展节点",
+    "4.1.2": "核心业务与经营布局",
+    "4.2.1": "目标地区经营基础",
+    "4.2.2": "企业优势与案例价值",
+    "5.1.1": "战略定位与增长路径",
+    "5.1.2": "资源、组织与执行能力",
+    "5.1.3": "地区战略与阶段重点",
+    "5.2.1": "产品、渠道与客户运营",
+    "5.2.2": "采购、供应链与伙伴协同",
+    "5.2.3": "仓配履约、库存与质量效率",
+    "5.3.1": "收入、利润与成本结构",
+    "5.3.2": "现金、周转与资本效率",
+    "5.3.3": "单位经济、代理指标与局限",
     "6.1.1": "政策与制度环境",
     "6.1.2": "经济、人口与社会文化环境",
     "6.1.3": "技术、基础设施与地理条件",
@@ -115,10 +85,7 @@ REQUIRED_TERTIARY = {
     "6.2.3": "供应生态与流通链变化",
     "6.3.1": "竞争者、替代方案与竞争边界",
     "6.3.2": "同口径竞争对标与企业位置",
-    "6.3.3": "竞争压力、机会与经营传导",
-    "6.4.1": "外部机会及进入机制",
-    "6.4.2": "外部约束及影响机制",
-    "6.4.3": "情景变化与关键不确定性",
+    "6.3.3": "竞争压力、外部机会与经营影响",
     "7.1.1": "顾客、场景与价值主张",
     "7.1.2": "渠道、关系与价值交付",
     "7.1.3": "收入成本、伙伴与价值获取",
@@ -128,21 +95,6 @@ REQUIRED_TERTIARY = {
     "7.3.1": "全国标准与地方经营接口",
     "7.3.2": "目标地区适配动作与差距",
     "7.3.3": "复制、规模化与边界条件",
-    "7.4.1": "战略—商业模式一致性",
-    "7.4.2": "运营—竞争—财务传导链",
-    "7.4.3": "优势机制向阶段约束转化",
-    "8.1.1": "症状、差距与经营影响",
-    "8.1.2": "原因树与替代解释",
-    "8.1.3": "影响—可控性—紧迫性排序",
-    "9.1.1": "根因—行动镜像映射",
-    "9.1.2": "目标对象、地区适配与创新点",
-    "9.1.3": "方案组合与优先顺序",
-    "9.3.1": "0—3 个月试点",
-    "9.3.2": "3—12 个月推广",
-    "9.3.3": "责任、资源、预算与协同",
-    "9.4.1": "过程 KPI、结果 KPI 与数据采集",
-    "9.4.2": "情景、敏感性与可行性",
-    "9.4.3": "风险触发、停止条件与回滚",
     "10.1.1": "研究问题逐项回答",
     "10.1.2": "优势、错配与瓶颈机制",
     "10.1.3": "方案价值与验证结论",
@@ -289,6 +241,79 @@ def validate_register(register: str, errors: list[str]) -> None:
                 errors.append(f"主张—证据登记表第 {row_number} 条缺少可复核的精确定位")
 
 
+def validate_fixed_number_sets(
+    parsed: dict[int, dict[str, tuple[str, str]]], errors: list[str]
+) -> None:
+    for chapter in ("1", "2", "3", "4", "5", "6", "7", "10", "11"):
+        expected_second = {
+            number for number in REQUIRED_SECOND_LEVEL if number.split(".")[0] == chapter
+        }
+        actual_second = {
+            number for number in parsed[4] if number.split(".")[0] == chapter
+        }
+        if actual_second != expected_second:
+            errors.append(
+                f"第 {chapter} 章二级标题数量或编号不合格："
+                f"应为 {sorted(expected_second)}，当前为 {sorted(actual_second)}"
+            )
+
+        expected_third = {
+            number for number in REQUIRED_TERTIARY if number.split(".")[0] == chapter
+        }
+        actual_third = {
+            number for number in parsed[5] if number.split(".")[0] == chapter
+        }
+        if actual_third != expected_third:
+            errors.append(
+                f"第 {chapter} 章三级标题数量或编号不合格："
+                f"应为 {sorted(expected_third)}，当前为 {sorted(actual_third)}"
+            )
+
+
+def validate_result_items(
+    parsed: dict[int, dict[str, tuple[str, str]]],
+    chapter: str,
+    count: int,
+    tertiary_names: tuple[str, str, str],
+    prohibited_terms: tuple[str, ...],
+    label: str,
+    errors: list[str],
+) -> None:
+    expected_second = {f"{chapter}.{index}" for index in range(1, count + 1)}
+    actual_second = {
+        number for number in parsed[4] if number.split(".")[0] == chapter
+    }
+    if actual_second != expected_second:
+        errors.append(
+            f"{label}二级标题必须按顺序连续编号："
+            f"应为 {sorted(expected_second)}，当前为 {sorted(actual_second)}"
+        )
+
+    expected_third: set[str] = set()
+    for index in range(1, count + 1):
+        second_number = f"{chapter}.{index}"
+        second_item = parsed[4].get(second_number)
+        if second_item and any(term in second_item[0] for term in prohibited_terms):
+            errors.append(f"{label}二级标题“{second_item[0]}”过于抽象，必须直接概括结果")
+        for position, expected_name in enumerate(tertiary_names, start=1):
+            number = f"{second_number}.{position}"
+            expected_third.add(number)
+            item = parsed[5].get(number)
+            if item is None:
+                errors.append(f"缺少{label}三级标题：{number} {expected_name}")
+            elif not title_matches(item[0], expected_name):
+                errors.append(f"{label}三级标题 {number} 应为“{expected_name}”，当前为“{item[0]}”")
+
+    actual_third = {
+        number for number in parsed[5] if number.split(".")[0] == chapter
+    }
+    if actual_third != expected_third:
+        errors.append(
+            f"{label}三级标题数量或编号不合格："
+            f"应为 {sorted(expected_third)}，当前为 {sorted(actual_third)}"
+        )
+
+
 def validate(path: Path) -> list[str]:
     errors: list[str] = []
     try:
@@ -359,9 +384,7 @@ def validate(path: Path) -> list[str]:
             elif not title_matches(item[0], expected):
                 errors.append(f"三级标题 {number} 应为“{expected}”，当前为“{item[0]}”")
 
-        for number in ("9.2.1", "9.2.2"):
-            if number not in parsed[5]:
-                errors.append(f"经营优化方案至少缺少行动包：{number}")
+        validate_fixed_number_sets(parsed, errors)
 
         for number, (name, chunk) in parsed[5].items():
             validate_tertiary_summary(f"{number} {name}", chunk, errors)
@@ -374,6 +397,39 @@ def validate(path: Path) -> list[str]:
         )
         if not 2 <= bottleneck_count <= 4:
             errors.append(f"发展瓶颈必须标记 2—4 项；当前识别到 {bottleneck_count} 项")
+
+        tenth_start = directory.find("### 10. 结论与启示")
+        ninth = directory[ninth_start:tenth_start] if ninth_start >= 0 and tenth_start > ninth_start else ""
+        solution_count = len(
+            re.findall(r"^<!-- SOLUTION_ITEM -->\s*$", ninth, re.MULTILINE)
+        )
+        if not 2 <= solution_count <= 4:
+            errors.append(f"经营优化方案必须标记 2—4 项；当前识别到 {solution_count} 项")
+        if solution_count != bottleneck_count:
+            errors.append(
+                f"瓶颈与方案数量必须一致；当前瓶颈 {bottleneck_count} 项、方案 {solution_count} 项"
+            )
+
+        if 2 <= bottleneck_count <= 4:
+            validate_result_items(
+                parsed,
+                "8",
+                bottleneck_count,
+                ("问题表现在哪里", "为什么会出现", "会带来什么影响"),
+                ("瓶颈识别", "内部挑战", "外部挑战", "地区挑战", "原因树"),
+                "发展瓶颈",
+                errors,
+            )
+        if 2 <= solution_count <= 4:
+            validate_result_items(
+                parsed,
+                "9",
+                solution_count,
+                ("具体怎么做", "谁来做、何时做、需要什么", "怎么判断有效、何时调整"),
+                ("方案设计", "行动组合", "实施路径", "效果测量", "风险与回滚"),
+                "经营优化方案",
+                errors,
+            )
 
     if register:
         validate_register(register, errors)
@@ -394,7 +450,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print("PASS: 固定 11 章三级框架、五个核心经营维度、2—4 项瓶颈与证据状态均通过校验")
+    print("PASS: 精简 11 章三级框架、五个核心经营维度、2—4 项瓶颈/方案与证据状态均通过校验")
     return 0
 
 
