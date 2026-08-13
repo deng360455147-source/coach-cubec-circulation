@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "template_mode": true,
+  "batch_scope": "B02",
+  "report_visual_system": {
+    "font_family": "填写与Word一致的字体",
+    "primary_accent": "#1B365D",
+    "secondary_accent": "#C58A2A",
+    "background": "#FFFFFF",
+    "table_style": "tinted-header-zebra",
+    "sample_style_policy": "统一主色和字体，蒸馏国一样本的图表功能与版式轮换，不复制边框、吉祥物、水印或成品图"
+  },
+  "required_sections": [
+    "5.1.1",
+    "5.1.2",
+    "5.1.3",
+    "5.2.1",
+    "5.2.2",
+    "5.2.3",
+    "5.3.1",
+    "5.3.2",
+    "5.3.3",
+    "6.1.1",
+    "6.1.2",
+    "6.1.3",
+    "6.2.1",
+    "6.2.2",
+    "6.2.3",
+    "6.3.1",
+    "6.3.2",
+    "6.3.3",
+    "7.1.1",
+    "7.1.2",
+    "7.1.3",
+    "7.2.1",
+    "7.2.2",
+    "7.2.3",
+    "7.3.1",
+    "7.3.2",
+    "7.3.3"
+  ],
+  "requested_forms": [
+    {
+      "form": "data-table",
+      "decision": "USE",
+      "reason": "保存精确数值、口径和对标对象",
+      "fallback": "不适用"
+    },
+    {
+      "form": "line",
+      "decision": "USE",
+      "reason": "存在至少8个连续观察点",
+      "fallback": "观察点不足时改为分组柱、斜率图或数据表"
+    },
+    {
+      "form": "heatmap",
+      "decision": "USE",
+      "reason": "存在至少3×3同口径矩阵",
+      "fallback": "矩阵不足时改为点图或对标表"
+    },
+    {
+      "form": "word-cloud",
+      "decision": "NOT_APPLICABLE",
+      "reason": "示例未提供经清洗的文本语料",
+      "fallback": "取得至少100条文本后，与Top-N词频柱状图成对使用"
+    },
+    {
+      "form": "bar",
+      "decision": "USE",
+      "reason": "用于至少4个同口径类别的排序或对比",
+      "fallback": "类别不足时使用点图或数据表"
+    },
+    {
+      "form": "combo",
+      "decision": "USE",
+      "reason": "两个指标共享对象、期间和经营逻辑",
+      "fallback": "尺度易误导时改为上下对齐小多图"
+    }
+  ],
+  "visuals": [
+    {
+      "id": "V-5.1.1-01",
+      "section": "5.1.1",
+      "question": "战略投入如何转化为增长路径",
+      "takeaway": "填写仅由数据支持的一句话判断",
+      "kind": "table",
+      "family": "table-scorecard",
+      "form": "data-table",
+      "variant": "multi-year-strategy-input-table",
+      "style_mode": "tinted-table",
+      "layout_mode": "full-width",
+      "status": "PLANNED",
+      "data_file": "填写可复核数据文件",
+      "fields": [
+        "年度",
+        "战略投入",
+        "经营结果"
+      ],
+      "source_ids": [
+        "E001"
+      ],
+      "period": "填写期间",
+      "geography": "填写地区",
+      "unit": "填写单位",
+      "denominator": "填写分母或不适用",
+      "actual_observations": 4,
+      "companion_visual_id": "不适用",
+      "output_file": "填写导出文件"
+    }
+  ],
+  "coverage": {
+    "minimum_unique_families": 5,
+    "minimum_unique_style_modes": 3,
+    "minimum_unique_layout_modes": 3,
+    "maximum_family_share": 0.4,
+    "all_required_sections_mapped": true,
+    "tables_and_charts_both_present": true
+  },
+  "checks": {
+    "all_required_sections_mapped": true,
+    "all_claims_source_bound": true,
+    "data_sufficiency_reviewed": true,
+    "requested_forms_reviewed": true,
+    "style_diversity_reviewed": true,
+    "sample_style_not_copied": true,
+    "final_surface_planned": true
+  }
+}

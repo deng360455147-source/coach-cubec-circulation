@@ -51,6 +51,8 @@ Word只能从 `report-reader-b01/b02/b03-template.md` 或最终读者合并稿�
 
 先验证数据，再制图。趋势图通常需要足够连续观察点；只有少数离散期间时改用分组柱、斜率图、KPI表或精确表格。竞品对比使用同口径数据；问卷图标明有效样本和抽样边界；财务图保留公式、币种和合并范围。不得用双轴、3D、截断轴或花哨配色制造夸张结论。
 
+B02/B03先按 [national-first-b02-b03-writing-visual-patterns.md](national-first-b02-b03-writing-visual-patterns.md) 填写 [report-visual-map-template.json](../assets/report-visual-map-template.json)。保持统一字体、主色、辅助色、表格语法和图题来源格式，但在数据表、趋势/组合、比较/排序、构成/分布、矩阵/热力/地图、文本挖掘、分解/关系、流程/路线中轮换；至少5个视觉家族、3种风格模式和3种页面版式，单一家族不超过40%。不得复制往届作品的边框、吉祥物、水印、封面或成品图。
+
 每张图表只支持一个主要判断，正文紧邻一段“读数—比较—解释—含义—限制”。标题保持描述性，结论写在邻接正文，不让视觉标题超出数据能证明的范围。
 
 ## 5. 每页至少一图或一表
@@ -71,12 +73,12 @@ Word只能从 `report-reader-b01/b02/b03-template.md` 或最终读者合并稿�
 1. 锁定当前批次的内部证据与正文判断，从对应读者模板生成纯读者 Markdown；内部施工卡不参与转换。
 2. 按 [reader-facing-report-style.md](reader-facing-report-style.md) 完成咨询式叙述和图解规划，并运行 `python3 scripts/validate_reader_facing_report.py <reader.md>`。
 3. 建立 A4 设计令牌、页眉页脚、标题样式、编号、图题表题、交叉引用和可访问性规则。
-4. 先完成图表契约和数据验证，再生成静态图；保留源数据与可复现程序，但不在正文展示程序名、路径或运行状态。
+4. 先完成图表契约和数据验证；B02/B03填写图表地图并运行 `python3 scripts/validate_report_visual_map.py <visual-map.json>`，再生成静态图。保留源数据与可复现程序，但不在正文展示程序名、路径或运行状态。
 5. 生成本批 DOCX；使用真实表格几何、内联图片、重复表头、替代文本和相邻自然语言来源注。
 6. 对 DOCX 运行 `python3 scripts/validate_reader_facing_report.py <batch.docx>`，再运行样式、图片、可访问性和隐私检查。
 7. 用 `$documents:documents` 的 `render_docx.py` 将 DOCX 渲染为每页 PNG，并可同时导出 PDF。
 8. 逐页100%检查：图/表覆盖、叙述性页面图片密度、清晰度、标题/来源邻接、截字、重叠、分页、字体、页眉页脚、匿名和页码。
-9. 按真实渲染页填写 [word-visual-manifest-template.json](../assets/word-visual-manifest-template.json)，运行：
+9. B02/B03把实际导出文件、观察量和状态回填图表地图，运行 `python3 scripts/validate_report_visual_map.py --for-production <visual-map.json>`；再按真实渲染页填写 [word-visual-manifest-template.json](../assets/word-visual-manifest-template.json)，运行：
 
 ```bash
 python3 scripts/validate_word_visual_manifest.py path/to/word-visual-manifest.json
@@ -92,6 +94,7 @@ python3 scripts/validate_word_visual_manifest.py path/to/word-visual-manifest.js
 - B01、B02、B03均存在用户实际审阅并确认的DOCX版本；
 - 每页至少一张合格图片或一张合格表格，且不是装饰性填充；
 - 第3—10章叙述性页面的分析性图片比例和连续页面规则通过；
+- B02/B03图表地图证明三级小节覆盖、指定图形适用性、视觉家族/风格/版式多样性和数据门通过；
 - 图表中的值能回到数据文件和证据 ID，关键计算已复算；
 - 所有外部图片有合法来源/授权或为团队原创，现场照片完成隐私处理；
 - 页眉页脚、文档属性、正文、图表和附录均无学校或个人信息；

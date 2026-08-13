@@ -69,11 +69,11 @@
 - 双模型计划校验：`PASS / FAIL / 未运行`
 - `B02` 企业内部+外部+经营模式：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B02` 版本与确认语义：
-- B02读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
+- B02读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；图表地图普通/生产校验【】；视觉家族/风格/版式【】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
 - `B03` 瓶颈+方案+结论+附录：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B03` 版本与确认语义：
-- B03读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
-- 第4—7章权威证据包：`PASS / FAIL / 未运行`
+- B03读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；图表地图普通/生产校验【】；视觉家族/风格/版式【】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
+- 第4—10章关键主张证据包：`PASS / FAIL / 未运行`
 - 数据验证/图表映射：`PASS / FAIL / 未运行`
 - 概要与目录组装：`未开始 / 完成`
 - Word/PDF版本：

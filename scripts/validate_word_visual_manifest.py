@@ -34,6 +34,7 @@ DOCUMENT_CHECK_KEYS = (
     "consulting_report_voice_reviewed",
     "internal_artifacts_removed",
     "visual_reframing_reviewed",
+    "report_visual_map_validation_passed",
 )
 
 
@@ -57,12 +58,14 @@ def validate(data: Any) -> list[str]:
     if data.get("template_mode") is not False:
         errors.append("template_mode 必须改为 false，模板示例不能作为实际验收清单")
 
-    for key in ("schema_version", "document_id", "source_report_version", "docx_file", "rendered_pdf"):
+    for key in ("schema_version", "document_id", "source_report_version", "docx_file", "visual_map_file", "rendered_pdf"):
         if not nonempty_text(data.get(key)):
             errors.append(f"{key} 必须是非空字符串")
 
     if data.get("delivery_scope") not in ALLOWED_SCOPES:
         errors.append("delivery_scope 必须为 B01、B02、B03 或 FINAL")
+    elif data.get("delivery_scope") in {"B02", "B03"} and str(data.get("visual_map_file", "")).strip() in {"", "不适用"}:
+        errors.append("B02/B03 的 visual_map_file 必须指向已通过生产校验的图表地图")
 
     minimum_ratio = data.get("minimum_narrative_image_page_ratio")
     if not isinstance(minimum_ratio, (int, float)) or isinstance(minimum_ratio, bool) or not 0.6 <= minimum_ratio <= 1:
@@ -227,7 +230,7 @@ def main() -> int:
 
     print(
         "PASS: 已记录连续渲染页、每页至少一张有主张/来源映射的合格图片或表格，"
-        "叙述性页面图片密度达标，并完成读者正文、页眉页脚、匿名与重排后复核。"
+        "叙述性页面图片密度达标，并完成图表地图、读者正文、页眉页脚、匿名与重排后复核。"
     )
     return 0
 

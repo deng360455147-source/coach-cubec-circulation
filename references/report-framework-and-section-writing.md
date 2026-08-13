@@ -116,6 +116,8 @@ python3 scripts/validate_report_framework.py path/to/report-framework-approval.m
 
 正式写作前读取 [reader-facing-report-style.md](reader-facing-report-style.md)。内部施工卡与读者正文必须分文件维护；内部证据ID、状态、程序路径和复核日志不得进入正文或Word。
 
+B02/B03不得因追求自然语言或图表丰富而改动本确认单的一级、二级或三级标题。正文与视觉的变化只发生在标题下：按 [national-first-b02-b03-writing-visual-patterns.md](national-first-b02-b03-writing-visual-patterns.md) 选择自然段推进、数值表、图形家族、风格模式和页面版式。
+
 ### 1. 固定三批
 
 记录 `FRAMEWORK_APPROVED` 后严格按以下顺序交付，不得自行改变粒度或跳过确认：
@@ -136,7 +138,7 @@ python3 scripts/validate_report_framework.py path/to/report-framework-approval.m
 - 采用的方法、图表和必要计算；
 - 与前文数字、术语、企业动作和瓶颈的依赖关系。
 
-第4—7章必须先完成专业文献、公开权威机构报告/数据、权威网站、企业官方披露与本项目竞品/消费者/产品/财务分析的适配性检查。每项来源只服务于其能直接证明的主张；不能为了显示“专业”而机械凑齐来源类别。
+第4—7章必须先完成专业文献、公开权威机构报告/数据、权威网站、企业官方披露与本项目竞品/消费者/产品/财务分析的适配性检查；第8—10章的差距、根因、方案参数和结论继续回指这些证据或新增的可定位证据。每项来源只服务于其能直接证明的主张；不能为了显示“专业”而机械凑齐来源类别。
 
 B01开写前另读 [annual-report-empirical-methods.md](annual-report-empirical-methods.md)，完成研究框架图、年报数据底稿、四类候选方法审查、恰好两种READY模型的Notebook及图表，并运行双模型计划校验。若少于两种模型通过门槛，将本批状态设为 `MODEL_SELECTION_BLOCKED`，列补数清单后停止；不得把描述性比较包装成市场份额、协同、DID或DEA‑Tobit结果。
 

@@ -155,6 +155,8 @@ B01是例外的“双模型组合任务”：须读 [annual-report-empirical-met
 
 除逐页至少一张合格图/表外，第3—10章叙述性页面至少60%含分析性图片，不能连续两张叙述性页面均无图片。优先把时间、流程、比较、层级、机制、价值链、瓶颈—方案和实施安排图解化；文字截图、装饰图和段落套表格不计。
 
+B02/B03执行 [national-first-b02-b03-writing-visual-patterns.md](national-first-b02-b03-writing-visual-patterns.md)：保持固定框架，但用对比、流程、场景或诊断型自然段落推进；多列可复核数值表，并让折线、柱状、热力、词云、组合图等只在数据门通过时出现。整批至少5个视觉家族、3种风格模式、3种页面版式，单一家族不超过40%，避免整批只有同一颜色与同一种柱状/折线图。
+
 ## 8. 固定对外交付顺序
 
 对外交付固定为：
@@ -170,7 +172,9 @@ B01是例外的“双模型组合任务”：须读 [annual-report-empirical-met
 
 确认框架后，先读 [section-writing-evidence-protocol.md](section-writing-evidence-protocol.md) 和 [reader-facing-report-style.md](reader-facing-report-style.md)。复制 [report-section-batch-template.md](../assets/report-section-batch-template.md) 作为内部施工卡，并复制对应读者正文模板作为唯一Word内容来源。每批先完成证据、口径、因果、结构、一致性和原创检查，再做读者语言清理、图解、DOCX导出和逐页检查。未经用户接受该批DOCX，不自动推进下一批。
 
-第4—7章必须先建立“主张—证据包”，综合专业文献、公开权威机构资料、权威网站、企业披露以及适配的竞品、消费者、产品和财务分析。不能打开原文或没有精确定位的资料不得标记为已核验。量化分析先调用 `$data-analytics:jupyter-notebooks` 形成可复现程序，再调用 `$data-analytics:validate-data` 复核结果，图表调用 `$data-analytics:visualize-data`。
+B02/B03开写前复制 [report-visual-map-template.json](../assets/report-visual-map-template.json)，校验普通计划；全部图形生成后运行生产校验。图表地图不能替代数据文件、来源定位或Word逐页清单。
+
+第4—7章必须先建立“主张—证据包”，综合专业文献、公开权威机构资料、权威网站、企业披露以及适配的竞品、消费者、产品和财务分析；第8—10章的差距、根因、方案参数与结论继续回指这些证据或新增的可定位证据。不能打开原文或没有精确定位的资料不得标记为已核验。量化分析先调用 `$data-analytics:jupyter-notebooks` 形成可复现程序，再调用 `$data-analytics:validate-data` 复核结果，图表调用 `$data-analytics:visualize-data`。
 
 从第一批起维护全局一致性台账：标准名称、时间与样本版本、核心数字、研究问题、瓶颈—根因—方案—KPI 唯一命名、图表/附录/引用编号和待核实项。修改已接受章节时同步检查所有下游章节。
 

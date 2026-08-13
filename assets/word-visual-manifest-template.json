@@ -1,10 +1,11 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "template_mode": true,
   "document_id": "填写唯一文档ID",
   "delivery_scope": "B01",
   "source_report_version": "填写本批或最终合并稿版本",
   "docx_file": "填写本批或最终DOCX文件名",
+  "visual_map_file": "B02/B03填写图表地图；B01/FINAL填不适用或对应合并清单",
   "rendered_pdf": "填写最终渲染PDF文件名",
   "page_count": 1,
   "minimum_narrative_image_page_ratio": 0.6,
@@ -64,6 +65,7 @@
     "reader_facing_text_validation_passed": true,
     "consulting_report_voice_reviewed": true,
     "internal_artifacts_removed": true,
-    "visual_reframing_reviewed": true
+    "visual_reframing_reviewed": true,
+    "report_visual_map_validation_passed": true
   }
 }
