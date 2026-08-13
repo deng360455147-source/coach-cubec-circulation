@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "template_mode": true,
   "batch_scope": "B02",
   "report_visual_system": {
@@ -9,9 +9,38 @@
     "background": "#FFFFFF",
     "table_style": "tinted-header-zebra",
     "structural_diagram_engine": "excalidraw-diagram",
+    "academic_figure_review": "thesis-figure-skill-required",
     "bitmap_assist": "imagegen-evidence-compatible-only",
+    "required_drawing_skills": [
+      "excalidraw-diagram",
+      "thesis-figure-skill",
+      "imagegen"
+    ],
+    "drawing_skill_invocations": [
+      {
+        "skill": "excalidraw-diagram",
+        "status": "INVOKED_USED",
+        "reason": "填写本批结构图的具体用途",
+        "outputs": ["填写可编辑.excalidraw和导出文件"]
+      },
+      {
+        "skill": "thesis-figure-skill",
+        "status": "INVOKED_REVIEWED",
+        "reason": "填写学术构图、公式排版或高密度图形复核结果",
+        "outputs": ["填写审查记录；实际重绘时填写源文件和导出文件"]
+      },
+      {
+        "skill": "imagegen",
+        "status": "INVOKED_NOT_APPLICABLE",
+        "reason": "无适配的无文字位图时说明不生成装饰图的理由",
+        "outputs": []
+      }
+    ],
     "embedded_caption_policy": "forbidden",
-    "internal_text_size_pt": 12,
+    "minimum_internal_text_size_pt": 14,
+    "key_label_text_size_pt": 16,
+    "applies_to_all_visible_text": true,
+    "split_instead_of_shrink": true,
     "figure_lead_in_body_paragraph_required": true,
     "sample_style_policy": "统一主色和字体，蒸馏国一样本的图表功能与版式轮换，不复制边框、吉祥物、水印或成品图"
   },
@@ -129,9 +158,11 @@
     "style_diversity_reviewed": true,
     "sample_style_not_copied": true,
     "excalidraw_structural_diagrams_render_reviewed": true,
+    "thesis_figure_academic_composition_reviewed": true,
     "imagegen_use_kept_within_bitmap_boundary": true,
+    "drawing_skill_routing_completed": true,
     "no_captions_embedded_in_images": true,
-    "figure_internal_text_matches_body_size": true,
+    "minimum_figure_text_size_verified": true,
     "all_figures_have_lead_in_body_text": true,
     "final_surface_planned": true
   }

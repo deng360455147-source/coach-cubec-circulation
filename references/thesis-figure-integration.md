@@ -1,6 +1,6 @@
-# TikZ/公式图解专用后备与 `thesis-figure-skill` 路由
+# `thesis-figure-skill` 学术构图复核与适配重绘
 
-本协议把 `integrations/thesis-figure-skill/` 作为流通业经营分析报告的专用后备。结构图默认按 [excalidraw-imagegen-integration.md](excalidraw-imagegen-integration.md) 生成；只有需要TikZ、公式排版或Excalidraw无法稳定表达的学术图形时才使用本后备。其上游来源为 `https://github.com/0xE1337/thesis-figure-skill`，MIT 许可。嵌入目录保留上游 `SKILL.md`、参考文件、验证器和示例骨架；主流程不得改写其内部规则，也不得把工具名称、代码、状态或生成过程写进参赛正文。
+每批正文配图都必须调用外部 `$thesis-figure-skill` 完成至少一次学术构图复核。需要TikZ、公式排版、高密度机制关系，或Excalidraw无法稳定表达的学术图形时，再使用该Skill实际重绘。`integrations/thesis-figure-skill/` 保存上游MIT许可快照，供外部Skill不可用时核对方法。其上游来源为 `https://github.com/0xE1337/thesis-figure-skill`；主流程不得改写其内部规则，也不得把工具名称、代码、状态或生成过程写进参赛正文。
 
 ## 1. 能力边界
 
@@ -30,7 +30,7 @@
 
 Word中以最终嵌入尺寸为准，不以源文件画布为准：
 
-- 图内凡出现文字，在最终Word嵌入尺寸统一为12pt；
+- 图内普通文字在最终Word嵌入尺寸不得小于14pt，关键节点、主标签与关键数字为16pt；
 - 优先输出SVG或PDF矢量图；不得放大低分辨率PNG；
 - 同一图不超过9个主节点；超过时拆成总图与分图；
 - 只保留1—2个视觉焦点，采用主报告配色，不套用与全文冲突的渐变主题。

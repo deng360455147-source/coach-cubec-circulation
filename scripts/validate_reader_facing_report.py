@@ -26,6 +26,15 @@ FORBIDDEN = (
     ("第一二人称", r"(?:^|[。！？；\n])\s*(?:我们|我认为|笔者|你可以看到)"),
 )
 
+SUMMARY_COLON_PATTERN = re.compile(
+    r"(?:由[^。！？\n：]{0,18}(?:构成|组成)|包括|包含|分为|来自|"
+    r"主要(?:有|包括|体现为|表现为)|可(?:设计|采取|实施|形成)|"
+    r"缺口(?:同样)?明确|如下|分别(?:为|是))[^。！？\n：]{0,36}："
+    r"(?=[^。！？\n]{0,220}(?:、|；|，)[^。！？\n]{0,220}(?:、|；|，))"
+)
+QUOTED_TEXT_PATTERN = re.compile(r"“([^”\n]{2,100})”|\"([^\"\n]{2,100})\"")
+CHAIN_CONNECTOR_PATTERN = re.compile(r"—|→|->|/|＋|\+|、")
+
 
 def extract_markdown_body(text: str) -> str:
     if START in text or END in text:
@@ -83,6 +92,24 @@ def validate_text(text: str) -> list[str]:
             errors.append(f"{label}: 另有 {len(matches) - 5} 处")
     if re.search(r"【[^】]*】", text):
         errors.append("未替换占位符: 正文仍含有【…】")
+    summary_matches = list(SUMMARY_COLON_PATTERN.finditer(text))
+    for match in summary_matches[:5]:
+        errors.append(
+            f"冒号式概括串列: …{snippet(text, match.start(), match.end())}…"
+        )
+    if len(summary_matches) > 5:
+        errors.append(f"冒号式概括串列: 另有 {len(summary_matches) - 5} 处")
+    quote_chain_matches: list[re.Match[str]] = []
+    for match in QUOTED_TEXT_PATTERN.finditer(text):
+        content = match.group(1) or match.group(2) or ""
+        if len(CHAIN_CONNECTOR_PATTERN.findall(content)) >= 2:
+            quote_chain_matches.append(match)
+    for match in quote_chain_matches[:5]:
+        errors.append(
+            f"引号式词组链: …{snippet(text, match.start(), match.end())}…"
+        )
+    if len(quote_chain_matches) > 5:
+        errors.append(f"引号式词组链: 另有 {len(quote_chain_matches) - 5} 处")
     return errors
 
 
@@ -97,7 +124,11 @@ def make_minimal_docx(path: Path, text: str) -> None:
 
 
 def self_test() -> int:
-    clean = "数据显示，该企业收入结构在三年内发生变化。资料来源：企业2025年度报告，第37页。"
+    clean = (
+        "数据显示，该企业收入结构在三年内发生变化。资料来源：企业2025年度报告，第37页。"
+        "企业先识别不同层级的需求，再开展小范围试销，并根据销售表现滚动补货。"
+        "文中所称“长沙中枢”仅表示待验证的区域场景。"
+    )
     if validate_text(clean):
         print("FAIL: clean report text was rejected")
         return 1
@@ -112,6 +143,16 @@ def self_test() -> int:
     if not required_labels.issubset(found_labels):
         print(f"FAIL: internal workflow text was not fully detected: {sorted(required_labels - found_labels)}")
         return 1
+    prose_bad = (
+        "企业的价值主张由四个支点构成：高质价比、丰富品类、高频上新和便利门店体验。"
+        "企业执行“分层需求—小范围验证—滚动补货—退出复盘”。"
+    )
+    prose_errors = validate_text(prose_bad)
+    prose_labels = {error.split(":", 1)[0] for error in prose_errors}
+    for required in ("冒号式概括串列", "引号式词组链"):
+        if required not in prose_labels:
+            print(f"FAIL: {required} was not detected")
+            return 1
     with tempfile.TemporaryDirectory() as temp_dir:
         docx = Path(temp_dir) / "test.docx"
         make_minimal_docx(docx, "程序分析使用 test.ipynb")
@@ -124,7 +165,7 @@ def self_test() -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="检查读者版报告是否泄漏内部Skill、状态码、路径、证据编号和占位符"
+        description="检查读者版报告是否泄漏内部工作流，或使用禁用的冒号式概括与引号式词组链"
     )
     parser.add_argument("report", nargs="?", type=Path)
     parser.add_argument("--self-test", action="store_true")
@@ -140,11 +181,11 @@ def main() -> int:
         return 2
     errors = validate_text(text)
     if errors:
-        print("FAIL: 读者正文包含内部工作流语言或未替换内容")
+        print("FAIL: 读者正文包含内部工作流语言、未替换内容或禁用表达")
         for error in errors:
             print(f"- {error}")
         return 1
-    print("PASS: 读者正文未发现Skill、状态码、程序路径、内部证据编号或占位符")
+    print("PASS: 读者正文未发现内部工作流泄漏、占位符、冒号式概括串列或引号式词组链")
     return 0
 
 

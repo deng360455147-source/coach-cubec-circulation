@@ -6,7 +6,7 @@
 
 - **数据验证**：先调用 `$data-analytics:validate-data`，检查来源、样本、分母、期间、单位、计算、比较和因果措辞。
 - **统计图表**：调用 `$data-analytics:visualize-data`，以真实数据文件生成可复现SVG或高分辨率PNG；折线、柱状、组合、热力、词云等必须分别通过数据门。
-- **机制/流程图解**：读取 [excalidraw-imagegen-integration.md](excalidraw-imagegen-integration.md)，默认调用外部 `$excalidraw-diagram` 制作研究框架、价值链、流程、驱动树、泳道、路线图和瓶颈—方案机制；只有适配的无文字位图素材才调用 `$imagegen` 辅助。不得用二者替代统计验证或真实证据。需要公式/TikZ时才使用 [thesis-figure-integration.md](thesis-figure-integration.md) 的专用后备。
+- **机制/流程与图形美化**：读取 [excalidraw-imagegen-integration.md](excalidraw-imagegen-integration.md)，每批调用外部 `$excalidraw-diagram`、`$thesis-figure-skill` 和系统 `$imagegen` 并记录路由。Excalidraw制作研究框架、价值链、流程、驱动树、泳道、路线图和瓶颈—方案机制；thesis-figure-skill复核学术构图并按适配性重绘公式/TikZ/高密度关系图；imagegen只辅助适配的无文字位图。三者均不得替代统计验证或真实证据。
 - **Word生成与检查**：调用 `$documents:documents`，使用Word真实样式、表格几何、内联图片、页眉页脚、`SEQ/REF`域、隐私清理和逐页渲染流程。
 - **编辑式视觉参考**：Kami 1.12.0原样嵌入 `integrations/kami/`，只借鉴克制层级、图解语言和页面密度。其原生输出是HTML/PDF，不得冒充Word生成器。
 
@@ -60,7 +60,7 @@ Word只能从 `report-reader-b01/b02/b03-template.md` 或最终读者合并稿�
 
 ### 4.2 字号与清晰度
 
-- 图内凡出现文字，按Word最终嵌入尺寸折算后统一为12pt；无文字图片记录为无内部文字。信息过密时拆图，不缩字。
+- 图内凡出现文字，按Word最终嵌入尺寸折算。14pt下限适用于坐标刻度、坐标轴名称、图例、数据标签、节点文字和注释；关键节点、主标签和关键数字为16pt。无文字图片记录为无内部文字。信息过密时拆图或把解释移到正文，不缩字。
 - 优先SVG/PDF矢量图；位图按最终宽度至少220dpi，不放大模糊截图。
 - 结构图使用Excalidraw式视觉论证和主报告统一色板；统计图保留多种适配图形家族与版式，但不能每张图套一套互不相干的主题。
 - 图形生成后在100%页面视图和200%检查视图各复核一次，并做黑白打印可辨性检查。
@@ -92,7 +92,7 @@ B02/B03按 [national-first-b02-b03-writing-visual-patterns.md](national-first-b0
 
 1. 锁定当前批次的证据和读者正文，运行 `validate_reader_facing_report.py`。
 2. 读取版式JSON，建立Word样式、节、页眉页脚、真实多级编号和题注样式。
-3. 验证数据，再制作统计图；机制/流程图默认走Excalidraw渲染—查看—修复链路，需要适配位图时才用imagegen辅助。
+3. 验证数据，再制作统计图；完成Excalidraw、thesis-figure-skill和imagegen三工具路由。机制/流程图走Excalidraw渲染—查看—修复链路，关键学术图形接受thesis-figure-skill构图复核，需要适配位图时才用imagegen辅助。
 4. 生成DOCX：每张图前有正文引导，图片内联且无内嵌题注，图题在下，表题在上，表格单元格居中且零首行缩进，来源紧邻，替代文本完整。
 5. 插入 `SEQ/REF`域并物化显示值；最终目录使用Heading 1/2/3自动域，更新目录和页码域；只允许一级标题段前分页。
 6. 运行正文泄漏、样式、图片、可访问性、隐私和 `scripts/validate_report_docx_format.py` 检查。
@@ -107,7 +107,7 @@ B02/B03按 [national-first-b02-b03-writing-visual-patterns.md](national-first-b0
 - 所有题注均为9pt小五黑体居中，图下表上，`SEQ`域自动编号，图片内没有重复题注；
 - 正文为12pt宋体，英文数字Times New Roman；1.25倍行距、两端对齐、首行2字符、版式和页边距符合预设；
 - 目录包含全文一级、二级、三级标题；只有一级标题触发章节分页，没有手工分页符或分页型分节符；
-- 每张图前有正文引导，图内文字最终为12pt；矢量优先，未出现低清放大或标签重叠；
+- 每张图前有正文引导，图内普通文字最终不小于14pt、关键文字为16pt；矢量优先，未出现低清放大或标签重叠；
 - 表格单元格文字水平/垂直居中，单元格段落首行缩进为0；
 - 问卷、访谈和编码为真实执行版本，知情、样本、质量和局限透明；
 - 参考文献为GB/T 7714—2025普通编号列表，不是表格；

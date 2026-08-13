@@ -79,8 +79,9 @@
 - Word/PDF版本：
 - Word版式预设：`cubec-a4-chinese-research-print / 用户覆盖`；DOCX格式校验：`PASS / FAIL / 未运行`
 - 图题/表题自动域：`PASS / FAIL / 未运行`；题注9pt且图内无题注：`PASS / FAIL / 未运行`；参考文献非表格：`PASS / FAIL / 不适用`
-- Excalidraw结构图渲染复核：`PASS / FAIL / 未运行`；imagegen边界复核：`PASS / FAIL / 不适用`
-- 图片前置正文/图内12pt/清晰度复核：`PASS / FAIL / 未运行`
+- Excalidraw结构图渲染复核：`PASS / FAIL / 未运行`；thesis-figure-skill学术构图复核：`PASS / FAIL / 未运行`；imagegen适配性调用与边界复核：`PASS / FAIL / 未运行`
+- 图片前置正文/普通文字不小于14pt/关键文字16pt/清晰度复核：`PASS / FAIL / 未运行`
+- 主谓宾叙述/冒号式概括串列/引号式词组链复核：`PASS / FAIL / 未运行`
 - 表格单元格水平垂直居中且零首行缩进：`PASS / FAIL / 未运行`
 - 正文1.25倍行距/仅章节分页：`PASS / FAIL / 未运行`
 - 最终合并稿语言泄漏校验：`PASS / FAIL / 未运行`

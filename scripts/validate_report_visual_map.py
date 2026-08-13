@@ -69,6 +69,16 @@ ALLOWED_LAYOUTS = {
     "appendix-grid",
 }
 ALLOWED_STATUSES = {"PLANNED", "PRODUCED", "VERIFIED"}
+REQUIRED_DRAWING_SKILLS = {
+    "excalidraw-diagram",
+    "thesis-figure-skill",
+    "imagegen",
+}
+ALLOWED_INVOCATION_STATUSES = {
+    "INVOKED_USED",
+    "INVOKED_REVIEWED",
+    "INVOKED_NOT_APPLICABLE",
+}
 CHECK_KEYS = (
     "all_required_sections_mapped",
     "all_claims_source_bound",
@@ -77,9 +87,11 @@ CHECK_KEYS = (
     "style_diversity_reviewed",
     "sample_style_not_copied",
     "excalidraw_structural_diagrams_render_reviewed",
+    "thesis_figure_academic_composition_reviewed",
     "imagegen_use_kept_within_bitmap_boundary",
+    "drawing_skill_routing_completed",
     "no_captions_embedded_in_images",
-    "figure_internal_text_matches_body_size",
+    "minimum_figure_text_size_verified",
     "all_figures_have_lead_in_body_text",
     "final_surface_planned",
 )
@@ -172,14 +184,62 @@ def validate(data: Any, for_production: bool = False) -> list[str]:
                 errors.append(f"report_visual_system.{key} 必须是非空字符串")
         exact_system = {
             "structural_diagram_engine": "excalidraw-diagram",
+            "academic_figure_review": "thesis-figure-skill-required",
             "bitmap_assist": "imagegen-evidence-compatible-only",
             "embedded_caption_policy": "forbidden",
-            "internal_text_size_pt": 12,
+            "minimum_internal_text_size_pt": 14,
+            "key_label_text_size_pt": 16,
+            "applies_to_all_visible_text": True,
+            "split_instead_of_shrink": True,
             "figure_lead_in_body_paragraph_required": True,
         }
         for key, expected in exact_system.items():
             if system.get(key) != expected:
                 errors.append(f"report_visual_system.{key} 必须为 {expected}")
+        required_drawing_skills = system.get("required_drawing_skills")
+        if (
+            not isinstance(required_drawing_skills, list)
+            or set(required_drawing_skills) != REQUIRED_DRAWING_SKILLS
+            or len(required_drawing_skills) != len(REQUIRED_DRAWING_SKILLS)
+        ):
+            errors.append(
+                "report_visual_system.required_drawing_skills 必须完整且不重复地包含 "
+                "excalidraw-diagram、thesis-figure-skill 和 imagegen"
+            )
+        invocations = system.get("drawing_skill_invocations")
+        seen_skills: dict[str, str] = {}
+        if not isinstance(invocations, list):
+            errors.append("report_visual_system.drawing_skill_invocations 必须是数组")
+            invocations = []
+        for index, invocation in enumerate(invocations):
+            where = f"report_visual_system.drawing_skill_invocations[{index}]"
+            if not isinstance(invocation, dict):
+                errors.append(f"{where} 必须是对象")
+                continue
+            skill = invocation.get("skill")
+            status = invocation.get("status")
+            if skill not in REQUIRED_DRAWING_SKILLS:
+                errors.append(f"{where}.skill 不是规定的绘图Skill")
+                continue
+            if skill in seen_skills:
+                errors.append(f"{where}.skill 重复：{skill}")
+            seen_skills[skill] = str(status)
+            if status not in ALLOWED_INVOCATION_STATUSES:
+                errors.append(f"{where}.status 无效")
+            if not nonempty_text(invocation.get("reason")):
+                errors.append(f"{where}.reason 必须说明实际用途或不适用理由")
+            outputs = invocation.get("outputs")
+            if not isinstance(outputs, list) or not all(nonempty_text(item) for item in outputs):
+                errors.append(f"{where}.outputs 必须是字符串数组")
+            elif status == "INVOKED_USED" and not outputs:
+                errors.append(f"{where}.outputs 在实际出图时不能为空")
+        missing_invocations = REQUIRED_DRAWING_SKILLS - set(seen_skills)
+        if missing_invocations:
+            errors.append(f"绘图Skill尚未全部调用：{sorted(missing_invocations)}")
+        if seen_skills.get("excalidraw-diagram") != "INVOKED_USED":
+            errors.append("excalidraw-diagram 必须实际用于本批结构图")
+        if seen_skills.get("thesis-figure-skill") not in {"INVOKED_USED", "INVOKED_REVIEWED"}:
+            errors.append("thesis-figure-skill 必须完成学术构图复核或实际重绘")
 
     required_raw = data.get("required_sections")
     if not nonempty_text_list(required_raw):
@@ -407,6 +467,51 @@ def validate(data: Any, for_production: bool = False) -> list[str]:
     return errors
 
 
+def make_self_test_visual_system() -> dict[str, Any]:
+    return {
+        "font_family": "Noto Sans CJK",
+        "primary_accent": "#123456",
+        "secondary_accent": "#C58A2A",
+        "background": "#FFFFFF",
+        "table_style": "tinted",
+        "structural_diagram_engine": "excalidraw-diagram",
+        "academic_figure_review": "thesis-figure-skill-required",
+        "bitmap_assist": "imagegen-evidence-compatible-only",
+        "required_drawing_skills": [
+            "excalidraw-diagram",
+            "thesis-figure-skill",
+            "imagegen",
+        ],
+        "drawing_skill_invocations": [
+            {
+                "skill": "excalidraw-diagram",
+                "status": "INVOKED_USED",
+                "reason": "已制作结构图",
+                "outputs": ["framework.excalidraw", "framework.svg"],
+            },
+            {
+                "skill": "thesis-figure-skill",
+                "status": "INVOKED_REVIEWED",
+                "reason": "已复核学术构图与可读性",
+                "outputs": ["academic-figure-review.md"],
+            },
+            {
+                "skill": "imagegen",
+                "status": "INVOKED_NOT_APPLICABLE",
+                "reason": "本批没有适配的无文字位图，不生成装饰图",
+                "outputs": [],
+            },
+        ],
+        "embedded_caption_policy": "forbidden",
+        "minimum_internal_text_size_pt": 14,
+        "key_label_text_size_pt": 16,
+        "applies_to_all_visible_text": True,
+        "split_instead_of_shrink": True,
+        "figure_lead_in_body_paragraph_required": True,
+        "sample_style_policy": "不复制样本",
+    }
+
+
 def make_self_test_data() -> dict[str, Any]:
     forms_cycle = ["line", "heatmap", "word-cloud", "bar", "combo", "map", "process", "matrix"]
     family_for = {
@@ -438,8 +543,8 @@ def make_self_test_data() -> dict[str, Any]:
         for form in sorted(REQUESTED_FORMS)
     ]
     return {
-        "schema_version": "1.1", "template_mode": False, "batch_scope": "B02",
-        "report_visual_system": {"font_family": "Noto Sans CJK", "primary_accent": "#123456", "secondary_accent": "#C58A2A", "background": "#FFFFFF", "table_style": "tinted", "structural_diagram_engine": "excalidraw-diagram", "bitmap_assist": "imagegen-evidence-compatible-only", "embedded_caption_policy": "forbidden", "internal_text_size_pt": 12, "figure_lead_in_body_paragraph_required": True, "sample_style_policy": "不复制样本"},
+        "schema_version": "1.2", "template_mode": False, "batch_scope": "B02",
+        "report_visual_system": make_self_test_visual_system(),
         "required_sections": sections, "requested_forms": requested, "visuals": visuals,
         "coverage": {"minimum_unique_families": 5, "minimum_unique_style_modes": 3, "minimum_unique_layout_modes": 3, "maximum_family_share": 0.4, "all_required_sections_mapped": True, "tables_and_charts_both_present": True},
         "checks": {key: True for key in CHECK_KEYS},
@@ -485,8 +590,8 @@ def make_b03_self_test_data() -> dict[str, Any]:
         for form in sorted(REQUESTED_FORMS)
     ]
     return {
-        "schema_version": "1.1", "template_mode": False, "batch_scope": "B03",
-        "report_visual_system": {"font_family": "Noto Sans CJK", "primary_accent": "#123456", "secondary_accent": "#C58A2A", "background": "#FFFFFF", "table_style": "tinted", "structural_diagram_engine": "excalidraw-diagram", "bitmap_assist": "imagegen-evidence-compatible-only", "embedded_caption_policy": "forbidden", "internal_text_size_pt": 12, "figure_lead_in_body_paragraph_required": True, "sample_style_policy": "不复制样本"},
+        "schema_version": "1.2", "template_mode": False, "batch_scope": "B03",
+        "report_visual_system": make_self_test_visual_system(),
         "required_sections": sections, "requested_forms": requested, "visuals": visuals,
         "coverage": {"minimum_unique_families": 5, "minimum_unique_style_modes": 3, "minimum_unique_layout_modes": 3, "maximum_family_share": 0.4, "all_required_sections_mapped": True, "tables_and_charts_both_present": True},
         "checks": {key: True for key in CHECK_KEYS},
@@ -513,6 +618,12 @@ def self_test() -> int:
     errors = validate(data, for_production=True)
     if not any("word-cloud 观察量不足" in error for error in errors):
         print("FAIL: 80 texts incorrectly passed the word-cloud data gate")
+        return 1
+    data = make_self_test_data()
+    data["report_visual_system"]["drawing_skill_invocations"] = data["report_visual_system"]["drawing_skill_invocations"][:-1]
+    errors = validate(data, for_production=True)
+    if not any("尚未全部调用" in error for error in errors):
+        print("FAIL: missing drawing skill invocation was not detected")
         return 1
     print("PASS: report visual map validator self-test")
     return 0

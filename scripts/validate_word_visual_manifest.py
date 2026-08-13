@@ -33,7 +33,7 @@ DOCUMENT_CHECK_KEYS = (
     "figure_text_readability_checked",
     "all_figures_have_lead_in_body_text",
     "no_captions_embedded_in_images",
-    "figure_internal_text_matches_body_size",
+    "figure_internal_text_meets_large_type_standard",
     "table_cells_centered_without_first_line_indent",
     "toc_includes_heading_levels_1_to_3",
     "only_chapter_breaks_create_new_pages",
@@ -139,6 +139,21 @@ def validate(data: Any) -> list[str]:
         for key, expected in expected_captions.items():
             if captions.get(key) != expected:
                 errors.append(f"captions.{key} 必须为 {expected}")
+
+    figure_text_standard = data.get("figure_text_standard")
+    expected_figure_text_standard = {
+        "minimum_internal_text_size_pt": 14,
+        "key_label_text_size_pt": 16,
+        "applies_to_all_visible_text": True,
+        "evaluated_at_final_word_width": True,
+        "split_instead_of_shrink": True,
+    }
+    if not isinstance(figure_text_standard, dict):
+        errors.append("figure_text_standard 必须是对象")
+    else:
+        for key, expected in expected_figure_text_standard.items():
+            if figure_text_standard.get(key) != expected:
+                errors.append(f"figure_text_standard.{key} 必须为 {expected}")
 
     table_layout = data.get("table_layout")
     expected_table_layout = {
@@ -268,10 +283,26 @@ def validate(data: Any) -> list[str]:
                 contains_text = visual.get("contains_text")
                 if not isinstance(contains_text, bool):
                     errors.append(f"{vwhere}.contains_text 必须为布尔值")
-                elif contains_text and visual.get("internal_text_size_pt") != 12:
-                    errors.append(f"{vwhere}.internal_text_size_pt 必须为 12")
-                elif not contains_text and visual.get("internal_text_size_pt") is not None:
-                    errors.append(f"{vwhere}.internal_text_size_pt 在无文字图片中必须为 null")
+                elif contains_text:
+                    internal_size = visual.get("internal_text_size_pt")
+                    key_size = visual.get("key_label_text_size_pt")
+                    if (
+                        not isinstance(internal_size, (int, float))
+                        or isinstance(internal_size, bool)
+                        or internal_size < 14
+                    ):
+                        errors.append(f"{vwhere}.internal_text_size_pt 在最终Word宽度下不得小于 14")
+                    if (
+                        not isinstance(key_size, (int, float))
+                        or isinstance(key_size, bool)
+                        or key_size < 16
+                    ):
+                        errors.append(f"{vwhere}.key_label_text_size_pt 在最终Word宽度下不得小于 16")
+                else:
+                    if visual.get("internal_text_size_pt") is not None:
+                        errors.append(f"{vwhere}.internal_text_size_pt 在无文字图片中必须为 null")
+                    if visual.get("key_label_text_size_pt") is not None:
+                        errors.append(f"{vwhere}.key_label_text_size_pt 在无文字图片中必须为 null")
 
         if page_role == "narrative" and isinstance(number, int):
             narrative_image_flags.append(
@@ -345,7 +376,7 @@ def main() -> int:
 
     print(
         "PASS: 已记录连续渲染页、每页至少一张有主张/来源映射的合格图片或表格，"
-        "并完成图片前置正文、图内无题注、图内12pt文字、表格居中、三级目录、章节分页、"
+        "并完成图片前置正文、图内无题注、图内最小14pt/关键文字16pt、表格居中、三级目录、章节分页、"
         "1.25倍行距、读者正文、页眉页脚、匿名与重排后复核。"
     )
     return 0

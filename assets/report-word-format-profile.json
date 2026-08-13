@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "profile_name": "cubec-a4-chinese-research-print",
   "basis": "用户上传版式参考图；当届细则、学校模板或用户后续明确要求优先",
   "page": {
@@ -79,7 +79,10 @@
     "placement": "inline",
     "caption_inside_image_forbidden": true,
     "body_lead_in_paragraph_required": true,
-    "internal_text_size_at_final_width_pt": 12,
+    "minimum_internal_text_size_at_final_width_pt": 14,
+    "key_label_text_size_at_final_width_pt": 16,
+    "applies_to_all_visible_text": true,
+    "split_instead_of_shrink": true,
     "textless_image_internal_text_size": null,
     "minimum_raster_dpi_at_final_width": 220,
     "review_zoom_percent": [
