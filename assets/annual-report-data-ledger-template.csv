@@ -1,0 +1,2 @@
+evidence_id,enterprise,report_year,report_title,report_source,access_date,report_page_or_table,metric_name,metric_category,raw_value,normalized_value,unit,currency,consolidation_scope,business_scope,region,period_start,period_end,calculation_formula,comparability_status,adjustment_or_limit,claim_id,chart_id,verification_status
+E001,【企业】,【年度】,【年报题名】,【交易所/监管披露URL或文件】,【YYYY-MM-DD】,【页码/表号】,【指标】,【财务/运营/结构】,【原始值】,【标准化值】,【元/万元/亿元/%/家等】,【CNY】,【合并/母公司/分部】,【业务范围】,【全国/地区】,【YYYY-MM-DD】,【YYYY-MM-DD】,【如为计算指标则写公式】,【可比/调整后可比/不可比】,【口径变化、重述或局限】,【C001】,【FIG-4-1】,【待核验/已核验】

@@ -1,0 +1,55 @@
+{
+  "template_mode": true,
+  "project": "【项目名称】",
+  "enterprise": "【企业】",
+  "research_question": "【双模型共同服务的核心研究问题】",
+  "annual_reports": [
+    {
+      "year": "【年度】",
+      "source": "【交易所/监管披露URL或文件】",
+      "access_date": "【YYYY-MM-DD】",
+      "page_scope": "【页码/表号】",
+      "consolidation_scope": "【合并/母公司/分部】",
+      "currency": "【币种】",
+      "unit": "【单位】"
+    }
+  ],
+  "annual_report_metric_count": 0,
+  "annual_report_charts": [
+    {
+      "chart_id": "FIG-4-1",
+      "question": "【该图回答什么】",
+      "chart_type": "【bar/table/slope/line等】",
+      "source_ids": ["【E###】"],
+      "output_file": "figures/FIG-4-1.svg"
+    },
+    {
+      "chart_id": "FIG-4-2",
+      "question": "【该图回答什么】",
+      "chart_type": "【stacked_bar/bar/table/map等】",
+      "source_ids": ["【E###】"],
+      "output_file": "figures/FIG-4-2.svg"
+    }
+  ],
+  "candidate_assessment": {
+    "market_share": "CONDITIONAL",
+    "synergy": "CONDITIONAL",
+    "did_cultural_premium": "CONDITIONAL",
+    "dea_tobit": "CONDITIONAL"
+  },
+  "selected_models": [],
+  "research_framework": {
+    "status": "PENDING",
+    "source_ids": ["【E###】"],
+    "output_file": "figures/FIG-3-1-research-framework.svg"
+  },
+  "notebook": {
+    "path": "analysis/B01_empirical_analysis.ipynb",
+    "executed": false,
+    "execution_status": "PENDING",
+    "data_version": "【数据版本】"
+  },
+  "model_selection_status": "MODEL_SELECTION_PENDING",
+  "selection_rationale": "【为什么这两种模型能回答核心问题且数据条件成立】",
+  "blocked_data": ["【若不足两种READY模型，列出最小补数项】"]
+}

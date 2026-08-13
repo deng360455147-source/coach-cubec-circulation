@@ -1,0 +1,17 @@
+{
+  "template_mode": true,
+  "title": "【企业】流通业经营案例研究框架",
+  "subtitle": "研究框架只呈现问题、证据与分析路径，不预填未经验证的结论",
+  "nodes": {
+    "context": {"title": "研究情境", "body": "【地区、行业变化与企业阶段】"},
+    "question": {"title": "核心问题", "body": "【1—2个可检验研究问题】"},
+    "evidence": {"title": "证据基础", "body": "年报｜权威统计｜调研｜竞品"},
+    "model_a": {"title": "实证模型 A", "body": "【从四类模型中选择的READY模型】"},
+    "model_b": {"title": "实证模型 B", "body": "【从四类模型中选择的READY模型】"},
+    "diagnosis": {"title": "经营诊断", "body": "战略｜运营｜财务｜竞争｜商业模式"},
+    "bottleneck": {"title": "发展瓶颈", "body": "【2—4项待证据验证的问题】"},
+    "action": {"title": "方案与验证", "body": "行动｜责任｜KPI｜风险｜回滚"}
+  },
+  "source_ids": ["【E###】"],
+  "output_file": "figures/FIG-3-1-research-framework.svg"
+}

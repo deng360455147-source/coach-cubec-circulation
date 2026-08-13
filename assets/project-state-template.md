@@ -60,6 +60,12 @@
 - 框架版本/确认日期：
 - `B01` 引言+案例简介：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B01` 版本与确认语义：
+- B01研究框架图：`PENDING / READY / BLOCKED`；文件/证据ID：
+- 年报数据底稿：覆盖年度【】；指标数【】；口径复核【PASS / FAIL / 未运行】
+- 四类候选模型状态：`market_share【】 / synergy【】 / did_cultural_premium【】 / dea_tobit【】`
+- 入选两模型与选择状态：`MODEL_SELECTION_PENDING / MODEL_SELECTION_READY / MODEL_SELECTION_BLOCKED`；模型【】+【】
+- 实证Notebook：路径【】；执行【PASS / FAIL / 未运行】；数据版本【】
+- 双模型计划校验：`PASS / FAIL / 未运行`
 - `B02` 企业内部+外部+经营模式：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B02` 版本与确认语义：
 - `B03` 瓶颈+方案+结论+附录：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`

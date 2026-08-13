@@ -6,6 +6,7 @@
 
 | 报告任务 | 首选方法/可用 skill | 采用内容 | 赛事化限制 |
 |---|---|---|---|
+| B01研究框架、年报画像与双模型 | 本地 `data-analytics:jupyter-notebooks`、`validate-data`、`visualize-data` + 本Skill双模型协议 | 用年报建立连续年度数据底稿；生成研究框架图；从市场份额、协同效应、文化溢价DID、DEA‑Tobit中选两种READY方法并输出程序化图表 | 恰好两种且必须通过数据/识别门；年报不能自动提供市场分母、反事实、处理/对照面板或足够DMU；不足时阻断，不模拟 |
 | 总体框架、章节施工说明 | ByteDance DeerFlow `consulting-analysis` 的两阶段方法 | 先定义问题/范围，再为每章写目标、逻辑、假设、数据、来源、检索词和视觉计划 | 在两阶段之间加入用户确认门；不强制每小节 200 字或每小节一图 |
 | 案例画像与经营全景 | 本地 `data-analytics:product-business-analysis` | 从决策出发，建立少量可检验假设，分解驱动因素，给出决策含义 | 不写企业百科；集团事实不能代替目标地区事实 |
 | 外部环境与地区竞争 | 本地 `competitive-analysis` / Pawel Huryn `competitor-analysis`；按需 PESTEL、五力 | 建立本地直接竞品/替代者集合、可比维度、证据来源和差距 | 同地区、同客群、同期间、同口径；PESTEL/五力不叠加堆砌 |
@@ -60,6 +61,7 @@
 ## 四、调用原则
 
 1. 一个章节先定义问题，再选择最多 1–2 个主方法；不得把多个框架作为“创新”堆叠。
+   B01按用户要求固定选择两种实证方法，但仍须先通过 [annual-report-empirical-methods.md](annual-report-empirical-methods.md) 的可行性门槛；不足两种时停止补数，不执行空模型。
 2. 外部 skill 只能提供流程和检查项，不能成为事实来源；数字、判断和引用仍回到证据台账。
 3. 本地 skill 不可用时，按本文件的最小方法执行，不影响主流程。
 4. 引入新第三方 skill 前，检查完整 `SKILL.md`、脚本、依赖、权限、凭据、许可和近期维护；禁止盲装。

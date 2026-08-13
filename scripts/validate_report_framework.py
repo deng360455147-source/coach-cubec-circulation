@@ -386,6 +386,35 @@ def validate(path: Path) -> list[str]:
             elif not title_matches(item[0], expected):
                 errors.append(f"三级标题 {number} 应为“{expected}”，当前为“{item[0]}”")
 
+        chapter_three_start = directory.find("### 3. 引言")
+        chapter_four_start = directory.find("### 4. 案例简介")
+        chapter_five_start = directory.find("### 5. 企业内部分析")
+        chapter_three = (
+            directory[chapter_three_start:chapter_four_start]
+            if chapter_three_start >= 0 and chapter_four_start > chapter_three_start
+            else ""
+        )
+        chapter_four = (
+            directory[chapter_four_start:chapter_five_start]
+            if chapter_four_start >= 0 and chapter_five_start > chapter_four_start
+            else ""
+        )
+        if "研究框架图" not in chapter_three:
+            errors.append("第3章引言必须在三级概括中规划“研究框架图”")
+        if "年报" not in chapter_four:
+            errors.append("第4章案例简介必须在三级概括中规划企业年报数字画像")
+        model_text = chapter_three + chapter_four
+        model_families = {
+            "市场份额": bool(re.search(r"市场份额", model_text)),
+            "协同效应": bool(re.search(r"协同效应", model_text)),
+            "文化溢价DID": bool(re.search(r"文化溢价|双重差分|\bDID\b", model_text, re.IGNORECASE)),
+            "DEA-Tobit": bool(re.search(r"DEA\s*[-‑—]?\s*Tobit|DEA", model_text, re.IGNORECASE)),
+        }
+        if sum(model_families.values()) < 2:
+            errors.append("第3—4章三级概括必须明确至少两类候选实证方法，并在B01只选两种READY模型")
+        if not re.search(r"两种[^。\n]{0,50}模型|模型[^。\n]{0,50}两种", model_text):
+            errors.append("第3—4章三级概括必须明确“只选择两种模型”的数量约束")
+
         validate_fixed_number_sets(parsed, errors)
 
         for number, (name, chunk) in parsed[5].items():
@@ -452,7 +481,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print("PASS: 精简11章三级框架、五个核心经营维度、2—4项瓶颈/方案、六项附录与证据状态均通过校验")
+    print("PASS: 精简11章三级框架、引言研究框架图、案例年报双模型、五个核心经营维度、2—4项瓶颈/方案、六项附录与证据状态均通过校验")
     return 0
 
 
