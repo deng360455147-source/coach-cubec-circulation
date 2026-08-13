@@ -31,6 +31,14 @@ REQUIRED_SECTIONS = {
     "结论与启示": ("结论与启示", "结论"),
     "附录及参考资料": ("附录", "参考资料", "参考文献"),
 }
+REQUIRED_APPENDIX_ITEMS = {
+    "企业重要数据概览": ("企业重要数据概览",),
+    "调查问卷": ("调查问卷",),
+    "访谈纲要（含知情说明与编码）": ("访谈纲要（含知情说明与编码）",),
+    "参考文献": ("参考文献",),
+    "观察/竞品与现场记录": ("观察/竞品与现场记录",),
+    "补充图表与地区对标": ("补充图表与地区对标",),
+}
 CORE_DIMENSIONS = {
     "战略": ("战略",),
     "商业模式": ("商业模式", "经营模式"),
@@ -66,6 +74,9 @@ def validate(report: Path, meta: dict) -> list[Check]:
     for name, terms in REQUIRED_SECTIONS.items():
         if not contains_any(text, terms):
             checks.append(Check("error", "missing_section", f"缺少官方最低模块：{name}"))
+    for name, terms in REQUIRED_APPENDIX_ITEMS.items():
+        if not all(term in text for term in terms):
+            checks.append(Check("error", "missing_appendix_item", f"缺少固定附录内容：{name}"))
     for name, terms in CORE_DIMENSIONS.items():
         if not contains_any(text, terms):
             checks.append(Check("warning", "missing_dimension", f"未识别到核心经营维度：{name}"))
