@@ -60,6 +60,7 @@
 - 框架版本/确认日期：
 - `B01` 引言+案例简介：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B01` 版本与确认语义：
+- B01读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
 - B01研究框架图：`PENDING / READY / BLOCKED`；文件/证据ID：
 - 年报数据底稿：覆盖年度【】；指标数【】；口径复核【PASS / FAIL / 未运行】
 - 四类候选模型状态：`market_share【】 / synergy【】 / did_cultural_premium【】 / dea_tobit【】`
@@ -68,12 +69,15 @@
 - 双模型计划校验：`PASS / FAIL / 未运行`
 - `B02` 企业内部+外部+经营模式：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B02` 版本与确认语义：
+- B02读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
 - `B03` 瓶颈+方案+结论+附录：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B03` 版本与确认语义：
+- B03读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
 - 第4—7章权威证据包：`PASS / FAIL / 未运行`
 - 数据验证/图表映射：`PASS / FAIL / 未运行`
 - 概要与目录组装：`未开始 / 完成`
 - Word/PDF版本：
+- 最终合并稿语言泄漏校验：`PASS / FAIL / 未运行`
 - 页眉页脚与匿名：`PASS / FAIL / 未运行`
 - 最终渲染页数：
 - 每页图/表清单校验：`PASS / FAIL / 未运行`

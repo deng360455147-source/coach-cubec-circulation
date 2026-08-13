@@ -99,6 +99,8 @@ B01是例外的“双模型组合任务”：须读 [annual-report-empirical-met
 
 ## 6. 章节与段落写法
 
+正式正文先读 [reader-facing-report-style.md](reader-facing-report-style.md)。内部施工卡可以使用证据ID、状态和程序路径；交给用户的正文必须采用结论先行、证据支撑、机制解释、经营含义收束的专业咨询/流通企业经营分析口吻，不得泄漏Skill、批次码、状态码、Notebook、代码路径、内部证据编号或AI生产过程。
+
 ### 6.1 结论式标题
 
 标题表达判断及对象，例如：
@@ -151,20 +153,22 @@ B01是例外的“双模型组合任务”：须读 [annual-report-empirical-met
 
 图表下注明来源、期间、地区、业务范围、单位、样本量和必要口径。问卷图表同时注明有效样本、抽样方式和题目；访谈观点注明匿名角色和时间；计算图表保留公式与假设。
 
+除逐页至少一张合格图/表外，第3—10章叙述性页面至少60%含分析性图片，不能连续两张叙述性页面均无图片。优先把时间、流程、比较、层级、机制、价值链、瓶颈—方案和实施安排图解化；文字截图、装饰图和段落套表格不计。
+
 ## 8. 固定对外交付顺序
 
 对外交付固定为：
 
-1. `B01`：引言 + 案例简介，确认后继续；
-2. `B02`：企业内部分析 + 企业外部分析 + 企业经营模式，确认后继续；
-3. `B03`：发展瓶颈 + 经营优化方案 + 结论与启示 + 附录及参考资料，确认后继续；
-4. 三批均接受后，最后写概要、目录和题目并组装 Word/PDF。
+1. `B01`：引言 + 案例简介，导出并交付该批 Word，确认后继续；
+2. `B02`：企业内部分析 + 企业外部分析 + 企业经营模式，导出并交付该批 Word，确认后继续；
+3. `B03`：发展瓶颈 + 经营优化方案 + 结论与启示 + 附录及参考资料，导出并交付该批 Word，确认后继续；
+4. 三批 Word 均接受后，最后写概要、目录和题目并组装最终 Word/PDF。
 
 内部准备仍先核对瓶颈卡、根因链、五个核心经营维度及其证据任务，以避免B01写成无关背景；但不得提前输出B02/B03正文或把未证明结论写入前文。B01先完成研究框架图、年报数据底稿、四类模型可行性审查、双模型Notebook和图表，再写解释文字。证据不足处保留 `[待团队核实：证据]`；少于两种READY模型时停止补数，不能用流畅语言或模拟结果隐藏缺口。
 
 ## 9. 分章节交付与复核
 
-确认框架后，先读 [section-writing-evidence-protocol.md](section-writing-evidence-protocol.md)，再复制 [report-section-batch-template.md](../assets/report-section-batch-template.md)。严格按B01、B02、B03三批交付；每批先列施工说明，正文后做证据、口径、因果、结构、一致性和原创六项检查，并列出缺口及对后续章节的影响。未经用户接受当前批次，不自动推进下一批。
+确认框架后，先读 [section-writing-evidence-protocol.md](section-writing-evidence-protocol.md) 和 [reader-facing-report-style.md](reader-facing-report-style.md)。复制 [report-section-batch-template.md](../assets/report-section-batch-template.md) 作为内部施工卡，并复制对应读者正文模板作为唯一Word内容来源。每批先完成证据、口径、因果、结构、一致性和原创检查，再做读者语言清理、图解、DOCX导出和逐页检查。未经用户接受该批DOCX，不自动推进下一批。
 
 第4—7章必须先建立“主张—证据包”，综合专业文献、公开权威机构资料、权威网站、企业披露以及适配的竞品、消费者、产品和财务分析。不能打开原文或没有精确定位的资料不得标记为已核验。量化分析先调用 `$data-analytics:jupyter-notebooks` 形成可复现程序，再调用 `$data-analytics:validate-data` 复核结果，图表调用 `$data-analytics:visualize-data`。
 
@@ -190,5 +194,7 @@ B01是例外的“双模型组合任务”：须读 [annual-report-empirical-met
 - 没有复制国一样本，没有虚构内部数据和调研结果；
 - 框架已有明确确认记录，所有章节批次已处理用户反馈并保持跨章一致；
 - B01、B02、B03 均有明确版本和 `ACCEPTED` 记录；
+- B01、B02、B03 均已分别导出、渲染、检查并由用户确认实际DOCX；
 - 若已生成 Word/PDF，最终渲染每页至少有一张合格图片或表格，页眉页脚、匿名和来源均通过 [word-visual-production.md](word-visual-production.md) 门禁；
+- 读者正文无内部工作流语言，第3—10章叙述性页面图片密度符合 [reader-facing-report-style.md](reader-facing-report-style.md)；
 - 团队已核验并进行实质性重写。

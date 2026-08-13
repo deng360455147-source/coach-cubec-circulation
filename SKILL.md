@@ -22,6 +22,7 @@ description: 辅导全国高校商业精英挑战赛创新创业竞赛流通业�
 5. 报告、PPT、视频、讲稿和现场口述不得出现院校、成员姓名、联系方式或校徽；提交文件名可按官方要求包含学校名称，两者不可混淆。
 6. 正式陈述与答辩不得使用 AI 实时提示。不得绕过网站条款、验证码、登录或访问控制。
 7. 缺少信息时先完成不依赖缺口的内容，再集中提出最少必要问题；不得用模型常识补齐企业事实。
+8. 参赛正文必须与内部施工文件完全隔离。正文、图表、页眉页脚、脚注和附录说明不得出现 Skill/插件/仓库名、状态码、批次码、Notebook/代码路径、内部证据ID、占位标签或AI生产过程；只使用正常研究报告来源注和经营分析语言。
 
 ## 阶段门
 
@@ -30,7 +31,7 @@ description: 辅导全国高校商业精英挑战赛创新创业竞赛流通业�
 | 0 简报 | 竞赛/团队、选题、证据资产、交付目标和决策记录 | 年份、组别、地区、当前阶段、截止时间可识别 |
 | 1 选题 | 规则解释、企业池、查重结论、地区适配、中心命题 | 企业属于流通业；本省布局可核验；同校企业查重达 `CONFIRMED_CLEAR`；可取证 |
 | 2 调研 | 研究计划、证据台账、访谈/问卷/观察/竞品材料和清洗记录 | 核心命题有交叉证据；样本、口径、反证和局限透明 |
-| 3 报告 | 用户确认框架、三批分章节稿、合并稿与可选 Word/PDF | 确认单采用国一共性蒸馏的固定 11 章三级框架；B01含研究框架图、年报数字画像和两种通过数据门槛的实证方法；三批正文依次获用户确认；五个核心经营维度、2—4 项瓶颈、证据、图表和逐页视觉校验通过 |
+| 3 报告 | 用户确认框架、三批分章节 Word、合并 Word/PDF | 确认单采用国一共性蒸馏的固定 11 章三级框架；B01含研究框架图、年报数字画像和两种通过数据门槛的实证方法；B01/B02/B03各自形成纯读者正文DOCX并通过语言泄漏、逐页图文和版式复核后交用户确认；五个核心经营维度、2—4 项瓶颈及全文一致性通过 |
 | 4 评分 | 唯一版本、资格风险、60分工作分与区间、置信度、证据缺口 | 每项得分可定位；确定性校验通过；未知项未被脑补 |
 | 5 PPT | 恰好20页初版大纲、来源映射、用户确认记录和可选成稿 | 报告已锁定；每页一个结论；大纲确认后才制作 |
 | 6 讲稿 | 20页逐页稿、连续逐字稿、来源、舞台提示、删减句、彩排记录 | 报告/PPT锁定；最后三轮均≤600秒且中位数525–570秒 |
@@ -44,7 +45,7 @@ description: 辅导全国高校商业精英挑战赛创新创业竞赛流通业�
 - **选题**：读 [topic-selection-playbook.md](references/topic-selection-playbook.md)，使用 [topic-selection-shortlist-template.md](assets/topic-selection-shortlist-template.md)，运行 `scripts/check_case_duplicate.py`。
 - **调研**：读 [research-stage-playbook.md](references/research-stage-playbook.md) 与 [research-and-methods.md](references/research-and-methods.md)，按需复制问卷、访谈、观察、竞品、清洗和证据台账模板。
 - **报告框架**：先读 [national-first-report-patterns.md](references/national-first-report-patterns.md)，再读 [report-framework-and-section-writing.md](references/report-framework-and-section-writing.md)、[analysis-report-writing-playbook.md](references/analysis-report-writing-playbook.md)、[report-section-method-router.md](references/report-section-method-router.md) 和 [report-blueprint.md](references/report-blueprint.md)。复制 [report-framework-approval-template.md](assets/report-framework-approval-template.md)，交付前运行 `scripts/validate_report_framework.py`。
-- **报告正文与 Word**：框架确认后必须读 [section-writing-evidence-protocol.md](references/section-writing-evidence-protocol.md)、[annual-report-empirical-methods.md](references/annual-report-empirical-methods.md) 和 [word-visual-production.md](references/word-visual-production.md)，复制 [report-section-batch-template.md](assets/report-section-batch-template.md)；B01 使用年报底稿、研究框架图和双模型计划模板。数据先调用 `$data-analytics:validate-data`，程序分析调用 `$data-analytics:jupyter-notebooks`，图表调用 `$data-analytics:visualize-data`，DOCX 调用 `$documents:documents`。Kami 1.12.0 已原样嵌入 `integrations/kami/`，只作为版式、图解和视觉语言参考；其原生输出是 HTML/PDF，不得冒充 Word 生成器。
+- **报告正文与 Word**：框架确认后必须读 [section-writing-evidence-protocol.md](references/section-writing-evidence-protocol.md)、[reader-facing-report-style.md](references/reader-facing-report-style.md)、[annual-report-empirical-methods.md](references/annual-report-empirical-methods.md) 和 [word-visual-production.md](references/word-visual-production.md)。内部施工复制 [report-section-batch-template.md](assets/report-section-batch-template.md)，不得导出；读者正文按批次复制 `report-reader-b01/b02/b03-template.md`。数据先调用 `$data-analytics:validate-data`，程序分析调用 `$data-analytics:jupyter-notebooks`，图表调用 `$data-analytics:visualize-data`，每批 DOCX 调用 `$documents:documents`。Kami 1.12.0 已原样嵌入 `integrations/kami/`，只作为版式、图解和视觉语言参考；其原生输出是 HTML/PDF，不得冒充 Word 生成器。
 - **评分**：读 [scoring-review-protocol.md](references/scoring-review-protocol.md)、[scoring-rubric-60.md](references/scoring-rubric-60.md) 和 [judging-checklist.md](references/judging-checklist.md)，运行 `scripts/validate_scorecard.py`。
 - **PPT**：读 [national-first-ppt-patterns.md](references/national-first-ppt-patterns.md) 与 [presentation-and-defense.md](references/presentation-and-defense.md)，复制 [20-page-ppt-outline-template.md](assets/20-page-ppt-outline-template.md) 和 [ppt-outline-template.json](assets/ppt-outline-template.json)，运行 `scripts/validate_ppt_outline.py`。
 - **讲稿**：读 [national-first-script-patterns.md](references/national-first-script-patterns.md) 与 [ten-minute-script-playbook.md](references/ten-minute-script-playbook.md)，复制讲稿 Markdown/JSON 模板，运行 `scripts/validate_ten_minute_script.py`。
@@ -100,16 +101,17 @@ python3 scripts/validate_report_framework.py path/to/report-framework-approval.m
 ```
 
 只有校验为 `PASS` 且用户明确确认版本后才能记录 `FRAMEWORK_APPROVED`；未经确认不写长篇正文。
-9. 框架确认后只按三批写作，不得合并、跳批或默认用户同意：`B01` 第3章引言+第4章案例简介；用户明确确认后进入 `B02` 第5章企业内部分析+第6章企业外部分析+第7章企业经营模式；再次确认后进入 `B03` 第8章发展瓶颈+第9章经营优化方案+第10章结论与启示+第11章附录及参考资料。每批交付后停在 `AWAITING_USER_APPROVAL`，收到针对该版本的明确确认才记录 `ACCEPTED`。
+9. 框架确认后只按三批写作，不得合并、跳批或默认用户同意：`B01` 第3章引言+第4章案例简介；用户明确确认后进入 `B02` 第5章企业内部分析+第6章企业外部分析+第7章企业经营模式；再次确认后进入 `B03` 第8章发展瓶颈+第9章经营优化方案+第10章结论与启示+第11章附录及参考资料。每批必须先导出并交付实际 DOCX，用户确认对象是该 Word 版本；交付后停在 `AWAITING_USER_APPROVAL`，收到明确确认才记录 `ACCEPTED`。
 10. 开写 B01 前读取 [annual-report-empirical-methods.md](references/annual-report-empirical-methods.md)：复制年报数据底稿，默认整理连续3—5个完整年度；填充研究框架 JSON 并用 `scripts/render_research_framework.py` 生成图3-1；分别审查市场份额、协同效应、文化溢价 DID、数字化投入效率 DEA‑Tobit 的问题适配、数据、识别/反事实和诊断条件，只从 `READY` 中选且只选两种。
 11. 使用 `$data-analytics:jupyter-notebooks` 创建并成功执行 `analysis/B01_empirical_analysis.ipynb`，再用 `$data-analytics:validate-data` 复核口径、计算和因果措辞，用 `$data-analytics:visualize-data` 生成两张年报描述图和每个入选模型至少一张结果/诊断图。运行 `python3 scripts/validate_empirical_model_plan.py <plan.json>`；不足两种 `READY` 模型时标记 `MODEL_SELECTION_BLOCKED` 并补数或换设计，禁止伪造回归、显著性、效率值或因果结论。
 12. 第4—7章开写前建立“章节主张—证据包”。正文必须综合专业文献、政府/统计/监管等公开权威机构报告或数据、企业官方披露/交易所文件、权威网站，并按章节需要加入同地区同场景竞品分析、消费者洞察、产品分析和财务分析。不得为凑齐类别引用无关材料；不可访问、付费墙内或只有摘要的资料不得被写成已阅读全文。
-13. 每个正文小节采用“结论 → 证据 → 对标 → 机制 → 决策含义 → 边界”。事实、数字、引文、图表和财务计算必须绑定证据 ID、来源日期及页码/表格/章节/URL定位；发现缺口时保留 `[待团队核实：所需证据]`，不得生成看似完整的替代数字、引文或来源。五个核心经营维度必须形成实质判断。
+13. 内部施工文件按“结论 → 证据 → 对标 → 机制 → 决策含义 → 边界”绑定证据ID和精确定位；读者正文则采用结论先行、数据支撑、机制解释、经营含义收束的专业咨询/企业经营分析口吻，并用人类可读脚注、图下注或参考文献呈现来源。内部的 `[待团队核实]`、`E###` 和状态码不得进入 Word；存在P0缺口时不把该批标为完成稿。
 14. 只使用能回答明确问题的方法，不堆砌 PESTEL、SWOT、五力、画布或实证模型；方法输出不是证据。竞品、消费者、产品与财务分析分别满足同口径、样本边界、产品对象和财务期间/单位一致性要求。
 15. 每项方案明确根因、目标对象、流程动作、责任主体、0–3个月试点、3–12个月推广、资源/预算、KPI、验证、风险、触发器和回滚。
-16. 三批均获确认后，再根据已接受正文编写第2章概要与第1章目录，组装唯一全文；概要不得先于正文编造结论。完成证据、因果、地区性、跨章、匿名和原创复核后，才可生成 Word/PDF。
-17. 生成 Word 时使用 `$documents:documents` 的设计预设、真实标题样式、图题表题、页眉页脚、隐私清理和“渲染为逐页 PNG 后检查”流程；量化图表先用 `$data-analytics:validate-data` 验证，再用 `$data-analytics:visualize-data` 选择和制作。每个最终渲染页至少含一张与邻近主张有关且有来源的图片，或一张真正可比较/查阅的表格；不允许用装饰图或把普通段落塞进表格凑数。
-18. 复制 [word-visual-manifest-template.json](assets/word-visual-manifest-template.json)，按最终渲染页填写并运行 `python3 scripts/validate_word_visual_manifest.py <manifest.json>`。只有清单 `PASS` 且人工逐页确认图/表存在、清晰、来源可追溯、页眉页脚正确，才能标记 `WORD_VISUAL_QA_PASSED`；DOCX 重新分页后必须重新渲染和复核。
+16. 每批正文完成后，从内部施工卡生成只含正式章节、图表和正常来源注的读者稿。对 Markdown 运行 `scripts/validate_reader_facing_report.py`，再用 `$documents:documents` 导出该批 DOCX，并对 DOCX 再运行同一检查；禁止把内部施工卡直接转换为 Word。
+17. 每批 Word 使用 `$documents:documents` 的设计预设、真实标题样式、图题表题、页眉页脚、隐私清理和“渲染为逐页 PNG 后检查”流程；量化图表先验证再制作。每个渲染页至少含一张相关且有来源的图片或真正表格；第3—10章叙述性页面至少60%含分析性图片，不能连续两张叙述性页面均无图片。不得用Logo、装饰照、文字截图、色块或段落套表格凑数。
+18. 每批复制 [word-visual-manifest-template.json](assets/word-visual-manifest-template.json)，按真实渲染页填写并运行 `python3 scripts/validate_word_visual_manifest.py <manifest.json>`。读者正文检查、页面清单和人工逐页检查均通过后，交付 DOCX 并等待确认；任何修改均重新导出、渲染和校验。
+19. 三批 Word 均获确认后，再根据已接受正文编写第2章概要与第1章目录，组装唯一全文 Word/PDF；概要不得先于正文编造结论。合并稿重新执行读者正文检查、证据/因果/地区性/跨章/匿名/原创复核以及全量逐页视觉检查。
 
 ## 阶段 4：评分复核
 

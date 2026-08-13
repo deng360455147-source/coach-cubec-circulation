@@ -2,9 +2,12 @@
   "schema_version": "1.0",
   "template_mode": true,
   "document_id": "填写唯一文档ID",
-  "source_report_version": "填写B01/B02/B03均已接受的报告版本",
+  "delivery_scope": "B01",
+  "source_report_version": "填写本批或最终合并稿版本",
+  "docx_file": "填写本批或最终DOCX文件名",
   "rendered_pdf": "填写最终渲染PDF文件名",
   "page_count": 1,
+  "minimum_narrative_image_page_ratio": 0.6,
   "layout": {
     "page_size": "A4",
     "orientation": "portrait",
@@ -25,6 +28,7 @@
       "page": 1,
       "rendered_png": "page-1.png",
       "chapter": "封面",
+      "page_role": "cover",
       "visuals": [
         {
           "id": "T-001",
@@ -56,6 +60,10 @@
     "captions_and_sources_checked": true,
     "header_footer_reviewed": true,
     "anonymous_content_and_metadata": true,
-    "docx_revalidated_after_last_reflow": true
+    "docx_revalidated_after_last_reflow": true,
+    "reader_facing_text_validation_passed": true,
+    "consulting_report_voice_reviewed": true,
+    "internal_artifacts_removed": true,
+    "visual_reframing_reviewed": true
   }
 }

@@ -5,12 +5,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 from typing import Any
 
 
 ALLOWED_KINDS = {"image", "table"}
+ALLOWED_SCOPES = {"B01", "B02", "B03", "FINAL"}
+ALLOWED_PAGE_ROLES = {"cover", "directory", "narrative", "appendix", "references"}
 FORBIDDEN_SUBTYPES = {"decorative", "logo-only", "watermark", "prose-wrapper"}
 PAGE_QA_KEYS = (
     "visual_present",
@@ -27,6 +30,10 @@ DOCUMENT_CHECK_KEYS = (
     "header_footer_reviewed",
     "anonymous_content_and_metadata",
     "docx_revalidated_after_last_reflow",
+    "reader_facing_text_validation_passed",
+    "consulting_report_voice_reviewed",
+    "internal_artifacts_removed",
+    "visual_reframing_reviewed",
 )
 
 
@@ -50,9 +57,17 @@ def validate(data: Any) -> list[str]:
     if data.get("template_mode") is not False:
         errors.append("template_mode 必须改为 false，模板示例不能作为实际验收清单")
 
-    for key in ("schema_version", "document_id", "source_report_version", "rendered_pdf"):
+    for key in ("schema_version", "document_id", "source_report_version", "docx_file", "rendered_pdf"):
         if not nonempty_text(data.get(key)):
             errors.append(f"{key} 必须是非空字符串")
+
+    if data.get("delivery_scope") not in ALLOWED_SCOPES:
+        errors.append("delivery_scope 必须为 B01、B02、B03 或 FINAL")
+
+    minimum_ratio = data.get("minimum_narrative_image_page_ratio")
+    if not isinstance(minimum_ratio, (int, float)) or isinstance(minimum_ratio, bool) or not 0.6 <= minimum_ratio <= 1:
+        errors.append("minimum_narrative_image_page_ratio 必须为0.6到1之间的数字")
+        minimum_ratio = 0.6
 
     layout = data.get("layout")
     if not isinstance(layout, dict):
@@ -87,6 +102,7 @@ def validate(data: Any) -> list[str]:
 
     actual_numbers: list[int] = []
     visual_ids: set[str] = set()
+    narrative_image_flags: list[tuple[int, bool]] = []
     for index, page in enumerate(pages, start=1):
         where = f"pages[{index - 1}]"
         if not isinstance(page, dict):
@@ -101,6 +117,10 @@ def validate(data: Any) -> list[str]:
         for key in ("rendered_png", "chapter"):
             if not nonempty_text(page.get(key)):
                 errors.append(f"{where}.{key} 必须是非空字符串")
+
+        page_role = page.get("page_role")
+        if page_role not in ALLOWED_PAGE_ROLES:
+            errors.append(f"{where}.page_role 必须为 {sorted(ALLOWED_PAGE_ROLES)} 之一")
 
         visuals = page.get("visuals")
         if not isinstance(visuals, list) or not visuals:
@@ -135,6 +155,11 @@ def validate(data: Any) -> list[str]:
                 if not nonempty_text_list(visual.get(key)):
                     errors.append(f"{vwhere}.{key} 必须是至少含一个非空字符串的数组")
 
+        if page_role == "narrative" and isinstance(number, int):
+            narrative_image_flags.append(
+                (number, any(isinstance(item, dict) and item.get("kind") == "image" for item in visuals))
+            )
+
         qa = page.get("qa")
         if not isinstance(qa, dict):
             errors.append(f"{where}.qa 必须是对象")
@@ -147,6 +172,24 @@ def validate(data: Any) -> list[str]:
         errors.append(
             f"页面编号必须按1到{page_count}连续排列，当前为 {actual_numbers}"
         )
+
+    if not narrative_image_flags:
+        errors.append("pages 至少要包含一页 page_role=narrative 的报告正文")
+    else:
+        image_pages = sum(1 for _, has_image in narrative_image_flags if has_image)
+        required_image_pages = math.ceil(len(narrative_image_flags) * float(minimum_ratio))
+        if image_pages < required_image_pages:
+            errors.append(
+                f"叙述性页面含分析性图片的页面数为 {image_pages}/{len(narrative_image_flags)}，"
+                f"至少需要 {required_image_pages} 页"
+            )
+        for (first_page, first_has_image), (second_page, second_has_image) in zip(
+            narrative_image_flags, narrative_image_flags[1:]
+        ):
+            if second_page == first_page + 1 and not first_has_image and not second_has_image:
+                errors.append(
+                    f"第{first_page}页和第{second_page}页连续两张叙述性页面均无分析性图片"
+                )
 
     checks = data.get("checks")
     if not isinstance(checks, dict):
@@ -184,7 +227,7 @@ def main() -> int:
 
     print(
         "PASS: 已记录连续渲染页、每页至少一张有主张/来源映射的合格图片或表格，"
-        "并完成页眉页脚、匿名与重排后复核。"
+        "叙述性页面图片密度达标，并完成读者正文、页眉页脚、匿名与重排后复核。"
     )
     return 0
 
