@@ -27,6 +27,12 @@ DOCUMENT_CHECK_KEYS = (
     "all_pages_rendered",
     "all_pages_have_qualified_visual",
     "captions_and_sources_checked",
+    "figure_captions_below_centered",
+    "table_captions_above_centered",
+    "caption_fonts_and_seq_fields_checked",
+    "figure_text_readability_checked",
+    "references_are_numbered_paragraphs_not_tables",
+    "docx_format_validation_passed",
     "header_footer_reviewed",
     "anonymous_content_and_metadata",
     "docx_revalidated_after_last_reflow",
@@ -82,6 +88,63 @@ def validate(data: Any) -> list[str]:
             errors.append("layout.orientation 必须为 portrait")
         if not nonempty_text(layout.get("design_profile")):
             errors.append("layout.design_profile 必须是非空字符串")
+        margins = layout.get("margins_cm")
+        if not isinstance(margins, dict):
+            errors.append("layout.margins_cm 必须是对象")
+        else:
+            expected_margins = {"top": 2.54, "bottom": 2.54, "left": 3.17, "right": 3.17}
+            for side, expected in expected_margins.items():
+                if margins.get(side) != expected:
+                    errors.append(f"layout.margins_cm.{side} 必须为 {expected}")
+
+    typography = data.get("typography")
+    if not isinstance(typography, dict):
+        errors.append("typography 必须是对象")
+    else:
+        expected_typography = {
+            "body_chinese_font": "宋体",
+            "body_latin_and_digits_font": "Times New Roman",
+            "body_size_pt": 12,
+            "body_alignment": "justified",
+            "first_line_indent_chars": 2,
+            "line_spacing_multiple": 1.5,
+            "heading_1": "14pt 黑体加粗",
+            "heading_2": "12pt 宋体加粗",
+            "heading_3": "12pt 宋体加粗",
+        }
+        for key, expected in expected_typography.items():
+            if typography.get(key) != expected:
+                errors.append(f"typography.{key} 必须为 {expected}")
+
+    captions = data.get("captions")
+    if not isinstance(captions, dict):
+        errors.append("captions 必须是对象")
+    else:
+        expected_captions = {
+            "figure_position": "below",
+            "table_position": "above",
+            "alignment": "center",
+            "chinese_font": "黑体",
+            "latin_and_digits_font": "Times New Roman",
+            "size_pt": 10.5,
+            "numbering": "automatic-word-seq-fields",
+        }
+        for key, expected in expected_captions.items():
+            if captions.get(key) != expected:
+                errors.append(f"captions.{key} 必须为 {expected}")
+
+    references = data.get("references")
+    if not isinstance(references, dict):
+        errors.append("references 必须是对象")
+    else:
+        if references.get("standard") != "GB/T 7714-2025":
+            errors.append("references.standard 必须为 GB/T 7714-2025")
+        if references.get("layout") != "numeric-sequence-paragraph-list":
+            errors.append("references.layout 必须为 numeric-sequence-paragraph-list")
+        if references.get("uses_table_layout") is not False:
+            errors.append("references.uses_table_layout 必须为 false")
+        if references.get("hanging_indent_chars") != 2:
+            errors.append("references.hanging_indent_chars 必须为 2")
 
     for part_name in ("header", "footer"):
         part = data.get(part_name)

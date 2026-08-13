@@ -77,6 +77,9 @@
 - 数据验证/图表映射：`PASS / FAIL / 未运行`
 - 概要与目录组装：`未开始 / 完成`
 - Word/PDF版本：
+- Word版式预设：`cubec-a4-chinese-research-print / 用户覆盖`；DOCX格式校验：`PASS / FAIL / 未运行`
+- 图题/表题自动域：`PASS / FAIL / 未运行`；参考文献非表格：`PASS / FAIL / 不适用`
+- 学术图解最终字号/清晰度复核：`PASS / FAIL / 未运行`
 - 最终合并稿语言泄漏校验：`PASS / FAIL / 未运行`
 - 页眉页脚与匿名：`PASS / FAIL / 未运行`
 - 最终渲染页数：

@@ -56,6 +56,16 @@
 - Word适配：Kami 原生输出 HTML/PDF，不是 DOCX 生成器。主 Skill 仅将它作为视觉与图解参考，DOCX 仍由 `$documents:documents` 生成、渲染和检查；量化图表由 `$data-analytics:validate-data` 与 `$data-analytics:visualize-data` 负责。
 - 更新边界：赛事项目执行中保持固定版本，不运行自动更新覆盖；只有维护本 Skill 时才重新审计上游提交、许可证、脚本和资产后升级。
 
+### 0xE1337 / thesis-figure-skill
+
+- 来源：`https://github.com/0xE1337/thesis-figure-skill`
+- 嵌入路径：`integrations/thesis-figure-skill/`
+- 安装快照：2026-08-13，来自上游 `main` 的 `skills/thesis-figure-skill/`；原安装器没有记录提交号，`VERSION`保存来源、日期和 `SKILL.md` SHA-256，不虚构固定提交。
+- 许可：MIT，Copyright (c) 2025；嵌入目录保留上游 `LICENSE`。
+- 采用：TikZ/draw.io学术图解、布局骨架、编译验证、重叠检测和视觉复核，用于研究框架、价值链、流程、机制、泳道和路线图。
+- 边界：量化统计图仍由数据验证与可视化链路生成；不把未核验文字自动变成确定性箭头；不修改年报/现场证据的事实内容；图内普通标签在Word最终宽度不得小于11pt。
+- 运行边界：实际调用前完整读取嵌入 `SKILL.md` 并遵守其编译和多视角审查要求；上游自动pip安装在本主Skill中改为先报告、经用户确认后再执行，MacTeX/draw.io/Graphviz/Homebrew或管理员权限不得自动安装；正文不得出现TikZ、draw.io、Skill、脚本路径或审查状态。
+
 ## 未采用/未直接安装
 
 - Firecrawl market research：安装量高但依赖外部抓取服务，不是完成赛事调研的必要条件。
