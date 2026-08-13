@@ -45,6 +45,17 @@
 - 采用：20页大纲确认后的三套可视化风格预览、固定1920×1080单文件HTML演示、浏览器交互与可选PDF导出。
 - 边界：不把它描述为原生 PPTX 生成器；不自动运行会上传内容的 Vercel 部署脚本；不直接运行会安装未固定依赖并启动本地文件服务的原仓库 PDF 导出脚本，PDF 改走受控 PDF 技能。
 
+### Tw93 / Kami
+
+- 来源：`https://github.com/tw93/Kami`
+- 嵌入路径：`integrations/kami/`
+- 固定版本：`1.12.0`
+- 固定提交：`8bf6f46f74b5b640fa5612736a5cd24c724b7eca`
+- 许可：MIT，Copyright (c) 2026 Tw93；嵌入目录保留上游 `LICENSE`。
+- 采用：编辑式长文层级、墨蓝单一强调、克制图解、图表/页面密度检查、反AI套话与视觉复核原则；保留上游轻量 Skill 子目录中的模板、参考、脚本和资产。
+- Word适配：Kami 原生输出 HTML/PDF，不是 DOCX 生成器。主 Skill 仅将它作为视觉与图解参考，DOCX 仍由 `$documents:documents` 生成、渲染和检查；量化图表由 `$data-analytics:validate-data` 与 `$data-analytics:visualize-data` 负责。
+- 更新边界：赛事项目执行中保持固定版本，不运行自动更新覆盖；只有维护本 Skill 时才重新审计上游提交、许可证、脚本和资产后升级。
+
 ## 未采用/未直接安装
 
 - Firecrawl market research：安装量高但依赖外部抓取服务，不是完成赛事调研的必要条件。

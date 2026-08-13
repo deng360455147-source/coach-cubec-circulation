@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "template_mode": true,
+  "document_id": "填写唯一文档ID",
+  "source_report_version": "填写B01/B02/B03均已接受的报告版本",
+  "rendered_pdf": "填写最终渲染PDF文件名",
+  "page_count": 1,
+  "layout": {
+    "page_size": "A4",
+    "orientation": "portrait",
+    "design_profile": "cubec-a4-kami-print"
+  },
+  "header": {
+    "first_page_different": true,
+    "left": "匿名作品短题名",
+    "right": "当前一级章节名",
+    "contains_school_or_personal_info": false
+  },
+  "footer": {
+    "page_field_pattern": "第 {PAGE} 页 / 共 {NUMPAGES} 页",
+    "contains_school_or_personal_info": false
+  },
+  "pages": [
+    {
+      "page": 1,
+      "rendered_png": "page-1.png",
+      "chapter": "封面",
+      "visuals": [
+        {
+          "id": "T-001",
+          "kind": "table",
+          "subtype": "evidence-scope",
+          "title": "研究对象与证据范围",
+          "purpose": "让封面在不泄露院校信息的前提下说明研究对象、地区与证据范围",
+          "claim_ids": [
+            "C001"
+          ],
+          "source_ids": [
+            "E001"
+          ]
+        }
+      ],
+      "qa": {
+        "visual_present": true,
+        "relevant_to_adjacent_claim": true,
+        "source_visible_or_mapped": true,
+        "readable_at_100_percent": true,
+        "not_decorative_or_prose_table": true,
+        "render_reviewed": true
+      }
+    }
+  ],
+  "checks": {
+    "all_pages_rendered": true,
+    "all_pages_have_qualified_visual": true,
+    "captions_and_sources_checked": true,
+    "header_footer_reviewed": true,
+    "anonymous_content_and_metadata": true,
+    "docx_revalidated_after_last_reflow": true
+  }
+}

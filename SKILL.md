@@ -1,6 +1,6 @@
 ---
 name: coach-cubec-circulation
-description: 辅导全国高校商业精英挑战赛创新创业竞赛流通业经营模拟赛道的完整备赛流程：项目简报、企业选题与同校查重、地区调研与证据台账、国一经验蒸馏后的分析报告框架和分章节写作、官方60分证据评分复核、恰好20页PPT初版大纲及frontend-slides制作、证据绑定的10分钟逐页路演稿与真人彩排，以及可选5分钟答辩和最终合规检查。用于用户提到流通业经营模拟赛道、企业经营案例分析报告、流通业计划书、批发/零售/餐饮/物流/供应链/冷链/即时零售案例、选题查重、调研、地区性分析、报告评分、20页PPT、10分钟陈述或答辩时；支持研究生、本科和高职组。必须区分本赛道与创业计划赛道，不得虚构证据或代写成可冒充完全由人类原创的终稿。
+description: 辅导全国高校商业精英挑战赛创新创业竞赛流通业经营模拟赛道的完整备赛流程：项目简报、企业选题与同校查重、地区调研与证据台账、国一经验蒸馏后的分析报告框架和三批分章节写作、权威来源与数据图表验证、逐页有图/表且带页眉页脚的Word/PDF、官方60分证据评分复核、恰好20页PPT初版大纲及frontend-slides制作、证据绑定的10分钟逐页路演稿与真人彩排，以及可选5分钟答辩和最终合规检查。用于用户提到流通业经营模拟赛道、企业经营案例分析报告、流通业计划书、批发/零售/餐饮/物流/供应链/冷链/即时零售案例、选题查重、调研、地区性分析、报告正文、Word排版、数据可视化、报告评分、20页PPT、10分钟陈述或答辩时；支持研究生、本科和高职组。必须区分本赛道与创业计划赛道，不得虚构证据或代写成可冒充完全由人类原创的终稿。
 ---
 
 # 商业精英流通业竞赛教练
@@ -30,7 +30,7 @@ description: 辅导全国高校商业精英挑战赛创新创业竞赛流通业�
 | 0 简报 | 竞赛/团队、选题、证据资产、交付目标和决策记录 | 年份、组别、地区、当前阶段、截止时间可识别 |
 | 1 选题 | 规则解释、企业池、查重结论、地区适配、中心命题 | 企业属于流通业；本省布局可核验；同校企业查重达 `CONFIRMED_CLEAR`；可取证 |
 | 2 调研 | 研究计划、证据台账、访谈/问卷/观察/竞品材料和清洗记录 | 核心命题有交叉证据；样本、口径、反证和局限透明 |
-| 3 报告 | 用户确认框架、分章节稿、合并稿 | 确认单采用国一共性蒸馏的固定 11 章三级框架，五个核心经营维度准确落位、2—4 项瓶颈与证据校验通过 |
+| 3 报告 | 用户确认框架、三批分章节稿、合并稿与可选 Word/PDF | 确认单采用国一共性蒸馏的固定 11 章三级框架；三批正文依次获用户确认；五个核心经营维度、2—4 项瓶颈、证据、图表和逐页视觉校验通过 |
 | 4 评分 | 唯一版本、资格风险、60分工作分与区间、置信度、证据缺口 | 每项得分可定位；确定性校验通过；未知项未被脑补 |
 | 5 PPT | 恰好20页初版大纲、来源映射、用户确认记录和可选成稿 | 报告已锁定；每页一个结论；大纲确认后才制作 |
 | 6 讲稿 | 20页逐页稿、连续逐字稿、来源、舞台提示、删减句、彩排记录 | 报告/PPT锁定；最后三轮均≤600秒且中位数525–570秒 |
@@ -43,7 +43,8 @@ description: 辅导全国高校商业精英挑战赛创新创业竞赛流通业�
 - **任何阶段**：读 [official-rules-2026.md](references/official-rules-2026.md) 与 [end-to-end-workflow.md](references/end-to-end-workflow.md)。首次启动复制 [project-brief-template.md](assets/project-brief-template.md)。
 - **选题**：读 [topic-selection-playbook.md](references/topic-selection-playbook.md)，使用 [topic-selection-shortlist-template.md](assets/topic-selection-shortlist-template.md)，运行 `scripts/check_case_duplicate.py`。
 - **调研**：读 [research-stage-playbook.md](references/research-stage-playbook.md) 与 [research-and-methods.md](references/research-and-methods.md)，按需复制问卷、访谈、观察、竞品、清洗和证据台账模板。
-- **报告**：先读 [national-first-report-patterns.md](references/national-first-report-patterns.md)，再读 [report-framework-and-section-writing.md](references/report-framework-and-section-writing.md)、[analysis-report-writing-playbook.md](references/analysis-report-writing-playbook.md)、[report-section-method-router.md](references/report-section-method-router.md) 和 [report-blueprint.md](references/report-blueprint.md)。复制 [report-framework-approval-template.md](assets/report-framework-approval-template.md)，交付前运行 `scripts/validate_report_framework.py`。
+- **报告框架**：先读 [national-first-report-patterns.md](references/national-first-report-patterns.md)，再读 [report-framework-and-section-writing.md](references/report-framework-and-section-writing.md)、[analysis-report-writing-playbook.md](references/analysis-report-writing-playbook.md)、[report-section-method-router.md](references/report-section-method-router.md) 和 [report-blueprint.md](references/report-blueprint.md)。复制 [report-framework-approval-template.md](assets/report-framework-approval-template.md)，交付前运行 `scripts/validate_report_framework.py`。
+- **报告正文与 Word**：框架确认后必须读 [section-writing-evidence-protocol.md](references/section-writing-evidence-protocol.md) 和 [word-visual-production.md](references/word-visual-production.md)，复制 [report-section-batch-template.md](assets/report-section-batch-template.md)；数据先调用 `$data-analytics:validate-data`，图表调用 `$data-analytics:visualize-data`，DOCX 调用 `$documents:documents`。Kami 1.12.0 已原样嵌入 `integrations/kami/`，只作为版式、图解和视觉语言参考；其原生输出是 HTML/PDF，不得冒充 Word 生成器。
 - **评分**：读 [scoring-review-protocol.md](references/scoring-review-protocol.md)、[scoring-rubric-60.md](references/scoring-rubric-60.md) 和 [judging-checklist.md](references/judging-checklist.md)，运行 `scripts/validate_scorecard.py`。
 - **PPT**：读 [national-first-ppt-patterns.md](references/national-first-ppt-patterns.md) 与 [presentation-and-defense.md](references/presentation-and-defense.md)，复制 [20-page-ppt-outline-template.md](assets/20-page-ppt-outline-template.md) 和 [ppt-outline-template.json](assets/ppt-outline-template.json)，运行 `scripts/validate_ppt_outline.py`。
 - **讲稿**：读 [national-first-script-patterns.md](references/national-first-script-patterns.md) 与 [ten-minute-script-playbook.md](references/ten-minute-script-playbook.md)，复制讲稿 Markdown/JSON 模板，运行 `scripts/validate_ten_minute_script.py`。
@@ -99,10 +100,14 @@ python3 scripts/validate_report_framework.py path/to/report-framework-approval.m
 ```
 
 只有校验为 `PASS` 且用户明确确认版本后才能记录 `FRAMEWORK_APPROVED`；未经确认不写长篇正文。
-9. 确认后按一章或2–4个强相关小节分批写作，采用“结论 → 证据 → 对标 → 机制 → 决策含义 → 边界”。五个核心经营维度必须在正文形成实质判断，不得只在标题或清单中出现。
-10. 只使用能回答明确问题的方法，不堆砌 PESTEL、SWOT、五力或画布。方法输出不是证据。
-11. 每项方案明确根因、目标对象、流程动作、责任主体、0–3个月试点、3–12个月推广、资源/预算、KPI、验证、风险、触发器和回滚。
-12. 所有批次确认后组装全文，完成证据、因果、地区性、跨章、匿名和原创复核，再进入评分。
+9. 框架确认后只按三批写作，不得合并、跳批或默认用户同意：`B01` 第3章引言+第4章案例简介；用户明确确认后进入 `B02` 第5章企业内部分析+第6章企业外部分析+第7章企业经营模式；再次确认后进入 `B03` 第8章发展瓶颈+第9章经营优化方案+第10章结论与启示+第11章附录及参考资料。每批交付后停在 `AWAITING_USER_APPROVAL`，收到针对该版本的明确确认才记录 `ACCEPTED`。
+10. 第4—7章开写前建立“章节主张—证据包”。正文必须综合专业文献、政府/统计/监管等公开权威机构报告或数据、企业官方披露/交易所文件、权威网站，并按章节需要加入同地区同场景竞品分析、消费者洞察、产品分析和财务分析。不得为凑齐类别引用无关材料；不可访问、付费墙内或只有摘要的资料不得被写成已阅读全文。
+11. 每个正文小节采用“结论 → 证据 → 对标 → 机制 → 决策含义 → 边界”。事实、数字、引文、图表和财务计算必须绑定证据 ID、来源日期及页码/表格/章节/URL定位；发现缺口时保留 `[待团队核实：所需证据]`，不得生成看似完整的替代数字、引文或来源。五个核心经营维度必须形成实质判断。
+12. 只使用能回答明确问题的方法，不堆砌 PESTEL、SWOT、五力或画布；方法输出不是证据。竞品、消费者、产品与财务分析分别满足同口径、样本边界、产品对象和财务期间/单位一致性要求。
+13. 每项方案明确根因、目标对象、流程动作、责任主体、0–3个月试点、3–12个月推广、资源/预算、KPI、验证、风险、触发器和回滚。
+14. 三批均获确认后，再根据已接受正文编写第2章概要与第1章目录，组装唯一全文；概要不得先于正文编造结论。完成证据、因果、地区性、跨章、匿名和原创复核后，才可生成 Word/PDF。
+15. 生成 Word 时使用 `$documents:documents` 的设计预设、真实标题样式、图题表题、页眉页脚、隐私清理和“渲染为逐页 PNG 后检查”流程；量化图表先用 `$data-analytics:validate-data` 验证，再用 `$data-analytics:visualize-data` 选择和制作。每个最终渲染页至少含一张与邻近主张有关且有来源的图片，或一张真正可比较/查阅的表格；不允许用装饰图或把普通段落塞进表格凑数。
+16. 复制 [word-visual-manifest-template.json](assets/word-visual-manifest-template.json)，按最终渲染页填写并运行 `python3 scripts/validate_word_visual_manifest.py <manifest.json>`。只有清单 `PASS` 且人工逐页确认图/表存在、清晰、来源可追溯、页眉页脚正确，才能标记 `WORD_VISUAL_QA_PASSED`；DOCX 重新分页后必须重新渲染和复核。
 
 ## 阶段 4：评分复核
 

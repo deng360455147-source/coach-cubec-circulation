@@ -55,6 +55,25 @@
 - 资格/匿名/格式状态：
 - 计分卡校验：`PASS / FAIL / 未运行`
 
+## 报告分章与Word状态
+
+- 框架版本/确认日期：
+- `B01` 引言+案例简介：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
+- `B01` 版本与确认语义：
+- `B02` 企业内部+外部+经营模式：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
+- `B02` 版本与确认语义：
+- `B03` 瓶颈+方案+结论+附录：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
+- `B03` 版本与确认语义：
+- 第4—7章权威证据包：`PASS / FAIL / 未运行`
+- 数据验证/图表映射：`PASS / FAIL / 未运行`
+- 概要与目录组装：`未开始 / 完成`
+- Word/PDF版本：
+- 页眉页脚与匿名：`PASS / FAIL / 未运行`
+- 最终渲染页数：
+- 每页图/表清单校验：`PASS / FAIL / 未运行`
+- 人工逐页100%复核：`PASS / FAIL / 未运行`
+- Word阶段：`WORD_DRAFT / WORD_RENDERED / WORD_VISUAL_QA_PASSED / BLOCKED`
+
 ## PPT 状态
 
 - 内容输入：`CONVERSATION_REPORT / UPLOADED_REPORT`
