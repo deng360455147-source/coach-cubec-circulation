@@ -63,8 +63,19 @@
 - 安装快照：2026-08-13，来自上游 `main` 的 `skills/thesis-figure-skill/`；原安装器没有记录提交号，`VERSION`保存来源、日期和 `SKILL.md` SHA-256，不虚构固定提交。
 - 许可：MIT，Copyright (c) 2025；嵌入目录保留上游 `LICENSE`。
 - 采用：TikZ/draw.io学术图解、布局骨架、编译验证、重叠检测和视觉复核，用于研究框架、价值链、流程、机制、泳道和路线图。
-- 边界：量化统计图仍由数据验证与可视化链路生成；不把未核验文字自动变成确定性箭头；不修改年报/现场证据的事实内容；图内普通标签在Word最终宽度不得小于11pt。
+- 边界：量化统计图仍由数据验证与可视化链路生成；不把未核验文字自动变成确定性箭头；不修改年报/现场证据的事实内容；若启用本后备，图内文字也须在Word最终宽度统一为12pt。
 - 运行边界：实际调用前完整读取嵌入 `SKILL.md` 并遵守其编译和多视角审查要求；上游自动pip安装在本主Skill中改为先报告、经用户确认后再执行，MacTeX/draw.io/Graphviz/Homebrew或管理员权限不得自动安装；正文不得出现TikZ、draw.io、Skill、脚本路径或审查状态。
+
+### coleam00 / excalidraw-diagram-skill
+
+- 来源：`https://github.com/coleam00/excalidraw-diagram-skill`
+- 审计提交：`8646fcc9f74f38539c6cdb4c969723336a96ddcd`，审计日期2026-08-13。
+- 使用方式：外部安装，Skill frontmatter名为 `excalidraw-diagram`；本项目只保存 `integrations/excalidraw-diagram-adapter/` 和报告专用适配规则，不复制上游代码。
+- 采用：把概念映射为分流、汇聚、时间轴、层级、反馈和前后对照等视觉结构；保存可编辑 `.excalidraw`；通过Playwright渲染后逐轮查看和修复截字、重叠、连线与留白。
+- 报告覆盖：图片内不得嵌入题注，图前必须有正文引导，图内凡有文字均按最终Word尺寸统一为12pt；统计图仍走数据验证与可复现程序。
+- imagegen协作：只辅助适配的无文字位图或场景示意，不生成精确标签、数据图、地图、Logo、企业实拍或调研证据；准确文字在Excalidraw或Word添加。
+- 依赖与隐私：上游渲染依赖Python 3.11+、Playwright和Chromium，HTML模板会从 `esm.sh` 加载Excalidraw模块；不得把未获授权的敏感内容送入该链路。安装新浏览器或系统依赖前须取得设备所有者确认。
+- 许可边界：审计提交没有LICENSE文件。没有明确再分发授权，所以本公开仓库不原样嵌入上游源文件；若上游补充许可证，重新审计后再决定是否内嵌。
 
 ## 未采用/未直接安装
 

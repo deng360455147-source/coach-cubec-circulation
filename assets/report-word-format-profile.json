@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "profile_name": "cubec-a4-chinese-research-print",
   "basis": "用户上传版式参考图；当届细则、学校模板或用户后续明确要求优先",
   "page": {
@@ -18,11 +18,11 @@
     "chinese_font": "宋体",
     "latin_and_digits_font": "Times New Roman",
     "size_pt": 12,
-    "fallback_size_pt_for_dense_pages": 10.5,
-    "fallback_requires_print_readability_review": true,
+    "fallback_size_pt_for_dense_pages": null,
+    "dense_pages_must_reflow_or_split": true,
     "alignment": "justified",
     "first_line_indent_chars": 2,
-    "line_spacing_multiple": 1.5,
+    "line_spacing_multiple": 1.25,
     "alternative_fixed_line_spacing_pt": [
       26,
       29
@@ -36,6 +36,7 @@
       "latin_and_digits_font": "Times New Roman",
       "size_pt": 14,
       "bold": true,
+      "page_break_before": true,
       "spacing_before_pt": 6,
       "spacing_after_pt": 6
     },
@@ -62,7 +63,7 @@
     "alignment": "center",
     "chinese_font": "黑体",
     "latin_and_digits_font": "Times New Roman",
-    "size_pt": 10.5,
+    "size_pt": 9,
     "numbering": "automatic-word-seq-fields",
     "figure_label": "图",
     "table_label": "表",
@@ -76,14 +77,33 @@
       "high-resolution PNG"
     ],
     "placement": "inline",
-    "minimum_label_size_at_final_width_pt": 11,
-    "minimum_legend_and_note_size_at_final_width_pt": 10.5,
-    "key_number_size_pt": 12,
+    "caption_inside_image_forbidden": true,
+    "body_lead_in_paragraph_required": true,
+    "internal_text_size_at_final_width_pt": 12,
+    "textless_image_internal_text_size": null,
     "minimum_raster_dpi_at_final_width": 220,
     "review_zoom_percent": [
       100,
       200
     ]
+  },
+  "tables": {
+    "cell_horizontal_alignment": "center",
+    "cell_vertical_alignment": "center",
+    "cell_first_line_indent_chars": 0,
+    "cell_paragraphs_must_override_body_indent": true
+  },
+  "table_of_contents": {
+    "word_field": true,
+    "heading_levels": [1, 2, 3],
+    "field_switch": "TOC \\o \"1-3\" \\h \\z \\u",
+    "refresh_after_final_pagination": true
+  },
+  "pagination": {
+    "chapter_break_method": "heading-1-page-break-before",
+    "manual_page_breaks_forbidden": true,
+    "section_breaks_for_pagination_forbidden": true,
+    "single_word_section": true
   },
   "sources": {
     "position": "immediately-below-caption-or-table",

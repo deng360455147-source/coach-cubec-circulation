@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "template_mode": true,
   "batch_scope": "B02",
   "report_visual_system": {
@@ -8,6 +8,11 @@
     "secondary_accent": "#C58A2A",
     "background": "#FFFFFF",
     "table_style": "tinted-header-zebra",
+    "structural_diagram_engine": "excalidraw-diagram",
+    "bitmap_assist": "imagegen-evidence-compatible-only",
+    "embedded_caption_policy": "forbidden",
+    "internal_text_size_pt": 12,
+    "figure_lead_in_body_paragraph_required": true,
     "sample_style_policy": "统一主色和字体，蒸馏国一样本的图表功能与版式轮换，不复制边框、吉祥物、水印或成品图"
   },
   "required_sections": [
@@ -123,6 +128,11 @@
     "requested_forms_reviewed": true,
     "style_diversity_reviewed": true,
     "sample_style_not_copied": true,
+    "excalidraw_structural_diagrams_render_reviewed": true,
+    "imagegen_use_kept_within_bitmap_boundary": true,
+    "no_captions_embedded_in_images": true,
+    "figure_internal_text_matches_body_size": true,
+    "all_figures_have_lead_in_body_text": true,
     "final_surface_planned": true
   }
 }

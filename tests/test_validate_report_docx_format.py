@@ -5,7 +5,8 @@ import unittest
 from pathlib import Path
 
 from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt
@@ -52,7 +53,49 @@ def add_seq_field(paragraph, label: str, number: int, title: str) -> None:
     paragraph.add_run(f" {title}")
 
 
-def build_docx(path: Path, compliant: bool = True) -> None:
+def add_toc_field(paragraph, depth: str = "1-3") -> None:
+    run = paragraph.add_run()
+    begin = OxmlElement("w:fldChar")
+    begin.set(qn("w:fldCharType"), "begin")
+    instruction = OxmlElement("w:instrText")
+    instruction.set(qn("xml:space"), "preserve")
+    instruction.text = f' TOC \\o "{depth}" \\h \\z \\u '
+    separate = OxmlElement("w:fldChar")
+    separate.set(qn("w:fldCharType"), "separate")
+    result = OxmlElement("w:t")
+    result.text = "目录"
+    end = OxmlElement("w:fldChar")
+    end.set(qn("w:fldCharType"), "end")
+    for node in (begin, instruction, separate, result, end):
+        run._r.append(node)
+
+
+def format_table_cells(table, compliant: bool = True) -> None:
+    for row in table.rows:
+        for cell in row.cells:
+            cell.vertical_alignment = (
+                WD_CELL_VERTICAL_ALIGNMENT.CENTER if compliant else WD_CELL_VERTICAL_ALIGNMENT.TOP
+            )
+            for paragraph in cell.paragraphs:
+                paragraph.alignment = (
+                    WD_ALIGN_PARAGRAPH.CENTER if compliant else WD_ALIGN_PARAGRAPH.LEFT
+                )
+                ppr = paragraph._p.get_or_add_pPr()
+                ind = ppr.find(qn("w:ind"))
+                if ind is None:
+                    ind = OxmlElement("w:ind")
+                    ppr.append(ind)
+                ind.set(qn("w:firstLineChars"), "0" if compliant else "200")
+
+
+def build_docx(
+    path: Path,
+    compliant: bool = True,
+    figure_lead_in: bool = True,
+    table_layout: bool = True,
+    toc_depth: str = "1-3",
+    manual_page_break: bool = False,
+) -> None:
     document = Document()
     section = document.sections[0]
     section.page_width = Cm(21)
@@ -65,7 +108,7 @@ def build_docx(path: Path, compliant: bool = True) -> None:
     normal = document.styles["Normal"]
     set_style_font(normal, "宋体" if compliant else "微软雅黑", "Times New Roman", 12, False)
     normal.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    normal.paragraph_format.line_spacing = 1.5
+    normal.paragraph_format.line_spacing = 1.25
     set_first_line_chars(normal, 200)
 
     styles = (
@@ -78,16 +121,22 @@ def build_docx(path: Path, compliant: bool = True) -> None:
         set_style_font(style, font, "Times New Roman", size, True)
         style.paragraph_format.space_before = Pt(before)
         style.paragraph_format.space_after = Pt(after)
+        if name == "Heading 1":
+            style.paragraph_format.page_break_before = True
 
     caption = document.styles["Caption"]
-    set_style_font(caption, "黑体", "Times New Roman", 10.5, False)
+    set_style_font(caption, "黑体", "Times New Roman", 9, False)
     caption.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
     update = OxmlElement("w:updateFields")
     update.set(qn("w:val"), "true")
     document.settings._element.append(update)
 
+    document.add_paragraph("1. 目录", style="Heading 1")
+    add_toc_field(document.add_paragraph(), toc_depth)
     document.add_paragraph("3. 引言", style="Heading 1")
+    if figure_lead_in:
+        document.add_paragraph("下图概括研究对象、证据来源与分析路径。")
     figure = document.add_paragraph()
     figure.add_run()._r.append(OxmlElement("w:drawing"))
     figure_caption = document.add_paragraph(style="Caption")
@@ -103,6 +152,10 @@ def build_docx(path: Path, compliant: bool = True) -> None:
     table.cell(0, 1).text = "值"
     table.cell(1, 0).text = "示例"
     table.cell(1, 1).text = "1"
+    format_table_cells(table, table_layout)
+
+    if manual_page_break:
+        document.add_paragraph().add_run().add_break(WD_BREAK.PAGE)
 
     document.add_paragraph("11.4 参考文献", style="Heading 2")
     document.add_paragraph("[1] 某机构. 某报告[R]. 2026.")
@@ -126,6 +179,25 @@ class ReportDocxFormatTests(unittest.TestCase):
             self.assertIn("正文中文字体", joined)
             self.assertIn("left页边距", joined)
             self.assertIn("没有真实SEQ自动编号域", joined)
+
+    def test_figure_table_toc_and_manual_page_break_rules_fail(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "bad-layout.docx"
+            build_docx(
+                path,
+                compliant=True,
+                figure_lead_in=False,
+                table_layout=False,
+                toc_depth="1-2",
+                manual_page_break=True,
+            )
+            joined = "\n".join(validate_docx(path, True, True))
+            self.assertIn("图片前必须紧邻一段有内容的正文引导文字", joined)
+            self.assertIn("单元格必须垂直居中", joined)
+            self.assertIn("文字必须水平居中", joined)
+            self.assertIn("必须显式取消首行缩进", joined)
+            self.assertIn("人工分页符", joined)
+            self.assertIn("一级、二级、三级标题", joined)
 
 
 if __name__ == "__main__":

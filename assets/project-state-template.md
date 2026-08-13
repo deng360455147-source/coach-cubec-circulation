@@ -75,11 +75,14 @@
 - B03读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；图表地图普通/生产校验【】；视觉家族/风格/版式【】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
 - 第4—10章关键主张证据包：`PASS / FAIL / 未运行`
 - 数据验证/图表映射：`PASS / FAIL / 未运行`
-- 概要与目录组装：`未开始 / 完成`
+- 概要与目录组装：`未开始 / 完成`；自动目录覆盖Heading 1/2/3：`PASS / FAIL / 未运行`
 - Word/PDF版本：
 - Word版式预设：`cubec-a4-chinese-research-print / 用户覆盖`；DOCX格式校验：`PASS / FAIL / 未运行`
-- 图题/表题自动域：`PASS / FAIL / 未运行`；参考文献非表格：`PASS / FAIL / 不适用`
-- 学术图解最终字号/清晰度复核：`PASS / FAIL / 未运行`
+- 图题/表题自动域：`PASS / FAIL / 未运行`；题注9pt且图内无题注：`PASS / FAIL / 未运行`；参考文献非表格：`PASS / FAIL / 不适用`
+- Excalidraw结构图渲染复核：`PASS / FAIL / 未运行`；imagegen边界复核：`PASS / FAIL / 不适用`
+- 图片前置正文/图内12pt/清晰度复核：`PASS / FAIL / 未运行`
+- 表格单元格水平垂直居中且零首行缩进：`PASS / FAIL / 未运行`
+- 正文1.25倍行距/仅章节分页：`PASS / FAIL / 未运行`
 - 最终合并稿语言泄漏校验：`PASS / FAIL / 未运行`
 - 页眉页脚与匿名：`PASS / FAIL / 未运行`
 - 最终渲染页数：

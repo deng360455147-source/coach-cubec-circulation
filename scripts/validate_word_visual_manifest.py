@@ -31,6 +31,13 @@ DOCUMENT_CHECK_KEYS = (
     "table_captions_above_centered",
     "caption_fonts_and_seq_fields_checked",
     "figure_text_readability_checked",
+    "all_figures_have_lead_in_body_text",
+    "no_captions_embedded_in_images",
+    "figure_internal_text_matches_body_size",
+    "table_cells_centered_without_first_line_indent",
+    "toc_includes_heading_levels_1_to_3",
+    "only_chapter_breaks_create_new_pages",
+    "body_line_spacing_checked",
     "references_are_numbered_paragraphs_not_tables",
     "docx_format_validation_passed",
     "header_footer_reviewed",
@@ -107,7 +114,7 @@ def validate(data: Any) -> list[str]:
             "body_size_pt": 12,
             "body_alignment": "justified",
             "first_line_indent_chars": 2,
-            "line_spacing_multiple": 1.5,
+            "line_spacing_multiple": 1.25,
             "heading_1": "14pt 黑体加粗",
             "heading_2": "12pt 宋体加粗",
             "heading_3": "12pt 宋体加粗",
@@ -126,12 +133,45 @@ def validate(data: Any) -> list[str]:
             "alignment": "center",
             "chinese_font": "黑体",
             "latin_and_digits_font": "Times New Roman",
-            "size_pt": 10.5,
+            "size_pt": 9,
             "numbering": "automatic-word-seq-fields",
         }
         for key, expected in expected_captions.items():
             if captions.get(key) != expected:
                 errors.append(f"captions.{key} 必须为 {expected}")
+
+    table_layout = data.get("table_layout")
+    expected_table_layout = {
+        "cell_horizontal_alignment": "center",
+        "cell_vertical_alignment": "center",
+        "cell_first_line_indent_chars": 0,
+    }
+    if not isinstance(table_layout, dict):
+        errors.append("table_layout 必须是对象")
+    else:
+        for key, expected in expected_table_layout.items():
+            if table_layout.get(key) != expected:
+                errors.append(f"table_layout.{key} 必须为 {expected}")
+
+    toc = data.get("table_of_contents")
+    if not isinstance(toc, dict):
+        errors.append("table_of_contents 必须是对象")
+    else:
+        if toc.get("field_based") is not True:
+            errors.append("table_of_contents.field_based 必须为 true")
+        if toc.get("heading_levels") != [1, 2, 3]:
+            errors.append("table_of_contents.heading_levels 必须为 [1, 2, 3]")
+
+    pagination = data.get("pagination")
+    if not isinstance(pagination, dict):
+        errors.append("pagination 必须是对象")
+    else:
+        if pagination.get("chapter_break_method") != "heading-1-page-break-before":
+            errors.append("pagination.chapter_break_method 必须为 heading-1-page-break-before")
+        if pagination.get("manual_page_breaks_present") is not False:
+            errors.append("pagination.manual_page_breaks_present 必须为 false")
+        if pagination.get("section_breaks_used_for_pagination") is not False:
+            errors.append("pagination.section_breaks_used_for_pagination 必须为 false")
 
     references = data.get("references")
     if not isinstance(references, dict):
@@ -220,6 +260,18 @@ def validate(data: Any) -> list[str]:
             for key in ("claim_ids", "source_ids"):
                 if not nonempty_text_list(visual.get(key)):
                     errors.append(f"{vwhere}.{key} 必须是至少含一个非空字符串的数组")
+            if kind == "image":
+                if visual.get("lead_in_body_paragraph_present") is not True:
+                    errors.append(f"{vwhere}.lead_in_body_paragraph_present 必须为 true")
+                if visual.get("contains_embedded_caption") is not False:
+                    errors.append(f"{vwhere}.contains_embedded_caption 必须为 false")
+                contains_text = visual.get("contains_text")
+                if not isinstance(contains_text, bool):
+                    errors.append(f"{vwhere}.contains_text 必须为布尔值")
+                elif contains_text and visual.get("internal_text_size_pt") != 12:
+                    errors.append(f"{vwhere}.internal_text_size_pt 必须为 12")
+                elif not contains_text and visual.get("internal_text_size_pt") is not None:
+                    errors.append(f"{vwhere}.internal_text_size_pt 在无文字图片中必须为 null")
 
         if page_role == "narrative" and isinstance(number, int):
             narrative_image_flags.append(
@@ -293,7 +345,8 @@ def main() -> int:
 
     print(
         "PASS: 已记录连续渲染页、每页至少一张有主张/来源映射的合格图片或表格，"
-        "叙述性页面图片密度达标，并完成图表地图、读者正文、页眉页脚、匿名与重排后复核。"
+        "并完成图片前置正文、图内无题注、图内12pt文字、表格居中、三级目录、章节分页、"
+        "1.25倍行距、读者正文、页眉页脚、匿名与重排后复核。"
     )
     return 0
 

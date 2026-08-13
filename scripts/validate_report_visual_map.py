@@ -76,6 +76,11 @@ CHECK_KEYS = (
     "requested_forms_reviewed",
     "style_diversity_reviewed",
     "sample_style_not_copied",
+    "excalidraw_structural_diagrams_render_reviewed",
+    "imagegen_use_kept_within_bitmap_boundary",
+    "no_captions_embedded_in_images",
+    "figure_internal_text_matches_body_size",
+    "all_figures_have_lead_in_body_text",
     "final_surface_planned",
 )
 
@@ -165,6 +170,16 @@ def validate(data: Any, for_production: bool = False) -> list[str]:
         for key in ("font_family", "primary_accent", "secondary_accent", "background", "table_style", "sample_style_policy"):
             if not nonempty_text(system.get(key)):
                 errors.append(f"report_visual_system.{key} 必须是非空字符串")
+        exact_system = {
+            "structural_diagram_engine": "excalidraw-diagram",
+            "bitmap_assist": "imagegen-evidence-compatible-only",
+            "embedded_caption_policy": "forbidden",
+            "internal_text_size_pt": 12,
+            "figure_lead_in_body_paragraph_required": True,
+        }
+        for key, expected in exact_system.items():
+            if system.get(key) != expected:
+                errors.append(f"report_visual_system.{key} 必须为 {expected}")
 
     required_raw = data.get("required_sections")
     if not nonempty_text_list(required_raw):
@@ -423,8 +438,8 @@ def make_self_test_data() -> dict[str, Any]:
         for form in sorted(REQUESTED_FORMS)
     ]
     return {
-        "schema_version": "1.0", "template_mode": False, "batch_scope": "B02",
-        "report_visual_system": {"font_family": "Noto Sans CJK", "primary_accent": "#123456", "secondary_accent": "#C58A2A", "background": "#FFFFFF", "table_style": "tinted", "sample_style_policy": "不复制样本"},
+        "schema_version": "1.1", "template_mode": False, "batch_scope": "B02",
+        "report_visual_system": {"font_family": "Noto Sans CJK", "primary_accent": "#123456", "secondary_accent": "#C58A2A", "background": "#FFFFFF", "table_style": "tinted", "structural_diagram_engine": "excalidraw-diagram", "bitmap_assist": "imagegen-evidence-compatible-only", "embedded_caption_policy": "forbidden", "internal_text_size_pt": 12, "figure_lead_in_body_paragraph_required": True, "sample_style_policy": "不复制样本"},
         "required_sections": sections, "requested_forms": requested, "visuals": visuals,
         "coverage": {"minimum_unique_families": 5, "minimum_unique_style_modes": 3, "minimum_unique_layout_modes": 3, "maximum_family_share": 0.4, "all_required_sections_mapped": True, "tables_and_charts_both_present": True},
         "checks": {key: True for key in CHECK_KEYS},
@@ -470,8 +485,8 @@ def make_b03_self_test_data() -> dict[str, Any]:
         for form in sorted(REQUESTED_FORMS)
     ]
     return {
-        "schema_version": "1.0", "template_mode": False, "batch_scope": "B03",
-        "report_visual_system": {"font_family": "Noto Sans CJK", "primary_accent": "#123456", "secondary_accent": "#C58A2A", "background": "#FFFFFF", "table_style": "tinted", "sample_style_policy": "不复制样本"},
+        "schema_version": "1.1", "template_mode": False, "batch_scope": "B03",
+        "report_visual_system": {"font_family": "Noto Sans CJK", "primary_accent": "#123456", "secondary_accent": "#C58A2A", "background": "#FFFFFF", "table_style": "tinted", "structural_diagram_engine": "excalidraw-diagram", "bitmap_assist": "imagegen-evidence-compatible-only", "embedded_caption_policy": "forbidden", "internal_text_size_pt": 12, "figure_lead_in_body_paragraph_required": True, "sample_style_policy": "不复制样本"},
         "required_sections": sections, "requested_forms": requested, "visuals": visuals,
         "coverage": {"minimum_unique_families": 5, "minimum_unique_style_modes": 3, "minimum_unique_layout_modes": 3, "maximum_family_share": 0.4, "all_required_sections_mapped": True, "tables_and_charts_both_present": True},
         "checks": {key: True for key in CHECK_KEYS},

@@ -148,6 +148,10 @@ def has_drawing(paragraph: ET.Element) -> bool:
     return paragraph.find(".//w:drawing", NS) is not None or paragraph.find(".//w:pict", NS) is not None
 
 
+def enabled(node: ET.Element | None) -> bool:
+    return node is not None and node.get(WVAL, "1") not in {"0", "false", "off"}
+
+
 def nonblank_block(block: ET.Element) -> bool:
     if block.tag == qn("tbl"):
         return True
@@ -188,7 +192,7 @@ def validate_docx(path: Path, strict_caption_coverage: bool, final_report: bool)
     check_style_font(errors, heading1, "一级标题", "黑体", "Times New Roman", 28, True)
     check_style_font(errors, heading2, "二级标题", "宋体", "Times New Roman", 24, True)
     check_style_font(errors, heading3, "三级标题", "宋体", "Times New Roman", 24, True)
-    check_style_font(errors, caption, "题注", "黑体", "Times New Roman", 21, False)
+    check_style_font(errors, caption, "题注", "黑体", "Times New Roman", 18, False)
     check_spacing(errors, heading1, "一级标题", 120, 120)
     check_spacing(errors, heading2, "二级标题", 120, 0)
     check_spacing(errors, heading3, "三级标题", 60, 0)
@@ -202,8 +206,24 @@ def validate_docx(path: Path, strict_caption_coverage: bool, final_report: bool)
             errors.append("正文必须两端对齐")
         if ind is None or attr_int(ind, qn("firstLineChars")) != 200:
             errors.append("正文首行缩进必须为2字符")
-        if spacing is None or attr_int(spacing, qn("line")) != 360 or spacing.get(qn("lineRule")) != "auto":
-            errors.append("正文必须显式设置1.5倍行距")
+        if spacing is None or attr_int(spacing, qn("line")) != 300 or spacing.get(qn("lineRule")) != "auto":
+            errors.append("正文必须显式设置1.25倍行距")
+
+    if heading1 is not None:
+        page_break_before = heading1.find("w:pPr/w:pageBreakBefore", NS)
+        if not enabled(page_break_before):
+            errors.append("一级标题样式必须启用段前分页，以便只在章节之间分页")
+    heading1_style_id = style_id(heading1).lower()
+    for paragraph_style in styles.findall("w:style", NS):
+        if paragraph_style.get(qn("type")) != "paragraph":
+            continue
+        candidate_id = paragraph_style.get(qn("styleId"), "").lower()
+        if candidate_id != heading1_style_id and enabled(
+            paragraph_style.find("w:pPr/w:pageBreakBefore", NS)
+        ):
+            errors.append(
+                f"段落样式{paragraph_style.get(qn('styleId'), '未命名')}不得启用段前分页；仅一级标题可分页"
+            )
 
     if caption is not None:
         ppr = caption.find("w:pPr", NS)
@@ -217,6 +237,8 @@ def validate_docx(path: Path, strict_caption_coverage: bool, final_report: bool)
     sections = document.findall(".//w:sectPr", NS)
     if not sections:
         errors.append("未找到页面节属性")
+    elif len(sections) != 1:
+        errors.append("报告必须使用单一Word节；章节分页由一级标题段前分页控制，不得用分节符制造额外分页")
     for section_number, sect in enumerate(sections, start=1):
         size = sect.find("w:pgSz", NS)
         margins = sect.find("w:pgMar", NS)
@@ -235,6 +257,34 @@ def validate_docx(path: Path, strict_caption_coverage: bool, final_report: bool)
         errors.append("settings.xml必须启用打开文档时更新域")
 
     blocks = list(body)
+    manual_page_breaks = document.findall(".//w:br[@w:type='page']", NS)
+    if manual_page_breaks:
+        errors.append(f"检测到{len(manual_page_breaks)}个人工分页符；除一级标题段前分页外不得插入分页符")
+    for block_index, block in enumerate(blocks, start=1):
+        if block.tag != qn("p") or not enabled(block.find("w:pPr/w:pageBreakBefore", NS)):
+            continue
+        if paragraph_style_id(block).lower() != heading1_style_id:
+            errors.append(f"第{block_index}个正文块直接设置了段前分页；只有一级标题可以触发分页")
+
+    table_count = 0
+    for table_index, table in enumerate(document.findall(".//w:tbl", NS), start=1):
+        table_count += 1
+        for cell_index, cell in enumerate(table.findall(".//w:tc", NS), start=1):
+            vertical = cell.find("w:tcPr/w:vAlign", NS)
+            if vertical is None or vertical.get(WVAL) != "center":
+                errors.append(f"第{table_index}张表第{cell_index}个单元格必须垂直居中")
+            for paragraph_index, paragraph in enumerate(cell.findall("w:p", NS), start=1):
+                ppr = paragraph.find("w:pPr", NS)
+                jc = direct_child(ppr, "jc")
+                ind = direct_child(ppr, "ind")
+                if jc is None or jc.get(WVAL) != "center":
+                    errors.append(
+                        f"第{table_index}张表第{cell_index}个单元格第{paragraph_index}段文字必须水平居中"
+                    )
+                if ind is None or attr_int(ind, qn("firstLineChars")) != 0:
+                    errors.append(
+                        f"第{table_index}张表第{cell_index}个单元格第{paragraph_index}段必须显式取消首行缩进"
+                    )
     caption_style_id = style_id(caption).lower()
     caption_count = 0
     for index, block in enumerate(blocks):
@@ -261,6 +311,22 @@ def validate_docx(path: Path, strict_caption_coverage: bool, final_report: bool)
     if strict_caption_coverage:
         for index, block in enumerate(blocks):
             if block.tag == qn("p") and has_drawing(block):
+                previous = previous_nonblank(blocks, index)
+                previous_style = paragraph_style_id(previous).lower() if previous is not None and previous.tag == qn("p") else ""
+                forbidden_styles = {
+                    caption_style_id,
+                    style_id(heading1).lower(),
+                    style_id(heading2).lower(),
+                    style_id(heading3).lower(),
+                }
+                if (
+                    previous is None
+                    or previous.tag != qn("p")
+                    or not paragraph_text(previous)
+                    or has_drawing(previous)
+                    or previous_style in forbidden_styles
+                ):
+                    errors.append(f"第{index + 1}个正文块中的图片前必须紧邻一段有内容的正文引导文字")
                 following = next_nonblank(blocks, index)
                 if following is None or following.tag != qn("p") or not paragraph_text(following).startswith("图"):
                     errors.append(f"第{index + 1}个正文块中的图片缺少紧邻下方自动图题")
@@ -300,6 +366,15 @@ def validate_docx(path: Path, strict_caption_coverage: bool, final_report: bool)
     elif final_report:
         errors.append("最终报告未识别到11.4参考文献章节")
 
+    if final_report:
+        toc_instruction = " ".join(
+            node.text or "" for node in document.findall(".//w:instrText", NS)
+        )
+        if not re.search(r"\bTOC\b", toc_instruction, re.IGNORECASE):
+            errors.append("最终报告未识别到Word自动目录域")
+        elif not re.search(r'\\o\s+"1-3"', toc_instruction, re.IGNORECASE):
+            errors.append('最终报告目录必须引用全文一级、二级、三级标题（TOC \\o "1-3"）')
+
     return errors
 
 
@@ -338,8 +413,9 @@ def main() -> int:
         return 1
 
     print(
-        "PASS: A4页面、页边距、正文/标题/题注样式、域更新和参考文献版式符合预设；"
-        "仍须在最终渲染页人工检查字体回退、清晰度、分页和题注视觉位置。"
+        "PASS: A4页面、页边距、1.25倍正文行距、章节分页、三级目录、表格居中、"
+        "图片引导正文、题注自动域和参考文献版式符合预设；仍须在最终渲染页人工检查"
+        "图内无题注、图内字号、字体回退、清晰度和题注视觉位置。"
     )
     return 0
 
