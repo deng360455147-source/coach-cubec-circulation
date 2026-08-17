@@ -425,3 +425,15 @@ P01—P20：每页给出结论式标题、页面任务、核心主张、证据ID
 `Leey21/awesome-ai-research-writing` 在本项目审计的提交中未提供许可证。本项目只将其公开README中的中文写作原则重新概括为赛事专用流程，不复制上游prompt、段落或图片，也不声称对上游内容进行重新授权。
 
 `source-materials/` 中的官方文件、往届参赛作品、PPT和路演稿，以及 `source-skills/` 中可能包含的第三方内容，不因存放在本项目目录中而受根目录的自定义许可重新授权；其版权和许可仍归原作者、主办方或相应权利人所有。使用这些材料时应遵守原始许可、比赛规则和著作权要求。
+
+## 注意    
+
+`AI生成仅供参考，目前版本不能用于直接参加国赛，一定要人工审核修改，但我相信AI给竞赛带来的成长。
+
+`有问题可以进群问
+
+`点击链接加入群聊【商业精英流通业竞赛交流】：https://qun.qq.com/universal-share/share?ac=1&authKey=8p8Qt2BgTzL%2F6gPq6Mpv7bIixXAbf5ZIcCtXJrWQXqLufPHmWtx8GxvBNsaUuF3U&busi_data=eyJncm91cENvZGUiOiIxMTA0NDA2NTI1IiwidG9rZW4iOiJjMjhRQWlCMEtWcVdtVEhrUENpR05NQnpMeW9DMktQR2ZEbUgvQXlxWHdCZGw4TmpoVzJaQlBwVDl6WkwyVm5nIiwidWluIjoiMzYwNDU1MTQ3In0%3D&data=abI0o3EQsMqBi8ijnCXxrvCo85dDsfuvEU0gHixTKGHGwSHqQcLXaTS52q3XRmrK3qW-knpvX3tkp-BJO0Z8Yw&svctype=4&tempid=h5_group_info
+
+`或者直接搜索QQ群号：1104406525 
+
+<img width="1284" height="2283" alt="8117cab1d05195ee70a6eb23dc200c7d" src="https://github.com/user-attachments/assets/974eadfb-f840-438f-9e90-5863adbdcb5c" />
