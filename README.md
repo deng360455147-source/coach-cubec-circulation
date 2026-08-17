@@ -16,6 +16,7 @@
 4. **报告缺少证据闭环**：把调研材料组织为证据台账，形成“症状—差距—根因—方案—KPI”的经营分析闭环，避免先定结论再拼数据。
 5. **评分和展示脱离正文**：依据官方60分五维标准进行证据定位式复核；PPT和讲稿必须映射到锁定报告，不允许新增无来源数字、访谈或方案收益。
 6. **AI幻觉与合规风险**：禁止虚构问卷、访谈、观察、财务、政策、企业动作和收益；缺失内容必须标记为 `[待调研]`、`[待核验]` 或 `[团队判断]`。
+7. **中文正文机械、配图难以修改**：用语义锁和最小改写清理空泛渲染、欧化长定语和机械连接，同时区分Word原生可编辑对象、Canva/Excalidraw母版和静态证据图，避免把扁平图片误称为Word内可编辑。
 
 本 Skill 是备赛辅导与质量控制工具，不替代团队的真实调研、事实核验、实质性写作和现场彩排，也不保证获奖、晋级、原创认定或查重通过。
 
@@ -64,6 +65,7 @@ python3 scripts/check_case_duplicate.py \
 - B01使用可复现Jupyter Notebook完成年报清洗、口径对齐、模型、诊断和图表导出；年报底稿、研究框架图和双模型计划均有模板及自动校验程序。
 - 每个企业事实或判断标记为 `[已核验:E###]`、`[待核验]`、`[待调研]`、`[待验证假设]` 或 `[团队判断]`；`[已核验:E###]` 必须绑定同一证据 ID 和精确定位。
 - 内部施工卡与读者正文完全分离：证据ID、状态码、批次码、Notebook/代码路径及Skill/插件/仓库名只保留在内部文件，绝不进入参赛正文、图表、页眉页脚、脚注或附录说明。读者正文采用结论先行、数据支撑、机制解释、经营含义收束的专业咨询/流通企业经营分析口吻，并以清楚的主语、谓语和宾语表达主体、动作、对象、条件与结果。正文禁止用概括句加冒号引出短语串列，也禁止把多个动作压缩成引号内的破折号、箭头、顿号或斜杠词组链。
+- 中文Word正文在排版前执行“语义锁—必要性判断—自然汉语重组—语义回归”。数字、专业术语、引用、否定词、责任主体和不确定性必须保持不变；已经自然的段落不为“显示已修改”而重写。自动脚本只拦截高风险的空泛渲染、欧化长定语、机械顺序连接和内部工作流泄漏，最终仍须逐段朗读和人工语义复核。
 - B02/B03保持现有三级框架不变，但正文按11份国一样本蒸馏的对比、流程、场景或诊断逻辑自然推进；每个三级小节映射主视觉或数值表。整批至少使用5个视觉家族、3种风格模式和3种页面版式，单一家族不超过40%；数据表、折线、热力、词云、柱状和组合图先审查数据条件，不能为丰富样式模拟数据。每批必须调用Excalidraw、thesis-figure-skill与imagegen并记录路由结果：Excalidraw实际制作结构图，thesis-figure-skill完成学术构图复核或适配重绘，imagegen只在适配时辅助无文字位图。三者均不得伪造数据或企业事实；不适用时说明理由，不生成装饰图。
 - 将每项方案绑定根因、责任主体、实施阶段、资源、KPI、风险、触发条件和回滚措施。
 - 量化分析先用Jupyter Skill形成可复现程序，再调用数据验证 Skill复核口径与计算，由数据可视化 Skill选择图形、导出静态图并做轴线/口径/可读性检查。
@@ -71,6 +73,7 @@ python3 scripts/check_case_duplicate.py \
 - Word使用文档Skill制作A4竖版DOCX：上/下2.54cm、左/右3.17cm；正文小四宋体12pt，英文/数字Times New Roman；一级14pt黑体加粗并启用段前分页，二/三级12pt宋体加粗；两端对齐、首行2字符、1.25倍行距。除章节之间外不使用手工分页符或分页型分节符。
 - 最终目录由Word自动域引用全文一级、二级、三级标题。图题放在图下、表题放在表上，均为居中小五黑体9pt，并用真实Word `SEQ`域全文自动编号。每张图前必须有正文引导，图内不得嵌入题注；图内普通文字在最终Word宽度下不得小于14pt，关键节点、主标签和关键数字为16pt。表格单元格文字水平/垂直居中且首行缩进为0。参考文献采用现行GB/T 7714—2025顺序编码制的期刊式普通段落列表，禁止表格排版。
 - 外部 `$excalidraw-diagram` 是结构图的默认工具，`$thesis-figure-skill`负责每批关键图的学术构图复核及适配的TikZ/公式/高密度图重绘，`$imagegen` 只辅助适配的无文字位图；统计图仍由数据验证/可视化链路生成，不能绕过数据门。MIT许可快照保留在 `integrations/thesis-figure-skill/`。
+- 用户要求配图可编辑时，每张图都登记Word渲染版、母版类型、源文件、数据源和重建方法。Word内直接修改数据时优先使用原生表格、图表和形状；Canva只编辑用户已有设计，必须先获取设计ID，展示事务预览，并在用户明确批准后提交。Canva导出图插入Word后仍是渲染版，不宣称为Word内部可编辑对象。
 - Kami 1.12.0 已嵌入 `integrations/kami/`，只提供编辑式视觉和版式参考。Kami 原生输出HTML/PDF，不被描述为Word生成器。
 - B01、B02、B03每批DOCX以及最终合并稿都必须渲染为逐页PNG人工检查；每个渲染页至少有一张相关且有来源的图片，或一张真正用于比较/查阅的表格。第3—10章叙述性页面至少60%含分析性图片，不能连续两张叙述性页面均无图片；装饰图、文字截图或“段落套表格”不计。
 
@@ -80,6 +83,8 @@ python3 scripts/render_research_framework.py path/to/research-framework.json fig
 python3 scripts/validate_empirical_model_plan.py path/to/empirical-model-plan.json
 python3 scripts/validate_reader_facing_report.py path/to/reader-body.md
 python3 scripts/validate_reader_facing_report.py path/to/batch.docx
+python3 scripts/validate_editable_figure_register.py path/to/editable-figure-register.json
+python3 scripts/validate_editable_figure_register.py --for-production path/to/editable-figure-register.json
 python3 scripts/validate_report_visual_map.py path/to/report-visual-map.json
 python3 scripts/validate_report_visual_map.py --for-production path/to/report-visual-map.json
 python3 scripts/validate_report_docx_format.py --strict-caption-coverage path/to/batch.docx
@@ -87,7 +92,7 @@ python3 scripts/validate_report_docx_format.py --strict-caption-coverage --final
 python3 scripts/validate_word_visual_manifest.py path/to/word-visual-manifest.json
 ```
 
-框架脚本可拦截固定11章或精简二三级标题缺失、五个核心经营维度错位、已删除章节重新出现、第11章六项附录缺失、三级概括不足、瓶颈/方案不在2—4项或数量不一致、抽象二级标题、主张无状态，以及“已核验”但没有证据定位等错误。研究框架程序输出可嵌入Word的SVG；双模型计划脚本检查年报覆盖、恰好两种READY模型、模型特定变量、Notebook执行和图表映射；读者正文脚本检查Skill、状态码、程序路径、内部证据编号、占位符、冒号式概括串列和引号式词组链；B02/B03图表地图脚本检查固定三级标题覆盖、指定图形适用性、数值表、三工具调用记录、14pt/16pt字号标准和视觉家族/风格/版式多样性；DOCX格式脚本检查A4、页边距、1.25倍行距、章节分页、三级目录、表格单元格、图片前置正文、题注位置、`SEQ`域和参考文献非表格；Word清单脚本检查图内无题注、普通文字不小于14pt、关键文字16pt、最终页码连续、逐页图/表、叙述性页面图片密度、页眉页脚、匿名和重排后复核声明。自动程序都不能代替人工核验来源真实性、识别假设、报告口吻、图内文字、字体回退或逐页视觉检查。
+框架脚本可拦截固定11章或精简二三级标题缺失、五个核心经营维度错位、已删除章节重新出现、第11章六项附录缺失、三级概括不足、瓶颈/方案不在2—4项或数量不一致、抽象二级标题、主张无状态，以及“已核验”但没有证据定位等错误。研究框架程序输出可嵌入Word的SVG；双模型计划脚本检查年报覆盖、恰好两种READY模型、模型特定变量、Notebook执行和图表映射；读者正文脚本检查Skill、状态码、程序路径、内部证据编号、占位符、冒号式概括串列、引号式词组链、空泛渲染、欧化长定语和机械顺序连接；可编辑母版脚本检查每张图的渲染版、源文件、数据源和重建方法，用户要求Canva时还要求实际提交的母版、设计ID、元素ID、预览与用户批准；B02/B03图表地图脚本检查固定三级标题覆盖、指定图形适用性、数值表、三工具调用记录、14pt/16pt字号标准和视觉家族/风格/版式多样性；DOCX格式脚本检查A4、页边距、1.25倍行距、章节分页、三级目录、表格单元格、图片前置正文、题注位置、`SEQ`域和参考文献非表格；Word清单脚本检查图内无题注、普通文字不小于14pt、关键文字16pt、最终页码连续、逐页图/表、叙述性页面图片密度、页眉页脚、匿名和重排后复核声明。自动程序都不能代替人工核验来源真实性、识别假设、报告口吻、图内文字、字体回退或逐页视觉检查。
 
 ### 2.5 官方60分评分复核
 
@@ -178,7 +183,7 @@ git clone https://github.com/coleam00/excalidraw-diagram-skill.git \
 
 5. 按上游说明准备Playwright渲染依赖；安装新浏览器或系统依赖前先取得设备所有者确认。重新打开 Codex 任务或刷新技能列表，确认可以看到“商业精英流通业竞赛教练”和 `excalidraw-diagram`。
 
-基础结构和DOCX XML校验不需要Python第三方包，只需要Python 3。制作Word、静态图表和逐页渲染时，应在运行环境中提供 `$documents:documents`、`$data-analytics:validate-data`、`$data-analytics:visualize-data` 和系统 `$imagegen`；若这些能力不可用，必须改用可复现的本地数据/文档工具并如实说明未完成的门禁。Kami和`thesis-figure-skill`已随本项目嵌入，无需另行下载；后者若实际生成TikZ图，仍需按其上游说明提供TeX、字体和PDF渲染依赖。Excalidraw结构图依赖单独安装的上游Skill及其Playwright渲染环境。制作单文件HTML演示仍需要单独安装 `$frontend-slides` Skill。
+基础结构和DOCX XML校验不需要Python第三方包，只需要Python 3。制作Word、静态图表和逐页渲染时，应在运行环境中提供 `$documents:documents`、`$data-analytics:validate-data`、`$data-analytics:visualize-data` 和系统 `$imagegen`；若这些能力不可用，必须改用可复现的本地数据/文档工具并如实说明未完成的门禁。Kami和`thesis-figure-skill`已随本项目嵌入，无需另行下载；后者若实际生成TikZ图，仍需按其上游说明提供TeX、字体和PDF渲染依赖。Excalidraw结构图依赖单独安装的上游Skill及其Playwright渲染环境。制作单文件HTML演示仍需要单独安装 `$frontend-slides` Skill。如需Canva可编辑母版，运行环境还须安装并授权 `$canva:canva-edit-design`，用户需提供现有Canva设计链接或设计ID；不要在对话中提供密码或Token。
 
 本机维护版本另有被 `.gitignore` 排除的 `source-materials/` 和 `source-skills/` 只读原始档案；其中含赛事附件、往届作品和旧 Skill 快照，因版权与隐私边界不随公开 GitHub 仓库分发。仅在得到合法来源与使用权限时，才可把对应原件放回这两个目录；公开版本的主流程、模板、蒸馏规则和校验脚本不依赖这些原件运行。
 
@@ -227,6 +232,8 @@ git clone https://github.com/coleam00/excalidraw-diagram-skill.git \
 - 报告固定章节、通用三级施工功能和五个核心经营维度主落点不能由案例偏好覆盖；用户可根据证据调整第8、9章的二级结果标题、2—3行概括、篇幅和重点。
 - 分章顺序固定为B01 Word→B02 Word→B03 Word；每批交付实际DOCX后等待用户确认。概要和目录最后生成，不能用未证明结论预填。
 - 每一张图表都要绑定主张、数据、来源和口径；研究框架图不得预填结论，模型图不得省略关键诊断或把相关性写成因果。每张图前必须有正文引导，图题只放在Word外部，图内普通文字按最终Word尺寸不小于14pt，关键文字为16pt，不得通过缩小字号挤入复杂图。表格单元格文字居中且不首行缩进。Word是否满足“每页有图或表”只按最终渲染页判断，重新分页、刷新域或调整图片后必须重新检查。
+- “去AI味”不等于改变结论。先锁定数据、术语、引用、责任主体、否定和不确定性，只改写确有机械痕迹的句子，并在改写后执行语义回归。
+- 图片可编辑要说清“在哪里可编辑”。Word原生表格/图表/形状可在Word中修改；Canva、Excalidraw、TikZ或数据程序是外部母版。外部母版修改后必须重新渲染、替换Word图、刷新题注与目录并逐页复核。
 - 每轮输出末尾都会说明当前阶段、已确认事实、待核验事项、团队必须亲自完成的工作和下一步。
 
 ## 5. 输入输出示例
@@ -387,12 +394,12 @@ P01—P20：每页给出结论式标题、页面任务、核心主张、证据ID
 
 - [`SKILL.md`](SKILL.md)：Skill 的核心流程、阶段门和输出契约。
 - [`LICENSE`](LICENSE)：本项目原创内容采用的 MIT License。
-- [`assets/`](assets/)：项目简报、调研、报告、评分、PPT、讲稿及答辩模板。
+- [`assets/`](assets/)：项目简报、调研、报告、去AI味复核、可编辑母版登记、评分、PPT、讲稿及答辩模板。
 - [`integrations/kami/`](integrations/kami/)：原样嵌入的 Kami 1.12.0 轻量 Skill 子目录，用于Word的视觉/图解参考；保留上游MIT许可证，不代表其原生支持DOCX。
 - [`integrations/excalidraw-diagram-adapter/`](integrations/excalidraw-diagram-adapter/)：外部Excalidraw Skill的审计记录与报告适配入口；不含上游源代码。
 - [`integrations/thesis-figure-skill/`](integrations/thesis-figure-skill/)：MIT许可的学术图形方法快照；每批关键图须由外部Skill完成构图复核，适配时用于TikZ、公式或高密度关系图重绘。
 - [`references/`](references/)：官方规则蒸馏、国一经验、方法、评分与展示规范。
-- [`scripts/`](scripts/)：查重初筛、框架、B02/B03图表地图、评分、PPT、讲稿及Word逐页图表清单的确定性校验脚本。
+- [`scripts/`](scripts/)：查重初筛、框架、中文正文风格、可编辑母版、B02/B03图表地图、评分、PPT、讲稿及Word逐页图表清单的确定性校验脚本。
 - `source-materials/`：仅存在于本机维护版本的官方文件、国一计划书/PPT、路演稿和对话附件原件，只读，不公开提交。
 - `source-skills/`：仅存在于本机维护版本的两个旧 Skill 完整原始快照，只读，不公开提交。
 
@@ -403,5 +410,7 @@ P01—P20：每页给出结论式标题、页面任务、核心主张、证据ID
 `integrations/kami/` 依据其上游 MIT License 再分发，许可证与版权声明保留在该目录的 `LICENSE` 中。
 
 `coleam00/excalidraw-diagram-skill` 在本项目审计的提交中未提供许可证，因此仅作为用户自行安装的外部依赖；本仓库不再分发其代码、模板和参考文件。本项目原创的Excalidraw路由、Word约束和报告色板仍按本仓库MIT License授权。
+
+`Leey21/awesome-ai-research-writing` 在本项目审计的提交中未提供许可证。本项目只将其公开README中的中文写作原则重新概括为赛事专用流程，不复制上游prompt、段落或图片，也不将上游内容纳入本项目MIT再分发范围。
 
 `source-materials/` 中的官方文件、往届参赛作品、PPT和路演稿，以及 `source-skills/` 中可能包含的第三方内容，不因存放在本项目目录中而转为 MIT 授权；其版权和许可仍归原作者、主办方或相应权利人所有。使用这些材料时应遵守原始许可、比赛规则和著作权要求。

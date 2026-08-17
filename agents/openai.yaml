@@ -1,4 +1,4 @@
 interface:
   display_name: "商业精英流通业竞赛教练"
-  short_description: "选题、专业调研、三批规范Word、评分与路演全流程"
-  default_prompt: "使用 $coach-cubec-circulation 从当前阶段继续流通业经营模拟赛道，先检查阶段门和证据，再交付本阶段所需内容。"
+  short_description: "选题、调研、去AI味Word、可编辑配图、评分与路演"
+  default_prompt: "使用 $coach-cubec-circulation 从当前阶段继续流通业经营模拟赛道，先检查阶段门和证据，再交付本阶段所需内容。报告正文执行语义锁定和最小改写，配图区分Word原生可编辑对象与外部母版。"

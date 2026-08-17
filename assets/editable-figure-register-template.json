@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "template_mode": true,
+  "document_id": "填写文档ID",
+  "word_file": "填写DOCX文件",
+  "canva_requested_for_this_document": false,
+  "figures": [
+    {
+      "figure_id": "FIG-3-1",
+      "word_caption": "填写Word中的图题",
+      "word_render_file": "填写插入Word的SVG或PNG",
+      "editability_mode": "EXCALIDRAW_MASTER",
+      "editable_master_location": "填写.excalidraw源文件",
+      "word_editability": "rendered-in-word-editable-in-source",
+      "source_ids": [
+        "E001"
+      ],
+      "source_data": [],
+      "rebuild_instructions": "说明如何从母版重新导出并替换Word图",
+      "canva": {
+        "status": "NOT_APPLICABLE",
+        "design_id": null,
+        "page_index": null,
+        "element_ids": [],
+        "responsive_page_checked": false,
+        "user_commit_approval_recorded": false,
+        "transaction_committed": false,
+        "edit_link": null
+      },
+      "qa": {
+        "editable_master_opens": true,
+        "word_render_matches_master": true,
+        "caption_and_source_match": true,
+        "minimum_text_size_checked": true,
+        "rebuild_tested": true
+      }
+    }
+  ],
+  "checks": {
+    "all_word_figures_registered": true,
+    "all_generated_figures_have_editable_masters": true,
+    "original_raster_exceptions_documented": true,
+    "canva_transactions_followed_approval_gate": true,
+    "word_revalidated_after_master_updates": true
+  }
+}

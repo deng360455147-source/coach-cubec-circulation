@@ -35,6 +35,28 @@ class ReaderFacingReportStyleTests(unittest.TestCase):
             [],
         )
 
+    def test_empty_grandiose_language_is_rejected(self) -> None:
+        errors = "\n".join(validate_text("该方案将全方位赋能企业，并实现跨越式发展。"))
+        self.assertIn("空泛渲染表达", errors)
+
+    def test_long_attributive_chain_is_rejected(self) -> None:
+        errors = "\n".join(
+            validate_text("这是一个能够识别门店风险的具有区域价值的可持续扩张的经营系统。")
+        )
+        self.assertIn("欧化长定语", errors)
+
+    def test_mechanical_sequence_is_rejected(self) -> None:
+        errors = "\n".join(
+            validate_text("首先检查销售变化，其次比较库存水平，最后判断补货风险。")
+        )
+        self.assertIn("机械顺序连接", errors)
+
+    def test_reference_entry_is_not_rewritten_for_title_words(self) -> None:
+        self.assertEqual(
+            validate_text("[1] 某某. 数字化范式转移研究[J]. 流通经济, 2025(4): 1-10."),
+            [],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

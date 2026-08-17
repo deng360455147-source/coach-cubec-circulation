@@ -66,4 +66,4 @@
 3. 本地 skill 不可用时，按本文件的最小方法执行，不影响主流程。
 4. 引入新第三方 skill 前，检查完整 `SKILL.md`、脚本、依赖、权限、凭据、许可和近期维护；禁止盲装。
 5. 方法名称可以写入报告；Skill 名、仓库/插件名、代理工作流、批次/审核状态、Notebook 或代码路径、内部证据编号和 AI 生产过程不得写入参赛正文。
-6. 每批内部施工稿与读者稿分文件维护。读者稿须按 [reader-facing-report-style.md](reader-facing-report-style.md) 清理并导出 DOCX；完成逐页渲染、图文密度和语言泄漏检查后，才交用户确认。
+6. 每批内部施工稿与读者稿分文件维护。读者稿须按 [reader-facing-report-style.md](reader-facing-report-style.md) 和 [human-chinese-word-style.md](human-chinese-word-style.md) 清理，并登记所有配图的可编辑母版。导出DOCX后完成逐页渲染、图文密度、语义回归、语言泄漏和母版登记检查，才交用户确认。

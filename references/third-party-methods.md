@@ -1,6 +1,6 @@
 # 外部方法来源、筛选与许可
 
-调研与报告阶段只将可审计的方法论改写为赛事专用流程，不直接执行第三方包。PPT 制作阶段按用户指定安装并调用已审计的 `frontend-slides`；安装版本、能力边界和外部写入限制见 [frontend-slides-integration.md](frontend-slides-integration.md)。
+调研与报告阶段只将可审计的方法论改写为赛事专用流程，不直接执行第三方包。PPT 制作阶段按用户指定安装并调用已审计的 `frontend-slides`；安装版本、能力边界和外部写入限制见 [frontend-slides-integration.md](frontend-slides-integration.md)。中文去AI味与Canva可编辑母版只吸收经过重新表达的方法或调用已安装能力，不复制无明确再分发授权的上游文本。
 
 调研阶段采用来源记录如下；报告阶段的 GitHub/ClawHub 筛选、章节路由和未采用候选见 [report-section-method-router.md](report-section-method-router.md)。
 
@@ -76,6 +76,21 @@
 - imagegen协作：只辅助适配的无文字位图或场景示意，不生成精确标签、数据图、地图、Logo、企业实拍或调研证据；准确文字在Excalidraw或Word添加。
 - 依赖与隐私：上游渲染依赖Python 3.11+、Playwright和Chromium，HTML模板会从 `esm.sh` 加载Excalidraw模块；不得把未获授权的敏感内容送入该链路。安装新浏览器或系统依赖前须取得设备所有者确认。
 - 许可边界：审计提交没有LICENSE文件。没有明确再分发授权，所以本公开仓库不原样嵌入上游源文件；若上游补充许可证，重新审计后再决定是否内嵌。
+
+### Leey21 / awesome-ai-research-writing
+
+- 来源：`https://github.com/Leey21/awesome-ai-research-writing`
+- 审计提交：`c07628b453309a1fb131ee105b2f01190162bc6c`，审计日期2026-08-17。
+- 采用：中文Word正文的最小改写、核心术语保留、长定语拆分、减少无必要被动句和机械顺序连接、不为显示修改而改写已经自然的文本。
+- 改造：增加证据、数字、引用、否定词与不确定性的“语义锁”；将风格处理纳入内部复核表与自动高风险检查，不把内部复核过程写进参赛正文。
+- 许可边界：审计时仓库没有LICENSE文件。本项目只记录来源并自行概括方法，不复制上游prompt、文字段落或图片。
+
+### Canva / canva-edit-design
+
+- 来源：已安装的 `canva:canva-edit-design` 插件Skill。
+- 采用：对用户已有Canva设计开启编辑事务，预览响应式页面，修改现有元素，给用户展示预览，只在得到明确批准后提交。
+- 边界：不能创建新设计或新页面，不能新增文本框，不能将Word中的扁平图片自动拆成可编辑形状。Canva母版可编辑不等于Word内部对象可编辑。
+- 凭据与隐私：必须由用户提供现有设计链接或以 `D` 开头的设计ID；不要求用户在对话中粘贴密码、Token或二次验证信息。
 
 ## 未采用/未直接安装
 

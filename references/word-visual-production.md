@@ -8,6 +8,7 @@
 - **统计图表**：调用 `$data-analytics:visualize-data`，以真实数据文件生成可复现SVG或高分辨率PNG；折线、柱状、组合、热力、词云等必须分别通过数据门。
 - **机制/流程与图形美化**：读取 [excalidraw-imagegen-integration.md](excalidraw-imagegen-integration.md)，每批调用外部 `$excalidraw-diagram`、`$thesis-figure-skill` 和系统 `$imagegen` 并记录路由。Excalidraw制作研究框架、价值链、流程、驱动树、泳道、路线图和瓶颈—方案机制；thesis-figure-skill复核学术构图并按适配性重绘公式/TikZ/高密度关系图；imagegen只辅助适配的无文字位图。三者均不得替代统计验证或真实证据。
 - **Word生成与检查**：调用 `$documents:documents`，使用Word真实样式、表格几何、内联图片、页眉页脚、`SEQ/REF`域、隐私清理和逐页渲染流程。
+- **可编辑母版**：用户要求可编辑配图时读取 [canva-editable-figure-workflow.md](canva-editable-figure-workflow.md)。Word内直接编辑优先使用Word原生表格、图表和形状；外部母版使用Canva、Excalidraw、draw.io、TikZ或可复现数据源。`$canva:canva-edit-design` 只能在用户提供已有设计ID后修改既有元素，并严格执行事务、预览和提交批准门。
 - **编辑式视觉参考**：Kami 1.12.0原样嵌入 `integrations/kami/`，只借鉴克制层级、图解语言和页面密度。其原生输出是HTML/PDF，不得冒充Word生成器。
 
 Word只能从 `report-reader-b01/b02/b03-template.md` 或最终读者合并稿生成。含状态、证据ID和程序路径的 `report-section-batch-template.md` 永不转换为用户Word。
@@ -98,8 +99,9 @@ B02/B03按 [national-first-b02-b03-writing-visual-patterns.md](national-first-b0
 6. 运行正文泄漏、样式、图片、可访问性、隐私和 `scripts/validate_report_docx_format.py` 检查。
 7. 渲染为逐页PNG及PDF；在100%逐页检查图表覆盖、字号、截字、重叠、分页、题注位置、来源、页眉页脚和匿名。
 8. B02/B03运行图表地图生产校验；按真实页填写Word视觉清单并运行清单校验。
-9. 任一修改都重新刷新域、重新渲染和重新检查；通过后交付当前批DOCX并等待用户确认。
-10. 三批均确认后写概要和目录，合并全文并从第1步重新执行，不能沿用分批结果代替全文复核。
+9. 按全部图形填写可编辑母版登记表并运行 `validate_editable_figure_register.py`；用户要求Canva时增加 `--for-production`，未取得设计ID、预览批准或成功提交不得通过。
+10. 任一正文或母版修改都重新刷新域、重新渲染和重新检查；通过后交付当前批DOCX并等待用户确认。
+11. 三批均确认后写概要和目录，合并全文并从第1步重新执行，不能沿用分批结果代替全文复核。
 
 ## 8. 发布检查
 

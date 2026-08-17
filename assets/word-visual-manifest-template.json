@@ -134,6 +134,8 @@
     "anonymous_content_and_metadata": true,
     "docx_revalidated_after_last_reflow": true,
     "reader_facing_text_validation_passed": true,
+    "humanization_review_passed": true,
+    "editable_figure_register_validation_passed": true,
     "consulting_report_voice_reviewed": true,
     "internal_artifacts_removed": true,
     "visual_reframing_reviewed": true,

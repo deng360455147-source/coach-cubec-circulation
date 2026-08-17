@@ -34,6 +34,19 @@ SUMMARY_COLON_PATTERN = re.compile(
 )
 QUOTED_TEXT_PATTERN = re.compile(r"“([^”\n]{2,100})”|\"([^\"\n]{2,100})\"")
 CHAIN_CONNECTOR_PATTERN = re.compile(r"—|→|->|/|＋|\+|、")
+EMPTY_GRANDIOSE_PATTERN = re.compile(
+    r"比比皆是|毋庸置疑|令人惊叹|不可磨灭(?:的贡献)?|"
+    r"范式转移|全方位赋能|打造(?:了)?(?:一个)?闭环生态|"
+    r"实现了?跨越式发展|耦合内聚|切中要害"
+)
+LONG_ATTRIBUTIVE_PATTERN = re.compile(
+    r"一个[^，。；！？\n]{0,20}的"
+    r"[^，。；！？\n]{0,20}的"
+    r"[^，。；！？\n]{0,20}的"
+)
+MECHANICAL_SEQUENCE_PATTERN = re.compile(
+    r"首先[^。！？\n]{0,180}其次[^。！？\n]{0,180}(?:最后|再次)"
+)
 
 
 def extract_markdown_body(text: str) -> str:
@@ -45,7 +58,7 @@ def extract_markdown_body(text: str) -> str:
 
 
 def extract_docx_text(path: Path) -> str:
-    parts: list[str] = []
+    document_parts: list[str] = []
     with zipfile.ZipFile(path) as archive:
         names = [
             name
@@ -58,14 +71,20 @@ def extract_docx_text(path: Path) -> str:
             raise ValueError("DOCX does not contain word/document.xml")
         for name in names:
             root = ET.fromstring(archive.read(name))
-            for node in root.iter():
-                if node.tag.endswith("}t") and node.text:
-                    parts.append(node.text)
-                elif node.tag.endswith("}tab"):
-                    parts.append("\t")
-                elif node.tag.endswith("}br"):
-                    parts.append("\n")
-    return " ".join(parts)
+            paragraphs: list[str] = []
+            for paragraph in (node for node in root.iter() if node.tag.endswith("}p")):
+                parts: list[str] = []
+                for node in paragraph.iter():
+                    if node.tag.endswith("}t") and node.text:
+                        parts.append(node.text)
+                    elif node.tag.endswith("}tab"):
+                        parts.append("\t")
+                    elif node.tag.endswith("}br"):
+                        parts.append("\n")
+                if parts:
+                    paragraphs.append("".join(parts))
+            document_parts.append("\n".join(paragraphs))
+    return "\n".join(part for part in document_parts if part)
 
 
 def load_text(path: Path) -> str:
@@ -110,6 +129,24 @@ def validate_text(text: str) -> list[str]:
         )
     if len(quote_chain_matches) > 5:
         errors.append(f"引号式词组链: 另有 {len(quote_chain_matches) - 5} 处")
+    style_paragraphs = [
+        paragraph.strip()
+        for paragraph in text.splitlines()
+        if paragraph.strip()
+        and not paragraph.lstrip().startswith(("#", "|", "资料来源：", "资料来源:", "[参考文献]"))
+        and not re.match(r"^\[\d+\]", paragraph.strip())
+    ]
+    style_text = "\n".join(style_paragraphs)
+    for label, pattern in (
+        ("空泛渲染表达", EMPTY_GRANDIOSE_PATTERN),
+        ("欧化长定语", LONG_ATTRIBUTIVE_PATTERN),
+        ("机械顺序连接", MECHANICAL_SEQUENCE_PATTERN),
+    ):
+        matches = list(pattern.finditer(style_text))
+        for match in matches[:5]:
+            errors.append(f"{label}: …{snippet(style_text, match.start(), match.end())}…")
+        if len(matches) > 5:
+            errors.append(f"{label}: 另有 {len(matches) - 5} 处")
     return errors
 
 
@@ -146,10 +183,18 @@ def self_test() -> int:
     prose_bad = (
         "企业的价值主张由四个支点构成：高质价比、丰富品类、高频上新和便利门店体验。"
         "企业执行“分层需求—小范围验证—滚动补货—退出复盘”。"
+        "首先检查收入，其次比较成本，最后得出结论。"
+        "这是一个能够系统识别区域门店需求的具有战略意义的不可磨灭的贡献。"
     )
     prose_errors = validate_text(prose_bad)
     prose_labels = {error.split(":", 1)[0] for error in prose_errors}
-    for required in ("冒号式概括串列", "引号式词组链"):
+    for required in (
+        "冒号式概括串列",
+        "引号式词组链",
+        "机械顺序连接",
+        "欧化长定语",
+        "空泛渲染表达",
+    ):
         if required not in prose_labels:
             print(f"FAIL: {required} was not detected")
             return 1
@@ -165,7 +210,7 @@ def self_test() -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="检查读者版报告是否泄漏内部工作流，或使用禁用的冒号式概括与引号式词组链"
+        description="检查读者版报告是否泄漏内部工作流，或出现高风险的机械化中文表达"
     )
     parser.add_argument("report", nargs="?", type=Path)
     parser.add_argument("--self-test", action="store_true")
@@ -185,7 +230,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print("PASS: 读者正文未发现内部工作流泄漏、占位符、冒号式概括串列或引号式词组链")
+    print("PASS: 读者正文未发现内部工作流泄漏、占位符或高风险机械化表达")
     return 0
 
 

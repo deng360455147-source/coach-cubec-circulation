@@ -114,7 +114,7 @@ python3 scripts/validate_report_framework.py path/to/report-framework-approval.m
 
 ## 四、框架确认后分章节撰写
 
-正式写作前读取 [reader-facing-report-style.md](reader-facing-report-style.md)。内部施工卡与读者正文必须分文件维护；内部证据ID、状态、程序路径和复核日志不得进入正文或Word。
+正式写作前读取 [reader-facing-report-style.md](reader-facing-report-style.md) 和 [human-chinese-word-style.md](human-chinese-word-style.md)。内部施工卡与读者正文必须分文件维护；内部证据ID、状态、程序路径和复核日志不得进入正文或Word。去AI味只做最小必要改写，必须在内部复核表中先锁定数字、术语、引用、否定、责任主体和不确定性。
 
 B02/B03不得因追求自然语言或图表丰富而改动本确认单的一级、二级或三级标题。正文与视觉的变化只发生在标题下：按 [national-first-b02-b03-writing-visual-patterns.md](national-first-b02-b03-writing-visual-patterns.md) 选择自然段推进、数值表、图形家族、风格模式和页面版式。
 
@@ -126,7 +126,7 @@ B02/B03不得因追求自然语言或图表丰富而改动本确认单的一级�
 2. `B02`：第5章企业内部分析 + 第6章企业外部分析 + 第7章企业经营模式；
 3. `B03`：第8章发展瓶颈 + 第9章经营优化方案 + 第10章结论与启示 + 第11章附录及参考资料。
 
-每批完成后先导出、渲染和检查对应DOCX，再交用户并停止等待明确确认。只有上一批Word记录为 `ACCEPTED` 才能开始下一批。第2章概要和第1章目录在三批全部接受后根据已证明结论与最终分页生成，不能提前写结论。
+每批完成后先完成语义回归、可编辑母版登记、DOCX导出、逐页渲染和检查，再交用户并停止等待明确确认。用户要求Canva时，必须按 [canva-editable-figure-workflow.md](canva-editable-figure-workflow.md) 记录已有设计ID、页面、元素、预览、批准和事务提交；缺少设计ID时只能记录 `AWAITING_DESIGN_ID`，不得宣称已转换。只有上一批Word记录为 `ACCEPTED` 才能开始下一批。第2章概要和第1章目录在三批全部接受后根据已证明结论与最终分页生成，不能提前写结论。
 
 ### 2. 每批开写前
 
@@ -168,7 +168,7 @@ P0 证据缺失时，可写结构、背景或条件性分析；关键句写 `[�
 5. **一致性反查**：术语、瓶颈名、方案名、数字和图表编号与已确认部分一致；
 6. **原创反查**：没有复制国一样本或第三方 skill 的表述、数据和图表。
 
-内部交付记录列出批次编号/版本、本批结论、证据缺口、用户可修改项和对后续章节的影响；对用户只交付纯读者正文DOCX及简短确认说明。读者Markdown与DOCX必须通过 `validate_reader_facing_report.py`，Word须逐页图文复核并通过清单后，才把状态置为 `B0X_AWAITING_USER_APPROVAL`。收到对该DOCX版本的明确确认后才记录 `B0X_ACCEPTED` 并继续。
+内部交付记录列出批次编号/版本、本批结论、证据缺口、用户可修改项和对后续章节的影响；对用户只交付纯读者正文DOCX及简短确认说明。读者Markdown与DOCX必须通过 `validate_reader_facing_report.py`，去AI味复核表必须确认语义不变，可编辑母版登记必须通过 `validate_editable_figure_register.py`，Word须逐页图文复核并通过清单后，才把状态置为 `B0X_AWAITING_USER_APPROVAL`。收到对该DOCX版本的明确确认后才记录 `B0X_ACCEPTED` 并继续。
 
 ## 五、内部准备顺序与对外交付顺序
 

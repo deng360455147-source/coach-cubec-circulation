@@ -44,6 +44,8 @@ DOCUMENT_CHECK_KEYS = (
     "anonymous_content_and_metadata",
     "docx_revalidated_after_last_reflow",
     "reader_facing_text_validation_passed",
+    "humanization_review_passed",
+    "editable_figure_register_validation_passed",
     "consulting_report_voice_reviewed",
     "internal_artifacts_removed",
     "visual_reframing_reviewed",
@@ -377,7 +379,7 @@ def main() -> int:
     print(
         "PASS: 已记录连续渲染页、每页至少一张有主张/来源映射的合格图片或表格，"
         "并完成图片前置正文、图内无题注、图内最小14pt/关键文字16pt、表格居中、三级目录、章节分页、"
-        "1.25倍行距、读者正文、页眉页脚、匿名与重排后复核。"
+        "1.25倍行距、读者正文、去AI味人工复核、可编辑母版登记、页眉页脚、匿名与重排后复核。"
     )
     return 0
 

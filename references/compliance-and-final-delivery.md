@@ -30,12 +30,14 @@
 - 一手证据与公开证据交叉验证，反证与冲突未被隐藏；
 - 相关关系未越界写成因果，非上市企业财务未被虚构；
 - 方案收益清楚区分事实、假设和保守/基准/乐观情景；
+- 正文已执行语义锁和最小改写，数字、术语、引用、否定与不确定性没有因“去AI味”发生偏移；
+- 已自然的段落保留原文；空泛渲染、欧化长定语、机械顺序连接、概括句加冒号串列和引号式词组链已经逐段复核；
 - 团队能口头解释中心问题、核心数字、方法、根因、方案和AI辅助边界。
 
 ## 文件与现场检查
 
 1. 锁定唯一报告、PPT、讲稿和视频版本，记录哈希/版本号。
-2. 检查PDF页序、自动目录是否覆盖全文一级/二级/三级标题、字体、图表来源、附件隐私和可搜索性；核对正文小四宋体/英文数字Times New Roman、1.25倍行距、页边距、只在一级标题前分页、图前正文、图内无题注、普通文字不小于14pt且关键文字16pt、表格单元格居中且零首行缩进，以及图下表上9pt小五黑体居中题注与真实自动编号域。
+2. 检查PDF页序、自动目录是否覆盖全文一级/二级/三级标题、字体、图表来源、附件隐私和可搜索性；核对正文小四宋体/英文数字Times New Roman、1.25倍行距、页边距、只在一级标题前分页、图前正文、图内无题注、普通文字不小于14pt且关键文字16pt、表格单元格居中且零首行缩进，以及图下表上9pt小五黑体居中题注与真实自动编号域。同时运行读者正文、可编辑母版和Word视觉清单校验，并保留去AI味人工复核记录。
 3. 检查20页PPT的页数、来源定位、断网播放、字体嵌入、图片许可和静态备份。
 4. 检查10分钟讲稿的三轮彩排、交接、错数、应急删减和设备故障预案。
 5. 检查5分钟答辩的主答、补充者和证据页码；未知问题不得现场编数字。
@@ -50,3 +52,14 @@ python3 scripts/validate_project.py path/to/report.md --meta path/to/project-met
 ```
 
 主预检脚本只识别Markdown/TXT中的最低模块、关键维度、字数、占位符、匿名泄露、地区、来源标记、PPT页数、查重状态和人工确认。DOCX另运行 `python3 scripts/validate_report_docx_format.py --strict-caption-coverage [--final-report] <file.docx>`；它检查文件结构、样式、题注和参考文献非表格，但仍不能证明事实真实、图片无泄漏、问卷有效、原创合规、字体实际渲染或评分质量。PDF/DOCX须用对应文件技能完整读取并逐页视觉检查。
+
+正文交付前还必须运行：
+
+```bash
+python3 scripts/validate_reader_facing_report.py path/to/reader-body.docx
+python3 scripts/validate_editable_figure_register.py path/to/editable-figure-register.json
+python3 scripts/validate_editable_figure_register.py --for-production path/to/editable-figure-register.json
+python3 scripts/validate_word_visual_manifest.py path/to/word-visual-manifest.json
+```
+
+`--for-production` 用于用户明确要求Canva母版的交付。没有现有Canva设计ID、页索引、元素ID、预览、用户批准和成功提交事务时，该校验必须失败。自动语言检查只能拦截高风险模式，不能代替逐段朗读和语义回归。

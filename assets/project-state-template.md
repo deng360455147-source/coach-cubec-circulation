@@ -60,7 +60,7 @@
 - 框架版本/确认日期：
 - `B01` 引言+案例简介：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B01` 版本与确认语义：
-- B01读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
+- B01读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；去AI味语义回归【PASS / FAIL / 未运行】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
 - B01研究框架图：`PENDING / READY / BLOCKED`；文件/证据ID：
 - 年报数据底稿：覆盖年度【】；指标数【】；口径复核【PASS / FAIL / 未运行】
 - 四类候选模型状态：`market_share【】 / synergy【】 / did_cultural_premium【】 / dea_tobit【】`
@@ -69,10 +69,10 @@
 - 双模型计划校验：`PASS / FAIL / 未运行`
 - `B02` 企业内部+外部+经营模式：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B02` 版本与确认语义：
-- B02读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；图表地图普通/生产校验【】；视觉家族/风格/版式【】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
+- B02读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；去AI味语义回归【PASS / FAIL / 未运行】；图表地图普通/生产校验【】；视觉家族/风格/版式【】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
 - `B03` 瓶颈+方案+结论+附录：`未开始 / DRAFT / AWAITING_USER_APPROVAL / ACCEPTED`
 - `B03` 版本与确认语义：
-- B03读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；图表地图普通/生产校验【】；视觉家族/风格/版式【】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
+- B03读者正文/DOCX：路径【】；语言泄漏校验【PASS / FAIL / 未运行】；去AI味语义回归【PASS / FAIL / 未运行】；图表地图普通/生产校验【】；视觉家族/风格/版式【】；渲染页数【】；逐页图文校验【PASS / FAIL / 未运行】
 - 第4—10章关键主张证据包：`PASS / FAIL / 未运行`
 - 数据验证/图表映射：`PASS / FAIL / 未运行`
 - 概要与目录组装：`未开始 / 完成`；自动目录覆盖Heading 1/2/3：`PASS / FAIL / 未运行`
@@ -80,8 +80,9 @@
 - Word版式预设：`cubec-a4-chinese-research-print / 用户覆盖`；DOCX格式校验：`PASS / FAIL / 未运行`
 - 图题/表题自动域：`PASS / FAIL / 未运行`；题注9pt且图内无题注：`PASS / FAIL / 未运行`；参考文献非表格：`PASS / FAIL / 不适用`
 - Excalidraw结构图渲染复核：`PASS / FAIL / 未运行`；thesis-figure-skill学术构图复核：`PASS / FAIL / 未运行`；imagegen适配性调用与边界复核：`PASS / FAIL / 未运行`
+- 可编辑母版登记：路径【】；校验【PASS / FAIL / 未运行】；Canva要求【是 / 否】；设计ID/事务/用户批准【】
 - 图片前置正文/普通文字不小于14pt/关键文字16pt/清晰度复核：`PASS / FAIL / 未运行`
-- 主谓宾叙述/冒号式概括串列/引号式词组链复核：`PASS / FAIL / 未运行`
+- 主谓宾叙述/冒号式概括串列/引号式词组链/空泛渲染/长定语/机械连接复核：`PASS / FAIL / 未运行`
 - 表格单元格水平垂直居中且零首行缩进：`PASS / FAIL / 未运行`
 - 正文1.25倍行距/仅章节分页：`PASS / FAIL / 未运行`
 - 最终合并稿语言泄漏校验：`PASS / FAIL / 未运行`
