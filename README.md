@@ -1,10 +1,17 @@
 # 商业精英流通业竞赛教练
 
-`coach-cubec-circulation` 是面向“全国高校商业精英挑战赛创新创业竞赛——流通业经营模拟赛道”的 Codex Skill。它将备赛工作组织为有阶段门、可追溯证据和确定性校验的完整流程：
+`coach-cubec-circulation` 是面向“全国高校商业精英挑战赛创新创业竞赛——流通业经营模拟赛道”的多智能体复用技能包。核心流程、模板和校验脚本可用于 Codex、Trae、Workbuddy、豆包、DeepSeek、智谱清言等多个智能体平台。Codex 提供本地 Skill 发现与工具调用；其他平台需将完整文件夹导入为技能、知识库或系统指令，并按平台实际能力配置工具。它将备赛工作组织为有阶段门、可追溯证据和确定性校验的完整流程：
 
 > 项目简报 → 选题 → 调研 → 分析报告 → 评分复核 → 20页PPT大纲 → 10分钟讲稿
 
 5分钟答辩题库和最终合规预检为可选延伸。
+
+## 核心依据与数据边界
+
+- 分析报告的固定11章三级框架、章节功能和论证顺序，严格从已研读的往届国一作品和全国高校商业精英挑战赛作品中蒸馏。它们只用于提取结构、论证和呈现的共性，不用于复制原文、数据、图表或视觉创意。
+- 选题、论文框架、评分复核、匿名和交付规范以当届赛事细则为准。2026年细则仅作当前基线；用户提供新细则时，必须以新文件替换对应要求。
+- 全文可核验的数据、事实、图表和结论均必须来自专业案头分析：企业年报、招股书、交易所披露、政府/统计/监管机构资料、权威行业报告、专业文献与可定位的企业官方信息。每个数字都要保留时间、地区、单位、口径和来源。
+- 访谈、实地观察、问卷、购物日记和企业内部材料必须由团队人工完成、脱敏、清洗和核实。Skill 可以提供设计、编码与分析模板，不会伪造具体访谈内容、问卷结果或实地结论。缺失一手证据时，只能标为待调研/待核验，不得用案头资料替代或补造。
 
 ## 1. 项目解决什么问题
 
@@ -186,6 +193,14 @@ git clone https://github.com/coleam00/excalidraw-diagram-skill.git \
 基础结构和DOCX XML校验不需要Python第三方包，只需要Python 3。制作Word、静态图表和逐页渲染时，应在运行环境中提供 `$documents:documents`、`$data-analytics:validate-data`、`$data-analytics:visualize-data` 和系统 `$imagegen`；若这些能力不可用，必须改用可复现的本地数据/文档工具并如实说明未完成的门禁。Kami和`thesis-figure-skill`已随本项目嵌入，无需另行下载；后者若实际生成TikZ图，仍需按其上游说明提供TeX、字体和PDF渲染依赖。Excalidraw结构图依赖单独安装的上游Skill及其Playwright渲染环境。制作单文件HTML演示仍需要单独安装 `$frontend-slides` Skill。如需Canva可编辑母版，运行环境还须安装并授权 `$canva:canva-edit-design`，用户需提供现有Canva设计链接或设计ID；不要在对话中提供密码或Token。
 
 本机维护版本另有被 `.gitignore` 排除的 `source-materials/` 和 `source-skills/` 只读原始档案；其中含赛事附件、往届作品和旧 Skill 快照，因版权与隐私边界不随公开 GitHub 仓库分发。仅在得到合法来源与使用权限时，才可把对应原件放回这两个目录；公开版本的主流程、模板、蒸馏规则和校验脚本不依赖这些原件运行。
+
+### 3.3 用于 Trae、Workbuddy、豆包、DeepSeek、智谱清言等平台
+
+1. 复制完整的 `coach-cubec-circulation` 文件夹，保留 `SKILL.md`、`references/`、`assets/`、`scripts/` 和 `README.md` 的相对路径。
+2. 将 `SKILL.md` 导入对应平台的技能、知识库或自定义指令；将 `references/` 和 `assets/` 作为该指令可访问的附件资源。
+3. 按平台能力配置文件读取、网络检索、Python运行与图表/文档生成工具。平台不支持的工具调用必须如实声明并执行相同的证据门禁，不得因缺少工具而虚构数据、访谈或结论。
+
+本项目不声称已为上述平台分别开发原生插件。其中 Codex 的 `$coach-cubec-circulation` 触发名和工具调用名需根据其他平台的规则改写或手工执行。
 
 ## 4. 使用方法
 
@@ -402,6 +417,26 @@ P01—P20：每页给出结论式标题、页面任务、核心主张、证据ID
 - [`scripts/`](scripts/)：查重初筛、框架、中文正文风格、可编辑母版、B02/B03图表地图、评分、PPT、讲稿及Word逐页图表清单的确定性校验脚本。
 - `source-materials/`：仅存在于本机维护版本的官方文件、国一计划书/PPT、路演稿和对话附件原件，只读，不公开提交。
 - `source-skills/`：仅存在于本机维护版本的两个旧 Skill 完整原始快照，只读，不公开提交。
+
+## Reference
+
+下列 Skill/项目仅用于学习流程、证据约束或视觉工作法，不是本项目的事实来源，也不意味着每次任务都会安装或调用。完整的采用范围、改造方式与许可边界见 [references/third-party-methods.md](references/third-party-methods.md) 与 [references/report-section-method-router.md](references/report-section-method-router.md)。
+
+| 参考来源 | 本项目用途 |
+|---|---|
+| [research-planner](https://github.com/NKZ55/research-planner) | 调研计划、招募、知情说明、访谈与问卷的阶段模型 |
+| [customer-research](https://github.com/coreyhaines31/marketingskills/tree/main/skills/customer-research) | VOC/JTBD、主题聚类、样本偏差与反证意识 |
+| [pm-skills](https://github.com/phuryn/pm-skills) 的 competitor-analysis 与 interview-script | 本地竞品对标和非引导式访谈 |
+| [experimental-design](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/experimental-design) | 问卷、观察与试点的分层和防伪重复原则 |
+| [consulting-analysis](https://github.com/bytedance/deer-flow/tree/main/skills/public/consulting-analysis) | 报告框架与成稿分阶段、章节级证据规划 |
+| [OpenAI data-analytics skills](https://github.com/openai/role-specific-plugins/tree/main/data-analytics/skills) | 数据验证、指标诊断、KPI设计、可视化与报告组织 |
+| [financial-analyst](https://github.com/alirezarezvani/claude-skills/tree/main/finance/skills/financial-analyst) | 财务趋势、比率、驱动因素和情景测算的口径复核 |
+| [frontend-slides](https://github.com/zarazhangrui/frontend-slides) | 20页大纲确认后的HTML演示制作 |
+| [Kami](https://github.com/tw93/Kami) | Word视觉层级、图解与页面复核参考 |
+| [thesis-figure-skill](https://github.com/0xE1337/thesis-figure-skill) | 学术图解构图复核与适配重绘 |
+| [excalidraw-diagram-skill](https://github.com/coleam00/excalidraw-diagram-skill) | 研究框架、流程、机制和路线图的可编辑结构图 |
+| [awesome-ai-research-writing](https://github.com/Leey21/awesome-ai-research-writing) | 中文Word最小改写与去AI味的语义回归原则 |
+| 本地 `write-circulation-case-report` 与 `write-cubec-circulation-report` 快照 | 本项目合并前的流通业赛道选题、调研、报告、评分与展示流程基础 |
 
 ## 许可
 
