@@ -393,7 +393,7 @@ P01—P20：每页给出结论式标题、页面任务、核心主张、证据ID
 ## 目录说明
 
 - [`SKILL.md`](SKILL.md)：Skill 的核心流程、阶段门和输出契约。
-- [`LICENSE`](LICENSE)：本项目原创内容采用的 MIT License。
+- [`LICENSE`](LICENSE)：本项目原创内容自2026-08-17起采用的自定义非商业、禁止闭源分发许可。
 - [`assets/`](assets/)：项目简报、调研、报告、去AI味复核、可编辑母版登记、评分、PPT、讲稿及答辩模板。
 - [`integrations/kami/`](integrations/kami/)：原样嵌入的 Kami 1.12.0 轻量 Skill 子目录，用于Word的视觉/图解参考；保留上游MIT许可证，不代表其原生支持DOCX。
 - [`integrations/excalidraw-diagram-adapter/`](integrations/excalidraw-diagram-adapter/)：外部Excalidraw Skill的审计记录与报告适配入口；不含上游源代码。
@@ -405,12 +405,23 @@ P01—P20：每页给出结论式标题、页面任务、核心主张、证据ID
 
 ## 许可
 
-本项目原创的主 Skill、脚本、模板和蒸馏文档采用 [MIT License](LICENSE)。
+本项目原创的主 Skill、脚本、模板和蒸馏文档，自2026-08-17起发布的版本采用 [自定义限制性许可](LICENSE)，权限与 [MathModelAgent 的 License.md](https://github.com/jihe520/MathModelAgent/blob/main/docs/md/License.md) 一致：
+
+- 个人可免费使用；
+- 不得用于商业用途，商业授权需联系作者；
+- 禁止闭源分发；
+- 不得基于本项目提供商业服务。
+
+该许可含商业使用限制，因此不属于OSI定义的开源许可。商业授权请通过本仓库 Issues 联系作者。
+
+许可变更只适用于变更后发布的版本。已经在旧版本 MIT License 下获得的副本，仍按获取该副本时的许可条款处理。
 
 `integrations/kami/` 依据其上游 MIT License 再分发，许可证与版权声明保留在该目录的 `LICENSE` 中。
 
-`coleam00/excalidraw-diagram-skill` 在本项目审计的提交中未提供许可证，因此仅作为用户自行安装的外部依赖；本仓库不再分发其代码、模板和参考文件。本项目原创的Excalidraw路由、Word约束和报告色板仍按本仓库MIT License授权。
+`integrations/thesis-figure-skill/` 依据其上游 MIT License 再分发，许可证与版权声明保留在该目录的 `LICENSE` 中。根目录的自定义许可不变更这两个第三方目录已有的授权。
 
-`Leey21/awesome-ai-research-writing` 在本项目审计的提交中未提供许可证。本项目只将其公开README中的中文写作原则重新概括为赛事专用流程，不复制上游prompt、段落或图片，也不将上游内容纳入本项目MIT再分发范围。
+`coleam00/excalidraw-diagram-skill` 在本项目审计的提交中未提供许可证，因此仅作为用户自行安装的外部依赖；本仓库不再分发其代码、模板和参考文件。本项目原创的Excalidraw路由、Word约束和报告色板按根目录的自定义限制性许可授权。
 
-`source-materials/` 中的官方文件、往届参赛作品、PPT和路演稿，以及 `source-skills/` 中可能包含的第三方内容，不因存放在本项目目录中而转为 MIT 授权；其版权和许可仍归原作者、主办方或相应权利人所有。使用这些材料时应遵守原始许可、比赛规则和著作权要求。
+`Leey21/awesome-ai-research-writing` 在本项目审计的提交中未提供许可证。本项目只将其公开README中的中文写作原则重新概括为赛事专用流程，不复制上游prompt、段落或图片，也不声称对上游内容进行重新授权。
+
+`source-materials/` 中的官方文件、往届参赛作品、PPT和路演稿，以及 `source-skills/` 中可能包含的第三方内容，不因存放在本项目目录中而受根目录的自定义许可重新授权；其版权和许可仍归原作者、主办方或相应权利人所有。使用这些材料时应遵守原始许可、比赛规则和著作权要求。
