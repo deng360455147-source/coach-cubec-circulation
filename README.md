@@ -420,7 +420,9 @@ P01—P20：每页给出结论式标题、页面任务、核心主张、证据ID
 
 ## Reference
 
-下列 Skill/项目仅用于学习流程、证据约束或视觉工作法，不是本项目的事实来源，也不意味着每次任务都会安装或调用。完整的采用范围、改造方式与许可边界见 [references/third-party-methods.md](references/third-party-methods.md) 与 [references/report-section-method-router.md](references/report-section-method-router.md)。
+Thanks to the following projects:
+
+完整的采用范围、改造方式与许可边界见 [references/third-party-methods.md](references/third-party-methods.md) 与 [references/report-section-method-router.md](references/report-section-method-router.md)。
 
 | 参考来源 | 本项目用途 |
 |---|---|
